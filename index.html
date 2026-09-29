@@ -1,0 +1,2551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="修行巻物">
+<meta name="theme-color" content="#0C1424">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%230C1424'/%3E%3Crect x='24' y='58' width='132' height='64' rx='4' fill='%23182541' stroke='%23C9A227' stroke-width='2'/%3E%3Crect x='14' y='50' width='14' height='80' rx='3' fill='%234a3524'/%3E%3Crect x='152' y='50' width='14' height='80' rx='3' fill='%234a3524'/%3E%3Ctext x='90' y='103' font-size='42' text-anchor='middle' fill='%23E7CE7E' font-family='serif'%3E修%3C/text%3E%3C/svg%3E">
+<title>小児内分泌 修行巻物 ― 巻の一 成長障害</title>
+<style>
+:root{
+  --konshi:#141F35;        /* 紺紙 */
+  --konshi-deep:#0C1424;
+  --konshi-soft:#1C2A45;
+  --kindei:#C9A227;        /* 金泥 */
+  --kindei-lt:#E7CE7E;
+  --shu:#C4453A;           /* 朱 */
+  --shu-lt:#E0685C;
+  --byakuroku:#7FB79F;     /* 白緑 = 正 */
+  --gofun:#EAE4D6;         /* 胡粉 */
+  --gofun-dim:#9AA3B4;
+  --line:rgba(201,162,39,.24);
+  --mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+  --gothic:"Hiragino Sans","Yu Gothic",YuGothic,"Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  background:var(--konshi-deep);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(201,162,39,.07), transparent 55%),
+    radial-gradient(ellipse at 85% 100%, rgba(196,69,58,.07), transparent 55%);
+  color:var(--gofun);
+  font-family:var(--gothic);
+  font-size:15px;line-height:1.75;
+  padding-bottom:88px;
+  min-height:100vh;
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px}
+
+/* ── 表題 ── */
+header{padding:22px 0 14px;text-align:center}
+.kanmuri{font-family:var(--mincho);font-size:11px;letter-spacing:.5em;color:var(--kindei);opacity:.8;margin-left:.5em}
+h1{font-family:var(--mincho);font-size:25px;font-weight:600;margin:6px 0 2px;color:var(--gofun);letter-spacing:.08em}
+.subtitle{font-size:11.5px;color:var(--gofun-dim);letter-spacing:.14em}
+
+/* ── 巻軸ゲージ（署名要素）── */
+.scrollbar{display:flex;align-items:center;gap:0;margin:16px 0 6px}
+.roller{width:12px;height:30px;border-radius:3px;flex:none;
+  background:linear-gradient(180deg,#4a3524,#2c1e14 45%,#5b422c);
+  box-shadow:0 1px 3px rgba(0,0,0,.6), inset 0 0 0 1px rgba(201,162,39,.3)}
+.paper{flex:1;height:19px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#22314f,#182541);
+  border-top:1px solid rgba(201,162,39,.28);border-bottom:1px solid rgba(201,162,39,.28)}
+.paper .fill{position:absolute;inset:0 auto 0 0;width:0;
+  background:linear-gradient(180deg,var(--kindei-lt),var(--kindei) 60%,#9d7c15);
+  transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.paper .grain{position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(0,0,0,.16) 13px 14px)}
+.rankrow{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;color:var(--gofun-dim)}
+.rankname{font-family:var(--mincho);font-size:15px;color:var(--kindei-lt);letter-spacing:.12em}
+
+/* ── タブ ── */
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;
+  background:rgba(10,17,30,.94);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);display:flex;
+  padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;color:var(--gofun-dim);
+  font-family:var(--mincho);font-size:14px;letter-spacing:.2em;padding:13px 0 12px;cursor:pointer}
+nav button.on{color:var(--kindei-lt)}
+nav button.on::after{content:"";display:block;width:20px;height:2px;background:var(--kindei);margin:5px auto -2px}
+
+.view{display:none}
+.view.on{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ── 札（カード）── */
+.fuda{background:linear-gradient(180deg,rgba(28,42,69,.92),rgba(20,31,53,.92));
+  border:1px solid var(--line);border-radius:3px;padding:16px;margin:12px 0;
+  box-shadow:0 2px 14px rgba(0,0,0,.35)}
+.eyebrow{font-family:var(--mincho);font-size:11px;letter-spacing:.28em;color:var(--kindei);opacity:.85}
+
+/* ── 修行 ── */
+.qmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--gofun-dim);margin-bottom:10px;letter-spacing:.08em}
+.quit{background:none;border:1px solid rgba(234,228,214,.2);color:var(--gofun-dim);
+  font-family:var(--mincho);font-size:11px;letter-spacing:.1em;border-radius:2px;
+  padding:2px 9px;margin-left:11px;cursor:pointer}
+.quit:active{transform:scale(.96)}
+.qbadge{color:var(--kindei);border:1px solid var(--line);border-radius:2px;padding:1px 7px;font-family:var(--mincho)}
+.qtext{font-family:var(--mincho);font-size:17.5px;line-height:1.85;margin:4px 0 16px;color:#F3EEE2}
+.vignette{border-left:2px solid var(--shu);padding:2px 0 2px 12px;margin:0 0 14px;
+  font-size:14.5px;line-height:1.8;color:#DCD6C6;background:rgba(196,69,58,.05)}
+.choices{display:flex;flex-direction:column;gap:9px}
+.choice{text-align:left;width:100%;background:rgba(255,255,255,.03);color:var(--gofun);
+  border:1px solid rgba(234,228,214,.16);border-radius:3px;padding:12px 13px;
+  font-family:var(--gothic);font-size:14.5px;line-height:1.6;cursor:pointer;
+  display:flex;gap:10px;align-items:flex-start;transition:.15s}
+.choice:active{transform:scale(.985)}
+.choice .mark{font-family:var(--mincho);color:var(--kindei);flex:none;min-width:1.1em}
+.choice.right{border-color:var(--byakuroku);background:rgba(127,183,159,.13)}
+.choice.right .mark{color:var(--byakuroku)}
+.choice.wrong{border-color:var(--shu);background:rgba(196,69,58,.13)}
+.choice.wrong .mark{color:var(--shu-lt)}
+.choice[disabled]{cursor:default;opacity:.75}
+.choice.right[disabled],.choice.wrong[disabled]{opacity:1}
+
+.verdict{margin-top:15px;padding-top:14px;border-top:1px dashed var(--line)}
+.vhead{font-family:var(--mincho);font-size:16px;letter-spacing:.14em;margin-bottom:7px}
+.vhead.ok{color:var(--byakuroku)}
+.vhead.ng{color:var(--shu-lt)}
+.exp{font-size:14px;line-height:1.85;color:#D9D3C4}
+.ref{font-size:11px;color:var(--gofun-dim);margin-top:9px;letter-spacing:.06em}
+.xpgain{float:right;font-family:var(--mincho);color:var(--kindei-lt);font-size:14px}
+
+.btn{display:block;width:100%;margin-top:14px;padding:14px;border-radius:3px;cursor:pointer;
+  font-family:var(--mincho);font-size:16px;letter-spacing:.22em;
+  background:linear-gradient(180deg,#2A3A5C,#1B2841);color:var(--kindei-lt);
+  border:1px solid var(--line)}
+.btn:active{transform:scale(.99)}
+.btn.shu{background:linear-gradient(180deg,#8E3129,#6B241E);border-color:rgba(224,104,92,.4);color:#F4E3DF}
+.btn.luck{background:none;border-color:rgba(224,104,92,.45);color:var(--shu-lt);
+  font-size:13.5px;letter-spacing:.14em}
+.btn.luck[disabled]{border-color:rgba(234,228,214,.16);color:var(--gofun-dim);cursor:default}
+.btn.ghost{background:none;color:var(--gofun-dim);border-color:rgba(234,228,214,.16);font-size:13px}
+
+.startgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.startgrid .btn{margin-top:0}
+.tally{display:flex;gap:18px;font-size:12px;color:var(--gofun-dim);margin-top:12px;letter-spacing:.08em}
+.tally b{color:var(--kindei-lt);font-family:var(--mincho);font-size:15px;font-weight:400}
+
+/* ── 印（落款）── */
+.seals{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.seal{width:52px;height:52px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mincho);font-size:19px;line-height:1.1;text-align:center;
+  border:1.5px solid rgba(196,69,58,.35);color:rgba(224,104,92,.45);
+  background:rgba(196,69,58,.04);letter-spacing:.02em;position:relative}
+.seal.done{border-color:var(--shu);color:#F6E9E7;background:var(--shu);
+  box-shadow:0 0 0 1px rgba(196,69,58,.3), 0 2px 10px rgba(196,69,58,.35)}
+
+.volchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{font-family:var(--mincho);font-size:13px;letter-spacing:.04em;padding:6px 11px;border-radius:2px;cursor:pointer;
+  background:rgba(255,255,255,.03);border:1px solid rgba(234,228,214,.16);color:var(--gofun)}
+.chip.on{border-color:var(--kindei);background:rgba(201,162,39,.14);color:var(--kindei-lt)}
+.chip.soon{opacity:.32;cursor:default;border-style:dashed}
+.chip small{font-size:10px;opacity:.65;margin-left:5px}
+#recBox{width:100%;min-height:74px;margin-top:10px;padding:9px;border-radius:3px;
+  background:rgba(0,0,0,.25);border:1px solid rgba(234,228,214,.16);
+  color:var(--gofun);font-family:monospace;font-size:11px;line-height:1.5;resize:vertical}
+.mixup{border-left:2px solid var(--shu);padding:2px 0 2px 11px;margin:12px 0;
+  background:rgba(196,69,58,.05)}
+.mx-q{font-family:var(--mincho);font-size:14px;line-height:1.7;color:#EDE7DA;margin-bottom:5px}
+.mx-line{font-size:13px;line-height:1.65;color:#CFC9BA;display:flex;gap:8px;align-items:baseline}
+.mx-bad,.mx-ok{flex:none;font-family:var(--mincho);font-size:11px;letter-spacing:.08em;
+  border-radius:2px;padding:0 5px;min-width:3.4em;text-align:center}
+.mx-bad{color:var(--shu-lt);border:1px solid rgba(224,104,92,.4)}
+.mx-ok{color:var(--byakuroku);border:1px solid rgba(127,183,159,.4)}
+.mx-n{font-size:11px;color:var(--gofun-dim);margin-top:5px;letter-spacing:.06em}
+/* 昇段の印 */
+#stamp{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:60;
+  background:rgba(6,10,18,.82);backdrop-filter:blur(3px)}
+#stamp.on{display:flex}
+.stampbox{text-align:center;animation:press .55s cubic-bezier(.2,1.5,.4,1)}
+@keyframes press{0%{transform:scale(2.4) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(-6deg);opacity:1}}
+.stampseal{width:150px;height:150px;border:5px solid var(--shu);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;margin:0 auto;
+  font-family:var(--mincho);font-size:38px;color:var(--shu);letter-spacing:.1em;
+  background:rgba(196,69,58,.08)}
+.stamptxt{font-family:var(--mincho);color:var(--kindei-lt);letter-spacing:.3em;margin-top:20px;font-size:14px}
+
+/* ── 巻物（早見）── */
+.scrolltitle{font-family:var(--mincho);font-size:17px;color:var(--kindei-lt);letter-spacing:.1em;
+  border-bottom:1px solid var(--line);padding-bottom:7px;margin:0 0 11px}
+.kv{display:flex;gap:11px;padding:7px 0;border-bottom:1px dotted rgba(234,228,214,.12);font-size:14px}
+.kv:last-child{border-bottom:0}
+.kv .k{flex:none;width:104px;font-family:var(--mincho);color:var(--kindei);letter-spacing:.04em}
+.kv .v{flex:1;line-height:1.7}
+details{margin:10px 0}
+summary{font-family:var(--mincho);font-size:16px;color:var(--gofun);letter-spacing:.1em;
+  cursor:pointer;padding:11px 0;border-bottom:1px solid var(--line);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"○ ";color:var(--kindei);font-size:11px;vertical-align:.18em}
+details[open] summary::before{content:"● ";color:var(--shu-lt)}
+
+/* ── 己（記録）── */
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin:8px 0 16px}
+.dash div{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:3px;padding:9px 2px}
+.dash b{display:block;font-family:var(--mincho);font-size:21px;color:var(--kindei-lt);font-weight:400;line-height:1.2}
+.dash small{font-size:10px;color:var(--gofun-dim);letter-spacing:.08em}
+.dlabel{font-family:var(--mincho);font-size:11.5px;letter-spacing:.14em;color:var(--kindei);opacity:.85;margin-bottom:7px}
+.chartwrap{width:100%}
+.chartwrap svg{width:100%;height:auto;display:block}
+.bar{height:7px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-top:5px}
+.bar{position:relative}
+.bar i{position:absolute;left:0;top:0;height:100%;border-radius:99px;transition:width .5s;display:block}
+.bar i.prog{background:rgba(201,162,39,.42)}
+.bar i.mast{background:linear-gradient(90deg,var(--kindei),var(--kindei-lt))}
+.catrow{margin:13px 0}
+.catrow .top{display:flex;justify-content:space-between;font-size:13px}
+.catrow .top span:last-child{color:var(--gofun-dim);font-size:11.5px;font-family:var(--mincho)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;text-align:center;margin-top:6px}
+.stats div{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:3px;padding:11px 4px}
+.stats b{display:block;font-family:var(--mincho);font-size:23px;color:var(--kindei-lt);font-weight:400;line-height:1.2}
+.stats small{font-size:10.5px;color:var(--gofun-dim);letter-spacing:.1em}
+.note{font-size:11.5px;color:var(--gofun-dim);line-height:1.8;margin-top:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <div class="kanmuri">たのしく学ぶ小児内分泌</div>
+  <h1>修行巻物</h1>
+  <div class="subtitle" id="nowVol">通し稽古</div>
+
+  <div class="scrollbar">
+    <div class="roller"></div>
+    <div class="paper"><div class="fill" id="xpfill"></div><div class="grain"></div></div>
+    <div class="roller"></div>
+  </div>
+  <div class="rankrow">
+    <span class="rankname" id="rankName">見習い</span>
+    <span id="xpText">0 / 150</span>
+  </div>
+</header>
+
+<!-- ══ 修行 ══ -->
+<section class="view on" id="v-drill">
+  <div id="home">
+    <div class="fuda">
+      <div class="eyebrow">巻を選ぶ</div>
+      <div class="volchips" id="volchips"></div>
+    </div>
+    <div class="fuda">
+      <div class="eyebrow">きょうの修行</div>
+      <div class="tally">
+        <span>復習の刻 <b id="dueN">0</b></span>
+        <span>未見の問 <b id="newN">0</b></span>
+        <span>連撃 <b id="streakN">0</b></span>
+      </div>
+      <div class="startgrid">
+        <button class="btn shu" onclick="start(5)">五問</button>
+        <button class="btn" onclick="start(10)">十問</button>
+      </div>
+      <button class="btn ghost" onclick="start(999)">積んだ復習をすべて</button>
+    </div>
+    <div class="fuda">
+      <div class="eyebrow">心得</div>
+      <div class="exp" style="margin-top:6px">正解した問は<b>翌日 → 三日 → 七日 → 三週</b>と間隔をあけて戻ってくる。落とした問は明日また来る。1日5問で足りる。</div>
+    </div>
+  </div>
+
+  <div id="quiz" style="display:none">
+    <div class="fuda">
+      <div class="qmeta">
+        <span class="qbadge" id="qcat">―</span>
+        <span><span id="qprog">1 / 5</span><button class="quit" onclick="abortSession()">中断</button></span>
+      </div>
+      <div id="qvig" class="vignette" style="display:none"></div>
+      <div class="qtext" id="qtext"></div>
+      <div class="choices" id="qchoices"></div>
+      <div class="verdict" id="verdict" style="display:none">
+        <div class="vhead" id="vhead"></div>
+        <div class="exp" id="vexp"></div>
+        <div class="ref" id="vref"></div>
+      </div>
+      <button class="btn luck" id="luckBtn" style="display:none" onclick="markLuck()">まぐれ当たり ― 明日また出す</button>
+      <button class="btn" id="nextBtn" style="display:none" onclick="next()">次の問へ</button>
+    </div>
+  </div>
+
+  <div id="result" style="display:none">
+    <div class="fuda" style="text-align:center">
+      <div class="eyebrow">修了</div>
+      <div style="font-family:var(--mincho);font-size:34px;color:var(--kindei-lt);margin:10px 0 2px" id="rScore">―</div>
+      <div style="font-size:12px;color:var(--gofun-dim);letter-spacing:.14em" id="rXp"></div>
+      <button class="btn" onclick="home()">巻を閉じる</button>
+    </div>
+    <div class="fuda" id="rWeak"></div>
+  </div>
+</section>
+
+<!-- ══ 巻物 ══ -->
+<section class="view" id="v-scroll">
+  <div class="fuda">
+    <div class="scrolltitle">総図 ― 軸の全体像</div>
+    <div class="exp" style="margin:0 0 12px">どの巻の疾患も、この図のどこか一点が壊れている。診断のとき「上流か、下流か、担体か」を先に決める。</div>
+    <svg viewBox="0 0 340 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+      <defs>
+        <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="2.5" orient="auto">
+          <path d="M0,0 L6,2.5 L0,5 z" fill="#C9A227"/></marker>
+        <marker id="arf" markerWidth="7" markerHeight="7" refX="6" refY="2.5" orient="auto">
+          <path d="M0,0 L6,2.5 L0,5 z" fill="#C4453A"/></marker>
+      </defs>
+      <style>
+        .bx{fill:rgba(34,49,79,.9);stroke:#C9A227;stroke-width:1}
+        .bx2{fill:rgba(28,42,69,.7);stroke:rgba(201,162,39,.35);stroke-width:1}
+        .t{fill:#EAE4D6;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:12px;text-anchor:middle}
+        .ts{fill:#9AA3B4;font-family:"Hiragino Sans","Yu Gothic",sans-serif;font-size:9px;text-anchor:middle}
+        .tg{fill:#E7CE7E;font-family:"Hiragino Sans",sans-serif;font-size:9.5px;text-anchor:middle}
+        .ln{stroke:#C9A227;stroke-width:1.1;marker-end:url(#ar);fill:none}
+        .fb{stroke:#C4453A;stroke-width:1;stroke-dasharray:3 3;marker-end:url(#arf);fill:none}
+      </style>
+
+      <rect class="bx" x="105" y="6" width="130" height="30" rx="3"/>
+      <text class="t" x="170" y="25">視床下部</text>
+      <text class="ts" x="170" y="48">CRF・TRH・LHRH・GRF</text>
+
+      <line class="ln" x1="170" y1="52" x2="170" y2="66"/>
+      <rect class="bx" x="55" y="70" width="150" height="30" rx="3"/>
+      <text class="t" x="130" y="89">下垂体前葉</text>
+      <rect class="bx" x="213" y="70" width="82" height="30" rx="3"/>
+      <text class="t" x="254" y="89">後葉</text>
+      <text class="ts" x="254" y="112">AVP</text>
+
+
+      <line class="ln" x1="40" y1="104" x2="40" y2="128"/>
+      <line class="ln" x1="82" y1="104" x2="82" y2="128"/>
+      <line class="ln" x1="124" y1="104" x2="124" y2="128"/>
+      <line class="ln" x1="170" y1="104" x2="170" y2="128"/>
+      <path class="ln" d="M60,100 L40,100 L40,128"/>
+      <text class="tg" x="40" y="122">ACTH</text>
+      <text class="tg" x="82" y="122">TSH</text>
+      <text class="tg" x="130" y="122">LH/FSH</text>
+      <text class="tg" x="185" y="122">GH</text>
+
+      <rect class="bx" x="8" y="132" width="66" height="46" rx="3"/>
+      <text class="t" x="41" y="151">副腎皮質</text>
+      <text class="ts" x="41" y="167">コルチゾール</text>
+
+      <rect class="bx" x="80" y="132" width="58" height="46" rx="3"/>
+      <text class="t" x="109" y="151">甲状腺</text>
+      <text class="ts" x="109" y="167">T4 → T3</text>
+
+      <rect class="bx" x="144" y="132" width="58" height="46" rx="3"/>
+      <text class="t" x="173" y="151">性腺</text>
+      <text class="ts" x="173" y="167">T・E2</text>
+
+      <rect class="bx" x="196" y="132" width="54" height="46" rx="3"/>
+      <text class="t" x="223" y="151">肝</text>
+      <text class="ts" x="223" y="167">IGF-1</text>
+
+      <path class="ln" d="M276,102 L296,102 L296,128"/>
+      <rect class="bx" x="258" y="132" width="76" height="46" rx="3"/>
+      <text class="t" x="296" y="151">腎集合管</text>
+      <text class="ts" x="296" y="167">V2 → AQP2</text>
+
+      <path class="fb" d="M14,178 L6,178 L6,90 L52,90"/>
+      <path class="fb" d="M86,178 L78,178 L78,112 L96,112 L96,102"/>
+      <path class="fb" d="M150,178 L142,178 L142,114 L156,114 L156,102"/>
+      <text class="ts" x="30" y="196" style="fill:#E0685C">負のフィードバック</text>
+
+      <line class="ln" x1="223" y1="180" x2="223" y2="206"/>
+      <rect class="bx2" x="160" y="210" width="126" height="34" rx="3"/>
+      <text class="t" x="223" y="226">三量体で貯蔵</text>
+      <text class="ts" x="223" y="238">IGF-1＋IGFBP-3＋ALS</text>
+      <line class="ln" x1="223" y1="248" x2="223" y2="270"/>
+      <rect class="bx" x="160" y="274" width="126" height="30" rx="3"/>
+      <text class="t" x="223" y="293">成長板</text>
+
+      <line class="ln" x1="41" y1="180" x2="41" y2="270"/>
+      <rect class="bx2" x="6" y="274" width="72" height="30" rx="3"/>
+      <text class="t" x="42" y="293">全身</text>
+
+      <line class="ln" x1="150" y1="180" x2="150" y2="270"/>
+      <rect class="bx2" x="88" y="274" width="62" height="30" rx="3"/>
+      <text class="t" x="119" y="293">二次性徴</text>
+
+      <line x1="6" y1="322" x2="334" y2="322" stroke="rgba(201,162,39,.24)" stroke-width="1"/>
+      <text class="tg" x="170" y="340" style="font-size:11px">下垂体を介さない系</text>
+
+      <rect class="bx" x="6" y="352" width="96" height="34" rx="3"/>
+      <text class="t" x="54" y="368">副甲状腺</text>
+      <text class="ts" x="54" y="380">PTH</text>
+      <rect class="bx" x="118" y="352" width="96" height="34" rx="3"/>
+      <text class="t" x="166" y="368">骨細胞</text>
+      <text class="ts" x="166" y="380">FGF23</text>
+      <rect class="bx" x="230" y="352" width="104" height="34" rx="3"/>
+      <text class="t" x="282" y="368">皮膚・肝・腎</text>
+      <text class="ts" x="282" y="380">1,25(OH)2D</text>
+
+      <line class="ln" x1="54" y1="390" x2="54" y2="414"/>
+      <line class="ln" x1="166" y1="390" x2="166" y2="414"/>
+      <line class="ln" x1="282" y1="390" x2="282" y2="414"/>
+      <rect class="bx2" x="6" y="418" width="328" height="34" rx="3"/>
+      <text class="t" x="170" y="435">血清 Ca ・ P</text>
+      <text class="ts" x="170" y="447">腸管吸収・腎再吸収・骨代謝の三者で決まる</text>
+      <path class="fb" d="M40,418 L20,418 L20,392"/>
+
+      <rect class="bx" x="6" y="472" width="150" height="34" rx="3"/>
+      <text class="t" x="81" y="488">膵β細胞</text>
+      <text class="ts" x="81" y="500">インスリン</text>
+      <rect class="bx" x="170" y="472" width="164" height="34" rx="3"/>
+      <text class="t" x="252" y="488">拮抗ホルモン</text>
+      <text class="ts" x="252" y="500">グルカゴン・GH・コルチゾール</text>
+      <line class="ln" x1="81" y1="510" x2="81" y2="530"/>
+      <line class="ln" x1="252" y1="510" x2="252" y2="530"/>
+      <rect class="bx2" x="6" y="534" width="328" height="30" rx="3"/>
+      <text class="t" x="170" y="553">血糖 ・ ケトン</text>
+      <path class="fb" d="M40,534 L20,534 L20,512"/>
+    </svg>
+    <div class="kv" style="margin-top:14px"><div class="k">金の矢</div><div class="v">刺激（上流 → 下流）</div></div>
+    <div class="kv"><div class="k">朱の破線</div><div class="v">負のフィードバック</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">総図 ― 壊れる場所の型</div>
+    <div class="kv"><div class="k">上流</div><div class="v">分泌不全（GHD・中枢性CH・中枢性尿崩症）／過剰（下垂体腺腫・Cushing病）</div></div>
+    <div class="kv"><div class="k">腺そのもの</div><div class="v">形成異常・合成障害・自己免疫・腫瘍。上位ホルモンは<b>上がる</b></div></div>
+    <div class="kv"><div class="k">受容体</div><div class="v">機能喪失＝不応（Laron・腎性尿崩症・AIS・FHH）／機能獲得＝勝手に働く（非自己免疫性甲状腺機能亢進症・ADH・NSIAD）</div></div>
+    <div class="kv"><div class="k">担体・貯蔵</div><div class="v">ALS欠損、SECISBP2、MCT8（運べない）</div></div>
+    <div class="kv"><div class="k">下流の酵素</div><div class="v">21水酸化酵素・5α還元酵素・1α水酸化酵素・PORD</div></div>
+    <div class="kv"><div class="k">刷り込み</div><div class="v">GNAS・15q11-13・11p15.5・6q24（親由来で表現型が変わる）</div></div>
+  </div>
+  <div class="fuda">
+    <div class="scrolltitle">巻の一　数の巻 ― 覚えるべき値</div>
+    <div class="kv"><div class="k">低身長</div><div class="v">−2.0 SD 以下 / 3パーセンタイル以下</div></div>
+    <div class="kv"><div class="k">精査の目安</div><div class="v">身長 −2.5 SD 以下 <b>または</b> 身長増加率 −1.5 SD 以下</div></div>
+    <div class="kv"><div class="k">GH頂値</div><div class="v">≦6 ng/mL で分泌不全（リコンビナント標準品）／ ≦3 ng/mL で重症</div></div>
+    <div class="kv"><div class="k">旧RIA法</div><div class="v">1980年代は 10 ng/mL が基準。古いカルテの数値はこの目で読む</div></div>
+    <div class="kv"><div class="k">GH 標準量</div><div class="v">GHD 0.175 mg/kg/週</div></div>
+    <div class="kv"><div class="k">SGA性低身長</div><div class="v">0.23 mg/kg/週（0.033 mg/kg/日）→ 反応不十分なら 0.47 mg/kg/週</div></div>
+    <div class="kv"><div class="k">軟骨無形成症</div><div class="v">0.35 mg/kg/週</div></div>
+    <div class="kv"><div class="k">成人身長</div><div class="v">軟骨無形成症 男 約130 cm / 女 約124 cm</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の一　形の巻 ― この一言を見たら</div>
+    <details><summary>新生児の低血糖＋遷延性黄疸＋小陰茎</summary>
+      <div class="exp">先天性 GH（＋ACTH）分泌不全。正中構造異常・視神経低形成の合併を探し、頭部MRIへ。黄疸はコルチゾール分泌不全によると推定されている。</div></details>
+    <details><summary>前葉低形成・茎が見えない・後葉が異所性</summary>
+      <div class="exp">MRI invisible stalk 症候群。単独GHDで始まっても経過中にACTH分泌不全が遅れて出現する。「今は単独」で終わらせない。</div></details>
+    <details><summary>入院したら数週で伸びだした</summary>
+      <div class="exp">愛情遮断性低身長。GH・TSH・LH/FSH・ACTH のすべてが低下しうる。分離で2〜4週のうちにホルモン異常も成長率も改善するのが決め手。</div></details>
+    <details><summary>低身長に多尿・多飲が並ぶ</summary>
+      <div class="exp">中枢性尿崩症の背後の胚細胞腫瘍。画像が初回で正常でも否定できず、追跡が要る。</div></details>
+    <details><summary>前腕・下腿だけが短い、Madelung変形</summary>
+      <div class="exp">SHOX ハプロ不全。中節優位（mesomelic）の短縮。女性のほうが重い。Turner の低身長の大部分もここで説明される。</div></details>
+    <details><summary>肺動脈弁狭窄＋翼状頸＋低身長</summary>
+      <div class="exp">Noonan 症候群。PTPN11 が最多。出血傾向と肥大型心筋症（RAF1で多い）を確認。</div></details>
+    <details><summary>GH高値なのに IGF-1 が低い</summary>
+      <div class="exp">GH不応症（Laron型）。外因性GHは効かない。GH受容体細胞外ドメイン異常ならGHBPも低値。</div></details>
+    <details><summary>IGF-1もIGFBP-3も著明低値、なのに −2SD程度</summary>
+      <div class="exp">ALS（IGFALS）欠損。三量体は失われても二量体のIGF-1が残れば成長はそこそこ保たれる、という読み方をする症例。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の一　遺伝子の巻 ― 表現型で引く</div>
+    <div class="kv"><div class="k">PROP1</div><div class="v">GH/TSH/PRL/Gn。ACTHは<b>遅れて</b>低下しうる</div></div>
+    <div class="kv"><div class="k">POU1F1</div><div class="v">GH・PRL 重度、TSH 中等度〜重度。Gn/ACTHは保たれる</div></div>
+    <div class="kv"><div class="k">LHX3</div><div class="v">ACTH以外の前葉ホルモン＋頸部回旋制限・難聴</div></div>
+    <div class="kv"><div class="k">HESX1</div><div class="v">septo-optic dysplasia（視神経低形成＋中隔欠損）</div></div>
+    <div class="kv"><div class="k">OTX2 / SOX2</div><div class="v">眼形成異常（小眼球・無眼球）を伴う</div></div>
+    <div class="kv"><div class="k">GH1 typeII</div><div class="v">AD。イントロン3のスプライシング異常でエクソン3スキップ</div></div>
+    <div class="kv"><div class="k">FGFR3</div><div class="v">軟骨無形成症＝機能獲得変異。大多数が Gly380Arg</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の二　水の巻 ― 対で覚える</div>
+    <div class="kv"><div class="k">尿崩症</div><div class="v">血漿浸透圧 305〜320 ／ 尿浸透圧 35〜120（濃い血・薄い尿）</div></div>
+    <div class="kv"><div class="k">SIADH</div><div class="v">血漿浸透圧 240〜260 ／ 尿浸透圧 350〜650（薄い血・濃い尿）</div></div>
+    <div class="kv"><div class="k">中枢性 vs 腎性</div><div class="v">AVP低値でバソプレシンに反応 → 中枢性／AVP高値で反応せず → 腎性</div></div>
+    <div class="kv"><div class="k">有意な上昇</div><div class="v">バソプレシン負荷後の尿浸透圧 <b>100 mOsm/kg 以上</b></div></div>
+    <div class="kv"><div class="k">CSWS</div><div class="v">Na&lt;130・CNS外傷や手術から1週以内・尿中Na 200以上・AVP抑制・<b>脱水あり</b></div></div>
+    <div class="kv"><div class="k">SIADH vs CSWS</div><div class="v">決め手は体液量。CSWSは脱水 → 輸液の方向が真逆になる</div></div>
+    <div class="kv"><div class="k">食塩摂取量</div><div class="v">尿中Na（mEq/L）× 蓄尿量（L/日）÷ 17（g/日）</div></div>
+    <div class="kv"><div class="k">腎性の水分量</div><div class="v">200〜300 mL/kg/日を要した症例あり</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の二　水の巻 ― この一言を見たら</div>
+    <details><summary>新生児の原因不明の発熱＋高Na血症</summary>
+      <div class="exp">腎性尿崩症。AVPは高値、尿は薄いまま。バソプレシン負荷でも尿浸透圧が上がらない。AVPR2（X連鎖）が最多で、X不活化の偏りにより女児でも発症しうる。</div></details>
+    <details><summary>尿崩症の子が低Na血症で運ばれてきた</summary>
+      <div class="exp">まず医原性を疑う。DDAVP過量、または習慣性多飲にDDAVPが投与されていた例。1日1回は必ず切らす、が原則。</div></details>
+    <details><summary>コルチゾール補充を始めたら多尿が出てきた</summary>
+      <div class="exp">隠れていた尿崩症の顕在化。ACTH分泌不全のあいだは自由水が排泄できず多尿が目立たない。</div></details>
+    <details><summary>術後にNaだけ下がり、尿量も体重も動かない</summary>
+      <div class="exp">ストレスによるSIADH。脱水がないのでCSWSではない。ここを取り違えると輸液の方向が逆になる。</div></details>
+    <details><summary>週末になると浮腫と低Na</summary>
+      <div class="exp">下垂体機能低下症でのDDAVP過量＋コルチゾール補充不足。シックデイはヒドロコルチゾンを増量し、DDAVPはむしろ切らす。</div></details>
+    <details><summary>AVPが低いのに濃縮尿</summary>
+      <div class="exp">AVPR2の機能亢進変異によるNSIAD。受容体が入りっぱなしになる。臨床的SIADHの診断にAVP測定が必須でない理由。</div></details>
+    <details><summary>腎性尿崩症で排尿回数が少ない</summary>
+      <div class="exp">溜め込みによる膀胱拡張から水腎症、腎不全へ。排尿回数と1回尿量を必ず記録させる。夜間の尿道カテーテルが選択肢になる。</div></details>
+    <details><summary>特発性中枢性尿崩症、画像は正常</summary>
+      <div class="exp">胚細胞腫瘍が後から出てくる。初回画像の正常は除外にならない。髄液の胎盤性アルカリホスファターゼが有用。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の三　甲の巻 ― 甲状腺の数と型</div>
+    <div class="kv"><div class="k">LT4 開始量</div><div class="v">先天性甲状腺機能低下症 10〜15 μg/kg/日</div></div>
+    <div class="kv"><div class="k">MMI 開始量</div><div class="v">小児 0.5 mg/kg/日／成人は fT4&lt;5 で15 mg、&gt;7 で30 mg 分2</div></div>
+    <div class="kv"><div class="k">無顆粒球症</div><div class="v">約1,000人に1人、開始 <b>2〜3週以内</b>に多い。発熱＋咽頭痛で即受診</div></div>
+    <div class="kv"><div class="k">母体抗体の閾値</div><div class="v">TRAb 第1世代 ≧50%／第3世代 ≧10 IU/L／TSAb ≧500%</div></div>
+    <div class="kv"><div class="k">妊娠中のLT4</div><div class="v">TSH 2.5 μIU/mL 以下を目標に増量</div></div>
+    <div class="kv"><div class="k">ヨード</div><div class="v">妊娠中の推奨 約130 μg/日。過剰は Wolff-Chaikoff で機能低下へ</div></div>
+    <div class="kv"><div class="k">Tg</div><div class="v">著明高値 → 合成障害／無形成では出ない／ヨード過剰では上がりにくい</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の三　甲の巻 ― この一言を見たら</div>
+    <details><summary>fT4・fT3 高値なのに TSH が正常</summary>
+      <div class="exp">甲状腺ホルモン不応症（THRB）。Basedow なら TSH は測定感度以下まで落ち TRAb 陽性。この不一致が診断の入り口。</div></details>
+    <details><summary>甲状腺中毒症だが TRAb 陰性・Tg 高値</summary>
+      <div class="exp">破壊性甲状腺炎。ヨード摂取率は低値。自然軽快するので抗甲状腺薬は要らない。Basedow との取り違えがこの章で最も戒められている。</div></details>
+    <details><summary>fT3 高値・fT4 低値の重度発達遅滞の男児</summary>
+      <div class="exp">MCT8（SLC16A2）欠損、X連鎖。T3が細胞内に入れず、組織ごとに過剰と不足が同時に起こる。</div></details>
+    <details><summary>甲状腺腫＋感音難聴、パークロレート陽性</summary>
+      <div class="exp">Pendred症候群（SLC26A4）。ヨードの有機化障害。</div></details>
+    <details><summary>先天性甲状腺機能低下症＋舞踏病＋新生児期の呼吸障害</summary>
+      <div class="exp">NKX2-1（TITF1）。脳・肺・甲状腺。甲状腺だけ見ていると拾えない。</div></details>
+    <details><summary>身長がまったく伸びないのに体重は増えた</summary>
+      <div class="exp">重症の後天性甲状腺機能低下症。下垂体腫大・トルコ鞍拡大を伴うことがあり、補充で1〜2か月で戻る。思春期早発を伴えば Van Wyk-Grumbach。</div></details>
+    <details><summary>母がコントロール不良のBasedowで出生した児</summary>
+      <div class="exp">胎児期の過剰曝露で中枢性CHが生じうる。TSHが上がらないためスクリーニングをすり抜ける。</div></details>
+    <details><summary>甲状腺機能低下症にLT4を入れる前に</summary>
+      <div class="exp">副腎不全の確認。低下状態ではコルチゾールが高く見えることがあり、T4を先に入れると危機を招く。</div></details>
+    <details><summary>化膿性甲状腺炎を繰り返す</summary>
+      <div class="exp">下咽頭梨状窩瘻。左側に多い。瘻孔を処理しないと再発する。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の四　骨の巻 ― 数と閾</div>
+    <div class="kv"><div class="k">くる病 大項目</div><div class="v">X線でのくる病変化／高ALP血症（大2つ＋小2つで診断）</div></div>
+    <div class="kv"><div class="k">高ALP</div><div class="v">1歳未満 1,200 IU/L以上／以降 1,000 IU/L以上</div></div>
+    <div class="kv"><div class="k">25(OH)D 低値</div><div class="v">20 ng/mL（50 nmol/L）以下、より確実には15 ng/mL以下</div></div>
+    <div class="kv"><div class="k">血清P 正常値</div><div class="v">乳児 4.8〜8.2 → 成人 2.7〜4.7 mg/dL（年齢差が大きい）</div></div>
+    <div class="kv"><div class="k">リン酸塩</div><div class="v">PO4として 40〜80 mg/kg/日 ＋ アルファカルシドール 0.05〜0.1 μg/kg/日</div></div>
+    <div class="kv"><div class="k">尿中Ca/Cr</div><div class="v">治療中は 0.3（成人0.2）を超えないこと</div></div>
+    <div class="kv"><div class="k">22q11.2欠失</div><div class="v">3,000〜4,000人に1人。TBX1</div></div>
+    <div class="kv"><div class="k">小児PHPT</div><div class="v">10万人に2〜5人。腺腫約70%／MEN1約19%</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の四　骨の巻 ― この一言を見たら</div>
+    <details><summary>低Ca・高P・PTH高値</summary>
+      <div class="exp">偽性副甲状腺機能低下症。PTHは出ているが効いていない。AHO（短指症・低身長・肥満）があればPHP Ia。PTH負荷での尿中cAMPとリン利尿でI型／II型を分ける。</div></details>
+    <details><summary>低Caなのに尿中Ca/Crが高い</summary>
+      <div class="exp">CaSRの機能獲得変異。Caを目標値まで上げにいくと腎石灰化を作る。サイアザイド併用で尿中Caを下げる。</div></details>
+    <details><summary>高Ca血症で家族歴があり尿中Caが低い</summary>
+      <div class="exp">FHH（CASR/GNA11/AP2S1）。副甲状腺を摘っても治らない。原発性亢進症と分けることが手術の可否を決める。</div></details>
+    <details><summary>低リンなのに1,25(OH)2Dが上がっていない</summary>
+      <div class="exp">低リン血症性くる病（FGF23過剰）。欠乏性なら低リンに反応して1,25(OH)2Dは高値になる。TmP/GFRとFGF23で詰める。</div></details>
+    <details><summary>くる病＋脱毛（頭髪・眉毛が少ない）</summary>
+      <div class="exp">ビタミンD受容体異常症。他のくる病では脱毛を見ない。治療に大量のビタミンDを要する。</div></details>
+    <details><summary>25(OH)D正常なのに1,25(OH)2Dが低い</summary>
+      <div class="exp">1α水酸化酵素欠損（ビタミンD依存性くる病1A型）。生理的補充量の活性型ビタミンDで治療できる。</div></details>
+    <details><summary>低Caけいれん＋心奇形＋口蓋の異常</summary>
+      <div class="exp">22q11.2欠失症候群。低Caは新生児期にも思春期にも出うる。難聴と腎奇形が並べばHDR症候群（GATA3）。</div></details>
+    <details><summary>副甲状腺摘出後、Ca 9.3でしびれる</summary>
+      <div class="exp">hungry bone syndrome。基準値内でも急な低下で症状が出る。数値でなく症状を優先。Mgも補う。</div></details>
+    <details><summary>乳児の多発骨折、外傷歴がはっきりしない</summary>
+      <div class="exp">虐待と骨形成不全症の両方を検討する。青色強膜・歯牙形成不全・家族歴・骨密度を確認。どちらかに決め打ちしない。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の五　春の巻 ― 年齢と閾</div>
+    <div class="kv"><div class="k">早発（女児）</div><div class="v">乳房 7歳6か月未満／陰毛・腋毛・小陰唇 8歳未満／初経 10歳6か月未満</div></div>
+    <div class="kv"><div class="k">早発（男児）</div><div class="v">精巣・陰茎・陰嚢 9歳未満／陰毛 10歳未満／腋毛・ひげ・声変わり 11歳未満</div></div>
+    <div class="kv"><div class="k">LHRH試験</div><div class="v">中枢性＝LH頂値 8 mIU/mL以上 かつ LH頂値 &gt; FSH頂値。末梢性は前思春期レベル</div></div>
+    <div class="kv"><div class="k">リュープロレリン</div><div class="v">30 μg/kg 4週ごと（過誤腫では45〜60 μg/kg）。効果判定は30分値で足りる</div></div>
+    <div class="kv"><div class="k">1 SD</div><div class="v">思春期の各指標でおよそ1年（乳房1.4／陰毛1.6／初経0.98年）</div></div>
+    <div class="kv"><div class="k">ステロイド不足</div><div class="v">男 テストステロン 0.1 ng/mL以下／女 エストラジオール 20 pg/mL以下</div></div>
+    <div class="kv"><div class="k">高ゴナドトロピン</div><div class="v">Klinefelter 男性500人に1人／Turner 女性2,000人に1人</div></div>
+    <div class="kv"><div class="k">多嚢胞性卵巣</div><div class="v">少なくとも一方に 2〜9 mm の小卵胞が10個以上</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の五　春の巻 ― この一言を見たら</div>
+    <details><summary>性徴は進むのに性腺が小さい</summary>
+      <div class="exp">LHRH非依存性（末梢性）。LH頂値は抑制されている。性ステロイド産生腫瘍、McCune-Albright、卵巣嚢胞を探す。ただしhCG産生腫瘍は例外で精巣がある程度腫大する。</div></details>
+    <details><summary>男児の思春期早発</summary>
+      <div class="exp">器質性が40〜50%。女児の約70%が特発性なのと対照的で、男児は画像を省略できない。</div></details>
+    <details><summary>視床下部の腫瘤が年単位で変わらない</summary>
+      <div class="exp">視床下部過誤腫。LHRHを出す先天奇形であり、摘出の対象ではない。笑い発作を伴う例と早発だけの例がほぼ同数。</div></details>
+    <details><summary>停留精巣・小陰茎の既往＋思春期未発来</summary>
+      <div class="exp">低ゴナドトロピン性性腺機能低下症。夜間LHがまったく脈動しないことが決め手。乳児期のmini-puberty の窓を逃すと判定が難しくなる。</div></details>
+    <details><summary>思春期未発来＋網膜色素変性＋肥満</summary>
+      <div class="exp">Bardet-Biedl症候群。線毛の異常。嗅覚障害があればKallmann症候群。</div></details>
+    <details><summary>陰毛はあるが精巣が小さいまま</summary>
+      <div class="exp">Klinefelter症候群。精巣は5 mLを超えにくい一方、男性ホルモンによる陰毛は生じる。陰毛の存在で否定しない。</div></details>
+    <details><summary>新生児期の重度筋緊張低下と哺乳障害</summary>
+      <div class="exp">Prader-Willi症候群。過食と肥満は乳幼児期以降。GH開始前に閉塞性睡眠時無呼吸の評価が必須。</div></details>
+    <details><summary>思春期女子の多毛＋低い声＋陰核肥大</summary>
+      <div class="exp">PCOSと決める前に副腎腫瘍・Cushing・先天性副腎皮質過形成を潰す。成人の診断基準を思春期にそのまま当てない。</div></details>
+    <details><summary>体質性遅発症か低ゴナドトロピンか決まらない</summary>
+      <div class="exp">発来前はLH・FSHが重なる。時間をかけるか、性ステロイド補充を一度中断して自然発来を確認する。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の六　腎の巻 ― 副腎の数</div>
+    <div class="kv"><div class="k">生理的分泌</div><div class="v">コルチゾール 6〜8 mg/m2/日。強いストレスで約10倍（80 mg/m2/日）</div></div>
+    <div class="kv"><div class="k">ストレスカバー</div><div class="v">ヒドロコルチゾン 25〜30 mg/m2/回を6時間ごと（1日100 mg/m2）</div></div>
+    <div class="kv"><div class="k">副腎不全を疑う</div><div class="v">血中コルチゾール 15 μg/dL未満（重症では5 μg/dL以下）</div></div>
+    <div class="kv"><div class="k">クリーゼの輸液</div><div class="v">水 130〜200 mL/kg、Na 5〜10 mEq/kg</div></div>
+    <div class="kv"><div class="k">力価</div><div class="v">ベタメタゾンはヒドロコルチゾンの約30倍</div></div>
+    <div class="kv"><div class="k">CAH 頻度</div><div class="v">21水酸化酵素欠損症が80〜90%以上。日本で18,000〜20,000人に1人</div></div>
+    <div class="kv"><div class="k">CAH 投与量</div><div class="v">ヒドロコルチゾン 30 mg/m2/日を超えると最終身長が悪化する</div></div>
+    <div class="kv"><div class="k">CAH 指標</div><div class="v">早朝第一尿・内服前の尿中P3。ACTH高値だけでは増量しない</div></div>
+    <div class="kv"><div class="k">非古典型CAH</div><div class="v">ACTH負荷後 17OHP 15 ng/mL以上。日本人はPro30Leuが多い</div></div>
+    <div class="kv"><div class="k">ALD</div><div class="v">ABCD1、X連鎖、1/20,000〜1/50,000。極長鎖脂肪酸で診断</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の六　腎の巻 ― この一言を見たら</div>
+    <details><summary>嘔吐と下痢でぐったり、内服できていない</summary>
+      <div class="exp">副腎クリーゼ。死亡例の多くが「けいれん・嘔吐で内服できなかった」症例。静注が難しければ胃チューブでもよいので、迷うなら入れる。</div></details>
+    <details><summary>色素沈着＋低血糖、でも電解質は正常</summary>
+      <div class="exp">ACTH不応症（MC2R/MRAP）。糖質コルチコイド系だけが落ち、鉱質コルチコイド系は保たれる。電解質正常で副腎不全を否定しない。</div></details>
+    <details><summary>原因のはっきりしない副腎不全の男児</summary>
+      <div class="exp">副腎白質ジストロフィー。神経症状に先行して副腎不全だけで発症することがある。極長鎖脂肪酸を測る。早期なら造血幹細胞移植の窓がある。</div></details>
+    <details><summary>副腎不全＋思春期が来ない男児</summary>
+      <div class="exp">DAX1（NR0B1）異常。低ゴナドトロピン性性腺機能低下症を合併するが、ゴナドトロピン治療は原則適応にならない。</div></details>
+    <details><summary>リポイド副腎過形成の女性に腹痛</summary>
+      <div class="exp">卵巣嚢胞の捻転。約70%に嚢胞が生じる。Kaufman療法でLHを下げて縮小させておく。</div></details>
+    <details><summary>CAHでACTHが高い</summary>
+      <div class="exp">それだけでは増量しない。尿中P3と身長・体重の動きで判断する。抑えすぎは低身長と肥満を招き、30 mg/m2超で最終身長が悪化する。</div></details>
+    <details><summary>CAH男児の精巣に腫瘤</summary>
+      <div class="exp">adrenal rest の腫大。腫瘍と誤って摘出しない。まずコントロールを見直す。</div></details>
+    <details><summary>リンデロンシロップを長く飲んでいた児</summary>
+      <div class="exp">医原性副腎不全。ベタメタゾンはヒドロコルチゾンの約30倍。回復に3〜6か月かかる。</div></details>
+    <details><summary>副腎不全の低ナトリウム血症</summary>
+      <div class="exp">グルココルチコイド欠乏なら水中毒、ミネラルコルチコイド欠乏なら脱水。輸液の方向が変わるので分けて考える。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の七　性の巻 ― 分ける物差し</div>
+    <div class="kv"><div class="k">性腺の分化</div><div class="v">SOX9優位 → 精巣／βカテニン優位 → 卵巣。互いを抑制し合う</div></div>
+    <div class="kv"><div class="k">担当ホルモン</div><div class="v">Wolff管の維持＝テストステロン／外性器の男性化＝DHT／Müller管退縮＝AMH</div></div>
+    <div class="kv"><div class="k">Turner</div><div class="v">女性2,000人に1人。低身長の主因はSHOXハプロ不全（約12 cm低い）</div></div>
+    <div class="kv"><div class="k">Klinefelter</div><div class="v">男性500〜1,000人に1人。精巣は成人でも10 mL未満。15歳以上でT低下</div></div>
+    <div class="kv"><div class="k">卵精巣性DSD</div><div class="v">46,XX が 46,XY の約3〜4倍</div></div>
+    <div class="kv"><div class="k">campomelic</div><div class="v">SOX9異常。10万〜20万人に1人、常染色体優性</div></div>
+    <div class="kv"><div class="k">出生前DEX</div><div class="v">CAHでは妊娠9週以前に開始しなければ意味がない</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の七　性の巻 ― この一言を見たら</div>
+    <details><summary>「卵巣ヘルニア」と言われた女児</summary>
+      <div class="exp">触れているものが精巣ではないか。完全型アンドロゲン不応症はこの経路で見つかる。膣は盲端、AMHが働くので子宮はない。</div></details>
+    <details><summary>外性器は女性型なのにLHもテストステロンも高い</summary>
+      <div class="exp">アンドロゲン受容体異常症。受容体が効かずフィードバックがかからない。思春期には乳腺は発達するが陰毛は生じない。</div></details>
+    <details><summary>T/DHT比が高い</summary>
+      <div class="exp">5α還元酵素欠損症。思春期に男性化が進むが頭部ははげない。DHTクリームに反応する（受容体異常症では反応が乏しい）。</div></details>
+    <details><summary>45,X/46,XY で左右の性腺の分化度が違う</summary>
+      <div class="exp">混合型性腺形成不全。末梢血のモザイク比は全身を反映しない。性腺芽腫のリスクがあり摘出する。女性ホルモンは分泌されないので補充が要る。</div></details>
+    <details><summary>外性器男性化＋頭蓋縫合早期癒合＋橈尺骨癒合</summary>
+      <div class="exp">PORD。母体の男性化を伴う。マススクリーニングで17OHPが上がるので21水酸化酵素欠損症と紛らわしい。</div></details>
+    <details><summary>四肢の弯曲・側弯＋46,XYで外性器が女性型</summary>
+      <div class="exp">campomelic dysplasia（SOX9異常）。SOX9は骨格形成と精巣分化の両方に効くので、二つが同時に壊れる。</div></details>
+    <details><summary>両側の精巣を触れないが外性器は完全な男性型</summary>
+      <div class="exp">無精巣症。男性化が完了している＝精巣は早い時期には存在した。AMHで精巣の有無を評価できる。</div></details>
+    <details><summary>46,XY DSD の児、母が早発卵巣不全</summary>
+      <div class="exp">NR5A1（SF-1）異常。ヘテロの女性では卵巣機能低下として現れる。家系全体を見る。</div></details>
+    <details><summary>46,XY で子宮がある</summary>
+      <div class="exp">完全型性腺形成不全（Swyer）。精巣が分化せずAMHが出ないためMüller管が残る。完全型アンドロゲン不応症とはここで分かれる。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の八　瘍の巻 ― 腫瘍の数と型</div>
+    <div class="kv"><div class="k">三相性反応</div><div class="v">尿崩症(4〜5日) → 抗利尿相(5〜7日) → 永続的尿崩症</div></div>
+    <div class="kv"><div class="k">GH産生腫瘍</div><div class="v">75g糖負荷でGHが抑制されず、TRHで奇異性上昇。手術寛解 macro約50%／micro 80%以上</div></div>
+    <div class="kv"><div class="k">AIP</div><div class="v">若年発症の下垂体腺腫の10〜30%</div></div>
+    <div class="kv"><div class="k">Cushing 治癒</div><div class="v">術後の血中コルチゾール 1〜2 μg/dL 以下</div></div>
+    <div class="kv"><div class="k">深夜コルチゾール</div><div class="v">5 μg/dL 超がスクリーニングの手がかり</div></div>
+    <div class="kv"><div class="k">ACTH の分岐</div><div class="v">5 pg/mL 未満 → ACTH非依存性（副腎性）</div></div>
+    <div class="kv"><div class="k">MEN2A</div><div class="v">RET。80〜90%がコドン634変異。浸透率が高い</div></div>
+    <div class="kv"><div class="k">褐色細胞腫</div><div class="v">30〜40%が生殖細胞系列変異に由来</div></div>
+    <div class="kv"><div class="k">BWS</div><div class="v">11p15.5（H19 DMR / KvDMR1）。Wilms腫瘍・肝芽腫を監視</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の八　瘍の巻 ― この一言を見たら</div>
+    <details><summary>体重は増えているのに身長が伸びない</summary>
+      <div class="exp">Cushing症候群。単純性肥満では身長も伸びる。この乖離が肥満外来からCushingを拾う物差しになる。</div></details>
+    <details><summary>両親からかけ離れた高身長＋大きな手足</summary>
+      <div class="exp">GH産生下垂体腺腫。小児は骨端線が閉じていないので末端肥大症ではなく高身長になる。糖負荷で抑制されず、TRHで奇異性上昇。</div></details>
+    <details><summary>ステロイド補充を始めたら多尿が出た</summary>
+      <div class="exp">masked DI。副腎・甲状腺機能低下で隠れていた尿崩症の顕在化。補充の順序はステロイドが先。</div></details>
+    <details><summary>術後4〜5日で多尿が止まった</summary>
+      <div class="exp">三相性反応の第2相。治ったのではない。ここでDDAVPを続けると水中毒になり、その後に第3相の永続的尿崩症が来る。</div></details>
+    <details><summary>幼児の陰毛＋DHEA-S高値、コルチゾールは日内変動あり</summary>
+      <div class="exp">副腎皮質腫瘍（男性ホルモン産生）。アンドロゲンだけが突出する。Li-Fraumeni症候群（TP53）が背景にありうる。</div></details>
+    <details><summary>下垂体茎の腫脹＋中枢性尿崩症</summary>
+      <div class="exp">胚細胞腫瘍のほかにLangerhans細胞組織球症。生検で診断可能。</div></details>
+    <details><summary>臍帯ヘルニア＋巨舌＋片側肥大＋新生児低血糖</summary>
+      <div class="exp">Beckwith-Wiedemann症候群。高インスリン血症性低血糖。Wilms腫瘍・肝芽腫を腹部超音波とAFPで追う。</div></details>
+    <details><summary>皮膚の色素斑＋心臓粘液腫＋Cushing</summary>
+      <div class="exp">Carney complex（PRKAR1A）。副腎はPPNADでACTH非依存性。心臓粘液腫が生命予後を決める。</div></details>
+    <details><summary>甲状腺髄様がんの経過をみたい</summary>
+      <div class="exp">カルシトニンとCEA。サイログロブリンは濾胞細胞由来の腫瘍のマーカーで、髄様がんには使えない。</div></details>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の九　糖の巻 ― 数と式</div>
+    <div class="kv"><div class="k">HbA1c 目標</div><div class="v">小児 7.5%未満（年齢によらず）／成人 7.0%未満。NGSP＝JDS＋0.4</div></div>
+    <div class="kv"><div class="k">DKA 定義</div><div class="v">高血糖（およそ300 mg/dL以上）・pH&lt;7.3・HCO3− &lt;15 mmol/L</div></div>
+    <div class="kv"><div class="k">DKA インスリン</div><div class="v">0.1 単位/kg/時の持続静注。ボーラスは使わない</div></div>
+    <div class="kv"><div class="k">DKA 喪失量</div><div class="v">水100 mL/kg、Na 6・K 4・Cl 4・P 3 mEq/kg。補充は維持量＋喪失の1/2</div></div>
+    <div class="kv"><div class="k">血漿浸透圧</div><div class="v">2×(Na＋K) ＋ 血糖/18 ＋ BUN/2.8（正常 285〜295）</div></div>
+    <div class="kv"><div class="k">1カーボ</div><div class="v">日本では炭水化物 10 g（米国は15 g）</div></div>
+    <div class="kv"><div class="k">HOMA-R</div><div class="v">空腹時IRI × 空腹時血糖 ÷ 405</div></div>
+    <div class="kv"><div class="k">CPR</div><div class="v">1 ng/mL以下 → インスリン必要／3 ng/mL以上 → インスリン非依存</div></div>
+    <div class="kv"><div class="k">総エネルギー</div><div class="v">1,000 ＋ 年齢×100 kcal/日。砂糖はでんぷんの20%以内</div></div>
+    <div class="kv"><div class="k">新生児糖尿病</div><div class="v">生後6か月未満の発症。一過性型は6q24インプリント異常が最多</div></div>
+  </div>
+
+  <div class="fuda">
+    <div class="scrolltitle">巻の九　糖の巻 ― この一言を見たら</div>
+    <details><summary>生後6か月未満の糖尿病</summary>
+      <div class="exp">1型ではまれ。単一遺伝子性を疑う。KCNJ11／ABCC8ならSU薬でインスリンから離脱できることがある。遺伝子診断が治療を変える。</div></details>
+    <details><summary>ケトンの出ない低血糖</summary>
+      <div class="exp">高インスリン血症性低血糖か脂肪酸酸化異常症。インスリンが脂肪分解を止めている。低血糖のその場でIRI・遊離脂肪酸・ケトンを採る。</div></details>
+    <details><summary>巨大児＋低血糖でIRIが抑制されていない</summary>
+      <div class="exp">先天性高インスリン血症。第一選択はジアゾキシド、無効ならオクトレオチド。限局型なら部分摘出で済み術後の糖尿病リスクが下がる。</div></details>
+    <details><summary>低血糖・けいれんを繰り返す</summary>
+      <div class="exp">血中アンモニアを測る。GLUD1異常（HI/HA症候群）は上昇が軽度で、正常範囲の症例もある。</div></details>
+    <details><summary>夕食を抜いて寝た翌朝ぐったり</summary>
+      <div class="exp">ケトン性低血糖症。痩せ型の幼児。治すのではなく飢餓の時間を短くする指導をする。</div></details>
+    <details><summary>学校検尿で尿糖、家族にも軽い高血糖</summary>
+      <div class="exp">GCK異常症（MODY2）。進行せず、治療の対象にならないことが多い。知らないと不要な治療を始めてしまう。</div></details>
+    <details><summary>難聴を伴う糖尿病、母系の家族歴</summary>
+      <div class="exp">ミトコンドリア糖尿病。家系図の書き方が診断につながる。尿崩症＋視神経萎縮＋難聴ならWolfram症候群。</div></details>
+    <details><summary>肥満なのに身長が伸びていない</summary>
+      <div class="exp">甲状腺機能低下症かCushing症候群。単純性肥満では身長も伸びる。</div></details>
+    <details><summary>高度肥満児の入眠中のSpO2低下</summary>
+      <div class="exp">閉塞性睡眠時無呼吸から肺胞低換気へ。死亡例が報告されている。呼吸の評価を早期に繰り返す。</div></details>
+    <details><summary>コントロール不良の子に運動を勧める</summary>
+      <div class="exp">インスリン不足では運動でむしろ血糖が上がりケトンが増える。運動が血糖を下げるのは、インスリンが効いている状態でのみ。</div></details>
+  </div>
+
+</section>
+
+<!-- ══ 己 ══ -->
+<section class="view" id="v-self">
+  <div class="fuda">
+    <div class="eyebrow">歩み</div>
+    <div class="dash">
+      <div><b id="dStreak">0</b><small>連続</small></div>
+      <div><b id="dBest">0</b><small>最長</small></div>
+      <div><b id="dToday">0</b><small>きょう</small></div>
+      <div><b id="dAcc7">―</b><small>直近7日</small></div>
+    </div>
+    <div class="dlabel">この2週間 ― 解いた問（金＝正）</div>
+    <div id="barChart"></div>
+    <div class="dlabel" style="margin-top:16px">到達度の推移 ― 30日</div>
+    <div id="lineChart"></div>
+  </div>
+
+  <div class="fuda">
+    <div class="eyebrow">研鑽</div>
+    <div class="stats">
+      <div><b id="sDays">0</b><small>修行日数</small></div>
+      <div><b id="sAns">0</b><small>解いた問</small></div>
+      <div><b id="sAcc">―</b><small>正答率</small></div>
+    </div>
+    <div class="note" id="luckNote" style="margin-top:10px"></div>
+  </div>
+  <div class="fuda">
+    <div class="eyebrow">巻の進み</div>
+    <div id="volbars"></div>
+  </div>
+  <div class="fuda" id="catcard">
+    <div class="eyebrow">分野の熟</div>
+    <div id="catbars"></div>
+  </div>
+  <div class="fuda">
+    <div class="eyebrow">取り違え ― 二度以上えらんだ誤答</div>
+    <div id="mixups"></div>
+  </div>
+  <div class="fuda">
+    <div class="eyebrow">落款 ― 八割で捺される</div>
+    <div class="seals" id="sealbox"></div>
+  </div>
+  <div class="fuda">
+    <div class="note">記録はこの端末のブラウザに保存される。ファイルを別の端末へ渡すと記録は付いてこない。</div>
+    <button class="btn ghost" onclick="wipe()">記録を白紙に戻す</button>
+  </div>
+
+  <div class="fuda">
+    <div class="eyebrow">記録の持ち出し</div>
+    <div class="note" id="saveState" style="margin-top:6px">保存先を確認中…</div>
+    <div class="note" style="margin-top:6px">端末やアプリを移るとき、記録はついてこない。ここで書き出して、移った先で読み込む。</div>
+    <button class="btn" onclick="exportRec()">記録を書き出す</button>
+    <textarea id="recBox" placeholder="ここに書き出した文字列が出る。移った先ではここに貼りつけて読み込む。"></textarea>
+    <button class="btn ghost" onclick="importRec()">貼りつけた記録を読み込む</button>
+    <div class="note" id="recMsg" style="margin-top:8px"></div>
+  </div>
+</section>
+</div>
+
+<nav>
+  <button class="on" data-v="drill" onclick="tab('drill',this)">修行</button>
+  <button data-v="scroll" onclick="tab('scroll',this)">巻物</button>
+  <button data-v="self" onclick="tab('self',this)">己</button>
+</nav>
+
+<div id="stamp" onclick="this.classList.remove('on')">
+  <div class="stampbox">
+    <div class="stampseal" id="stampRank">入門</div>
+    <div class="stamptxt">昇 段</div>
+  </div>
+</div>
+
+<script>
+/* ═══════════ 問の巻 ═══════════ */
+const CATS={
+ hyoka:"評価の基本", ghd:"GH分泌不全症", cong:"先天性・遺伝性GHD",
+ igf:"GH不応症・IGF系", sga:"SGA性低身長", bone:"骨系統疾患",
+ syn:"症候群性低身長", tx:"GH治療の実際",
+ wcdi:"中枢性尿崩症", wdx:"診断と負荷試験", wtx:"DDAVPの使いかた",
+ wndi:"腎性尿崩症", whypo:"低Na血症・SIADH", wneo:"新生児・複合型",
+ tch:"先天性甲状腺機能低下症", tdx:"甲状腺検査の読みかた", tiod:"ヨード関連",
+ tneo:"母体由来・新生児", tres:"不応・輸送・代謝異常", tgrav:"Basedow・亢進症",
+ tthy:"破壊性・慢性甲状腺炎",
+ bonebase:"骨・Ca代謝の基本", pth:"副甲状腺機能低下症", casr:"カルシウム感知受容体",
+ php:"偽性副甲状腺機能低下症", hpt:"副甲状腺機能亢進症", rickd:"ビタミンD関連くる病",
+ rickp:"低リン血症性くる病", oi:"骨形成不全症",
+ pubbase:"思春期発来の生理", pp:"中枢性思春期早発症", pind:"末梢性の性早熟",
+ hh:"低ゴナドトロピン性", dp:"思春期遅発症", pws:"Prader-Willi症候群", pcos:"PCOS",
+ adrbase:"副腎の発生と生理", ai:"副腎不全・クリーゼ", cah:"21水酸化酵素欠損症",
+ cahtx:"CAHの治療とコントロール", lipoid:"リポイド副腎過形成", ahc:"副腎低形成・ACTH不応症",
+ ald:"副腎白質ジストロフィー",
+ dsdbase:"性分化の基本と説明", sexchr:"性染色体異常・MGD", turner:"Turner症候群",
+ xxdsd:"46,XX DSD", xydsd:"46,XY DSD", ais:"アンドロゲン受容体異常症",
+ srd5:"5α還元酵素欠損症", ovo:"卵精巣性DSD",
+ pit:"下垂体・鞍上部腫瘍", acro:"GH産生腫瘍", cush:"Cushing症候群",
+ adrtum:"副腎腫瘍", men:"MEN・褐色細胞腫", synd:"症候群性の腫瘍素因",
+ t1dm:"1型糖尿病", dka:"糖尿病性ケトアシドーシス", t2dm:"2型糖尿病",
+ mono:"単一遺伝子性糖尿病", obes:"肥満", hypo:"低血糖症",
+ chi:"高インスリン血症性低血糖", edu:"療養指導",
+ axis:"軸とフィードバック", order:"補充と治療の順序", read:"検査値の読みかた",
+ cross:"章をまたぐ鑑別", trap:"取り違えの型", comm:"説明と長期フォロー"
+};
+const SEAL={hyoka:"評価",ghd:"分泌",cong:"先天",igf:"不応",sga:"胎生",bone:"骨系",syn:"症候",tx:"治療",
+ wcdi:"中枢",wdx:"負荷",wtx:"投薬",wndi:"腎性",whypo:"低張",wneo:"新生",
+ tch:"先甲",tdx:"判読",tiod:"沃度",tneo:"母体",tres:"受容",tgrav:"亢進",tthy:"甲炎",
+ bonebase:"骨基",pth:"副低",casr:"感知",php:"偽性",hpt:"副亢",rickd:"栄養",rickp:"低燐",oi:"骨脆",
+ pubbase:"春機",pp:"早発",pind:"末梢",hh:"性低",dp:"遅発",pws:"ＰＷ",pcos:"多嚢",
+ adrbase:"副基",ai:"不全",cah:"２１",cahtx:"調節",lipoid:"脂質",ahc:"低形",ald:"白質",
+ dsdbase:"分化",sexchr:"性染",turner:"Ｔｕ",xxdsd:"ＸＸ",xydsd:"ＸＹ",ais:"ＡＩ",srd5:"５α",ovo:"卵精",
+ pit:"鞍上",acro:"巨人",cush:"満月",adrtum:"副腫",men:"ＭＥ",synd:"素因",
+ t1dm:"一型",dka:"ＤＫ",t2dm:"二型",mono:"単一",obes:"肥満",hypo:"低糖",chi:"高Ｉ",edu:"療養",
+ axis:"軸",order:"順序",read:"読解",cross:"横断",trap:"陥穽",comm:"説明"};
+
+const Q=[
+/* ── 評価の基本 ── */
+{c:"hyoka",q:"低身長の一般的な定義は。",o:["−1.5 SD 以下","−2.0 SD 以下（3パーセンタイル以下）","−2.5 SD 以下","−3.0 SD 以下"],a:1,
+ e:"−2.0 SD 以下、または3パーセンタイル以下。ただしこれは人為的に引いた線であり、身長は連続量。「基準を満たすか」ではなく「この子の成長曲線がどう動いたか」を見る。",r:"臨床Tips p.77"},
+{c:"hyoka",q:"精査・治療を考慮する目安として挙げられているのは。",o:["身長 −2.0 SD 以下","身長 −2.5 SD 以下 または 身長増加率 −1.5 SD 以下","身長増加率 −1.0 SD 以下のみ","両親の身長より低いこと"],a:1,
+ e:"絶対値と成長率の二本立て。どちらか一方を満たせば動く。",r:"臨床Tips p.77"},
+{c:"hyoka",v:"7歳男児。身長は −1.2 SD で正常範囲内。ただし1年間の身長増加は3.8 cm。",
+ q:"次の一手として最も適切なのは。",o:["正常範囲内なので経過観察のみ","半年後の再測定だけ予約する","身長絶対値が正常でも成長率低下として精査を進める","すぐにGH治療を開始する"],a:2,
+ e:"成長率の低下を認めた場合は、身長絶対値が正常範囲内であっても精査を行うべき、と明記されている。低身長を「数字が線を割ったか」で拾うと、いちばん拾いたい症例を落とす。",r:"臨床Tips p.77"},
+{c:"hyoka",q:"成長率を評価するための身長データの取り方として適切なのは。",o:["1回の受診の1回測定で足りる","少し間をあけた2回の身長データで評価する","毎日測る","身長は目分量でよい"],a:1,
+ e:"1回の外来で2〜3回測り、そのうえで間隔をあけた2点で成長率を出す。見た目で判断せず、必ず数値で評価する。",r:"臨床Tips p.77"},
+{c:"hyoka",q:"家族性低身長の典型的な所見は。",o:["骨年齢が著明に遅延する","骨年齢はほぼ暦年齢どおりで、成長曲線が低い位置を平行に進む","思春期が遅れる","成長率が年々低下する"],a:1,
+ e:"骨年齢≒暦年齢、低い位置で曲線に平行。両親のいずれかが −1.5 SD 未満、という定義が学術的には用いられる。",r:"臨床Tips p.77"},
+{c:"hyoka",q:"体質性思春期遅発症の特徴として正しいのは。",o:["骨年齢は暦年齢より進む","骨年齢は遅延するが、骨年齢あたりの成長率は保たれる","家族歴はほぼない","最終身長は必ず低い"],a:1,
+ e:"骨年齢が遅れ、思春期発来も遅い。暦年齢あたりの成長率は落ちて見えるが、骨年齢あたりでは保たれる。家族歴は60〜70%程度に認められ、聴取が診断に有用。",r:"臨床Tips p.77-79"},
+{c:"hyoka",q:"乳児期の骨年齢評価で撮影すべき部位は。",o:["手・手根部","膝","脊椎","骨盤"],a:1,
+ e:"手根骨がまだ出ていない乳児期は膝のX線を用いる。それ以降は左手・手根部で GP法・TW2法。",r:"臨床Tips p.83"},
+{c:"hyoka",q:"TW2法（RUS）で重視されるのは。",o:["手根骨","橈骨・尺骨・中手骨・指骨","足根骨","鎖骨"],a:1,
+ e:"手根骨は個人差が大きく重要度が低いため RUS（橈骨・尺骨・短管骨）に重点を置く。日本人ではこちらのほうが評価に優れるとされる。",r:"臨床Tips p.83"},
+{c:"hyoka",q:"低身長のスクリーニング検査として、他に症状がなくても女児で行うべきものは。",o:["頭部MRI","染色体分析","骨髄検査","副腎皮質刺激試験"],a:1,
+ e:"低身長のみでも女児では染色体分析を行うべき。Turner症候群は他の身体所見に乏しいことがまれではない。",r:"臨床Tips p.79"},
+{c:"hyoka",q:"GH分泌不全のスクリーニングとして IGF-1 が有用な理由は。",o:["採血の時刻を選ばない（日内変動が少ない）","栄養状態の影響を受けない","思春期段階の影響を受けない","甲状腺機能の影響を受けない"],a:0,
+ e:"IGF-1 は日内変動が少なく単回測定で使える。ただし栄養状態・思春期段階・甲状腺機能・年齢の影響は強く受けるため、低値をそのままGHDと読まない。",r:"臨床Tips p.79"},
+{c:"hyoka",q:"尿中GH測定について正しいのは。",o:["GH分泌能の指標として推奨される","分泌能の指標としては有用でなく、通常は用いない","蓄尿すれば刺激試験の代用になる","早朝尿なら信頼できる"],a:1,
+ e:"血中GHのごく一部（0.01%程度）しか尿中に出ず、実際に低身長児でも重複が大きい。分泌能の指標としては使わない。",r:"臨床Tips p.79"},
+
+/* ── GH分泌不全症 ── */
+{c:"ghd",q:"GH分泌不全症の診断に必要な条件の組み合わせは。",o:["GH刺激試験の低値のみ","成長率の低下のみ","成長のデータ（低身長・成長率低下）とGH分泌低下の両者","頭部MRIの異常のみ"],a:2,
+ e:"両者がそろって初めて診断。どちらも連続量に人為的な線を引いたもので、これがGHD診断の難しさの根っこにある。",r:"レクチャー2 p.68 / 臨床Tips p.81"},
+{c:"ghd",q:"GH刺激試験の頂値のカットオフ（リコンビナント標準品）は。",o:["3 ng/mL","6 ng/mL","10 ng/mL","20 ng/mL"],a:1,
+ e:"6 ng/mL 以下を分泌不全とする。うち 3 ng/mL 以下が重症。",r:"臨床Tips p.79"},
+{c:"ghd",q:"1980年代のRIA法で報告されたGH頂値を読むときの注意は。",o:["当時も基準は6 ng/mL だった","当時は10 ng/mL が基準であり、現在の値と直接比べられない","当時の値は常に低く出る","当時のデータは参考にならない"],a:1,
+ e:"古いカルテのGH値をいまの6 ng/mLで裁くと、当時「正常」とされた症例を取りこぼす。測定法と基準はセットで読む。",r:"症例1 p.87"},
+{c:"ghd",q:"GH頂値が3〜6 ng/mL の「中等度GH分泌不全」で最大の問題は。",o:["治療費が高い","偽陽性が少なくなく、真の分泌不全と区別しにくい","GH治療の適応がない","必ず器質性疾患を伴う"],a:1,
+ e:"1つの負荷試験の偽陽性率は無視できず、2種類とも6以下でも偽陽性が残る。逆に「1つでも6を超えていれば」分泌不全とは言いにくい。重症例と違い、中等度は慎重に扱う。",r:"レクチャー2 p.68-69 / 臨床Tips p.81"},
+{c:"ghd",v:"日齢5の男児。低血糖の遷延、直接ビリルビン優位でない遷延性黄疸、小陰茎。",
+ q:"まず疑うべきは。",o:["先天性甲状腺機能低下症","先天性の下垂体機能低下症（GH・ACTH分泌不全）","糖原病","一過性高インスリン血症"],a:1,
+ e:"新生児期の GH／ACTH 分泌不全は、低血糖・遷延性黄疸・小陰茎という組で出てくる。正中構造異常や視神経低形成の合併も探し、頭部MRIへ。",r:"レクチャー2 p.71-73"},
+{c:"ghd",q:"新生児期GHDに伴う遷延性黄疸の機序として推定されているのは。",o:["GH自体の作用不足","ACTH分泌不全によるコルチゾール分泌不全","甲状腺ホルモン過剰","溶血"],a:1,
+ e:"成因は不明としつつ、ACTH分泌不全によるコルチゾール分泌不全が関与すると考えられている。黄疸を見たらACTH系も評価する。",r:"レクチャー2 p.73"},
+{c:"ghd",q:"新生児期の重症GHDで、刺激試験を行わずとも診断を支持するデータは。",o:["ランダムGHが著明高値","随時のGH濃度が低値（GH 7 ng/mL 未満など）＋IGF-1低値","GHBP高値","IGFBP-3高値"],a:1,
+ e:"新生児期はGH分泌が生理的に高いため、随時採血でGHが低いこと自体が意味をもつ。加えて低血糖リスクの高いインスリン負荷は新生児には使いにくい。",r:"レクチャー2 p.71-73"},
+{c:"ghd",q:"重症GH分泌不全症におけるIGF-1値について、本書が述べていることは。",o:["10 ng/mL を超えるのが普通","10 ng/mL を超えることは例外的","正常範囲に入ることが多い","測定の意義は乏しい"],a:1,
+ e:"重症例では IGF-1 が10 ng/mL を超えることは例外的。逆に IGF-1 がそれなりに出ていれば「重症GHD」という診断そのものを疑う。",r:"レクチャー2 p.71-73"},
+{c:"ghd",q:"インスリン負荷試験を避けるべき状況として最も適切なのは。",o:["学童の低身長","ACTH分泌不全が疑われる乳児","思春期遅発症","肥満"],a:1,
+ e:"低血糖から回復できず重篤化しうる。乳児やACTH分泌不全が疑われる症例では避け、他の負荷を選ぶ。",r:"レクチャー2 p.71"},
+{c:"ghd",v:"4歳女児。低身長と成長率低下。GH刺激試験で分泌不全と診断されGHを開始。入院を機に食欲が出て表情が豊かになり、投与を中断しても成長率が落ちなかった。",
+ q:"考えるべき病態は。",o:["GH不応症","一過性GH分泌不全（愛情遮断を含む環境因）","甲状腺機能亢進症","SGA性低身長"],a:1,
+ e:"環境から分離すると2〜4週でホルモン異常が改善する。重症例では GH・TSH・LH/FSH・ACTH すべてが低下しうる。中断して成長率が落ちないことが、分泌不全が改善した証拠になる。",r:"症例3 p.39-41 / 臨床Tips p.81"},
+{c:"ghd",q:"愛情遮断性低身長で下垂体前葉ホルモンについて正しいのは。",o:["GHのみが低下する","GH・TSH・LH/FSH・ACTH のいずれもが低下しうる","ACTHは常に保たれる","ホルモン異常は生じない"],a:1,
+ e:"重症例では前葉ホルモンが軒並み落ちる。つまり検査所見だけでは器質性の汎下垂体機能低下症と見分けられない。",r:"臨床Tips p.81"},
+{c:"ghd",q:"愛情遮断性低身長を確定するのは。",o:["GH刺激試験の再検","家庭からの分離により成長率が改善すること","頭部MRI","染色体検査"],a:1,
+ e:"入院・施設入所などで分離し、成長率が改善すれば確定できる。ただし家庭の問題が表に出ないことも多く、診断は容易ではない。",r:"臨床Tips p.81"},
+{c:"ghd",v:"9歳女児。低身長で紹介。よく聞くと夜間に起きて水を飲み、1日尿量が多い。",
+ q:"低身長の背景として優先して除外すべきは。",o:["家族性低身長","鞍上部の胚細胞腫瘍による中枢性尿崩症","甲状腺機能亢進症","思春期早発症"],a:1,
+ e:"中枢性尿崩症と低身長が並んだら器質性病変を疑う。初回画像が正常でも否定できず、追跡が要る。一般に、器質性のない中枢性尿崩症にGH分泌不全が合併することはまれ。",r:"症例1 p.87-89 / 症例d p.90"},
+
+/* ── 先天性・遺伝性GHD ── */
+{c:"cong",q:"GH1遺伝子異常 typeII の分子機序として代表的なのは。",o:["遺伝子の完全欠失","イントロン3のスプライシング異常によるエクソン3のスキップ","プロモーター重複","トリプレットリピート伸長"],a:1,
+ e:"エクソン3を欠くGHが正常GHの分泌を邪魔する（dominant negative）ため常染色体優性となる。",r:"症例まとめ p.41"},
+{c:"cong",q:"GH1遺伝子の完全欠失例で治療上問題になるのは。",o:["GHが過剰になる","抗GH抗体が生じ、身長増加が得られなくなることがある","低血糖を起こす","甲状腺機能が低下する"],a:1,
+ e:"内因性GHが一度も産生されないため外因性GHが異物になる。ただし抗体産生をみない症例も増えており、必ずしも治療を諦める理由にはならない。",r:"症例まとめ p.41"},
+{c:"cong",q:"PROP1変異で経過中に注意すべきことは。",o:["ACTH分泌不全が遅れて出現しうる","GH分泌が自然に回復する","甲状腺機能が亢進する","低身長は生じない"],a:0,
+ e:"GH/TSH/PRL/Gn で始まり、late onset の ACTH分泌不全が後から来る。診断時点で副腎が保たれていても追跡をやめない。",r:"レクチャー2 表1 p.68"},
+{c:"cong",q:"POU1F1（PIT1）変異のホルモン欠損パターンは。",o:["GHとPRLが重度、TSHは中等度〜重度。Gn・ACTHは保たれる","全前葉ホルモンが重度に欠損","ACTHのみ欠損","Gnのみ欠損"],a:0,
+ e:"PIT1系統の細胞（somatotroph・lactotroph・thyrotroph）が育たない。ゴナドトロピンと副腎系は別系統なので残る。",r:"レクチャー2 p.71-73"},
+{c:"cong",q:"LHX3変異に特徴的な下垂体外所見は。",o:["視神経低形成","頸部の回転制限と難聴","多指症","腎奇形"],a:1,
+ e:"ACTH以外の前葉ホルモン分泌不全に、頸部の回旋異常・難聴を伴う。頸が回らない低身長、という覚え方。",r:"レクチャー1 p.51-52"},
+{c:"cong",q:"HESX1変異に典型的な表現型は。",o:["septo-optic dysplasia","軟骨無形成症","Noonan様顔貌","Madelung変形"],a:0,
+ e:"視神経低形成・透明中隔／脳梁の異常に下垂体機能低下が加わる。視力障害の児の低身長を「視覚障害のせい」で終わらせない。",r:"レクチャー1 p.50-52"},
+{c:"cong",q:"OTX2・SOX2変異で共通して伴いやすいのは。",o:["眼の形成異常（小眼球・無眼球）","心奇形","難聴","腎不全"],a:0,
+ e:"眼の形成異常＋下垂体機能低下という組。SOX2では低ゴナドトロピン性性腺機能低下が目立つ。",r:"レクチャー1 p.50-52"},
+{c:"cong",v:"低身長で紹介された5歳男児。口唇口蓋裂の手術歴と単一中切歯がある。",
+ q:"追加すべき評価は。",o:["特に不要","頭部MRIを含む下垂体機能の評価","骨髄検査","腎エコーのみ"],a:1,
+ e:"正中構造の小奇形は下垂体形成異常のサイン。前葉低形成・茎の非可視・異所性後葉を探す。",r:"レクチャー2 p.68-71"},
+{c:"cong",q:"MRI invisible stalk 症候群の典型的画像所見は。",o:["下垂体腫大と嚢胞","前葉低形成・下垂体茎が見えない・後葉が異所性","トルコ鞍の拡大","石灰化"],a:1,
+ e:"周産期・出生前発症の視床下部性下垂体機能低下の代表。多くは複合型で、経過中にACTH分泌不全が加わる。",r:"レクチャー2 p.71-73"},
+{c:"cong",q:"先天性・遺伝性GH分泌不全症の診断が「比較的容易」とされる理由は。",o:["特異的なバイオマーカーがある","分泌不全の程度が重度で、成長率・GH・IGF-1・画像のどれで見ても重度に揃うから","家族歴が必ずあるから","遺伝子検査が保険適用だから"],a:1,
+ e:"逆に言えば、所見がバラバラで一つだけ低いという症例は先天性・遺伝性らしくない。特発性GHDのほうが慎重を要する。",r:"レクチャー2 p.68-69"},
+
+/* ── GH不応症・IGF系 ── */
+{c:"igf",q:"GH不応症（Laron型）の典型的なホルモンパターンは。",o:["GH低値・IGF-1低値","GH高値（または正常〜高値）・IGF-1低値","GH低値・IGF-1高値","両者とも高値"],a:1,
+ e:"GHは出ているのに下流が動かない。外因性GHにも反応しないため、GH治療の適応にならない。",r:"レクチャー p.63-64"},
+{c:"igf",q:"GH不応症の診断基準（スコア）に含まれないのは。",o:["身長 < −3 SD","IGF-1 < 0.1 パーセンタイル","IGFBP-3 < 0.1 パーセンタイル","骨年齢の promotion"],a:3,
+ e:"身長、GH基礎値、IGF-1、IGFBP-3、GHBP などの項目を点数化し、5点以上でGH不応症とする。骨年齢は入らない。",r:"p.47 表"},
+{c:"igf",q:"血中GHBPが低値になるのはどの病態か。",o:["GH1遺伝子欠失","GH受容体の細胞外ドメインの異常","IGF1遺伝子欠損","ALS欠損"],a:1,
+ e:"GHBPは GH受容体細胞外ドメインの分解産物。受容体の細胞外部分が壊れていれば低値になる。ただし細胞内ドメイン側の異常では高値をとる例もあり、低値でないことは否定材料にならない。",r:"臨床Tips p.80"},
+{c:"igf",v:"IGF1遺伝子のホモ接合性欠損例。子宮内発育遅延、出生後も成長障害、小頭症、感音難聴、精神発達遅滞。GH基礎値は高値。",
+ q:"この症例が示す最も重要な原理は。",o:["GHが胎児期成長の主役である","IGF-1が胎児期の成長に必須で、GHは胎児期成長への寄与が小さい","IGFBP-3が成長を規定する","甲状腺ホルモンが胎児期成長を担う"],a:1,
+ e:"GH分泌不全児は出生時ほぼ正常身長で生まれる。一方 IGF-1 が欠ければ胎内から小さい。この対比が GH-IGF軸の胎児期の役割を教える。",r:"p.47 症例"},
+{c:"igf",q:"IGF1欠損例で IGFBP-3 が低値でなかったことから読めるのは。",o:["ヒトのIGFBP-3はIGF-1依存ではなく、GHによっても調節される","IGFBP-3は測定精度が低い","IGF-1は成長に不要である","IGFBP-3はALSに依存しない"],a:0,
+ e:"ラットではIGF-1依存だが、ヒトでは違う。教科書の一般則を、この一例が実地で書き換えている。",r:"p.47-49"},
+{c:"igf",q:"ALS（IGFALS）欠損症で特徴的なのは。",o:["IGF-1・IGFBP-3が著明低値なのに低身長は比較的軽度","IGF-1のみ高値","低身長は −5 SD 以下となる","GHが測定感度以下"],a:0,
+ e:"総IGF-1の大部分は150 kDa三量体（IGF-1＋IGFBP-3＋ALS）として貯蔵されている。三量体が作れなくても、組織に届く二量体・遊離IGF-1が保たれれば成長は大きく崩れない。",r:"レクチャー2 p.75"},
+{c:"igf",q:"血中IGF-1の大部分が存在する形は。",o:["遊離型","IGFBP-1との複合体","IGF-1＋IGFBP-3＋ALS の三量体","IGF-2との複合体"],a:2,
+ e:"遊離は1%以下、二量体が10〜20%以下、三量体が80〜90%以上。三量体は半減期が長く、リザーバーとして働く。",r:"レクチャー2 p.73-75"},
+
+/* ── SGA性低身長 ── */
+{c:"sga",q:"SGAの定義として用いられるのは。",o:["出生体重2500 g未満","出生時の身長・体重がともに在胎週数相当の10パーセンタイル未満","在胎37週未満","出生時身長 −1 SD 未満"],a:1,
+ e:"体重だけでなく身長も条件に入る点が要。低出生体重＝SGAではない。",r:"症例2 p.51-53"},
+{c:"sga",q:"SGA児のうち、キャッチアップせず低身長が残るのはおよそ。",o:["1%","10%","50%","80%"],a:1,
+ e:"大多数は2〜3歳までにキャッチアップする。残る約10%が問題になる。母数が大きいので、実数としては決して少なくない。",r:"症例2 p.53"},
+{c:"sga",v:"在胎38週、出生体重2,332 g・身長43 cm で出生。3歳時点で身長 −2.9 SD、キャッチアップなし。",
+ q:"GH治療について正しいのは。",o:["適応はない","SGA性低身長症として適応となりうる","GHD量と同量で開始する","思春期まで待つ"],a:1,
+ e:"出生時に小さく、3歳前後になってもキャッチアップしていないことが柱。GHDとは別の適応であり、開始量も異なる。",r:"症例2 p.51-53"},
+{c:"sga",q:"SGA性低身長症に対するGHの開始量は。",o:["0.175 mg/kg/週","0.23 mg/kg/週（0.033 mg/kg/日）","0.35 mg/kg/週","0.5 mg/kg/週"],a:1,
+ e:"効果不十分なら 0.47 mg/kg/週（0.067 mg/kg/日）へ増量しうる。GHD標準量 0.175 とは別物として覚える。",r:"症例2 p.53-55"},
+{c:"sga",q:"SGA児で思春期について知られていることは。",o:["思春期が遅く来ることが多い","思春期が早く来ることが多い","思春期発来に差はない","思春期は来ない"],a:1,
+ e:"追いつき成長のあとに思春期が早く来ると、伸びる期間が短くなり最終身長を損なう。GH治療中はここを見張る。",r:"症例2 p.53"},
+{c:"sga",q:"Silver-Russell症候群を示唆する所見は。",o:["体の非対称・相対的大頭・逆三角形の顔貌","翼状頸と肺動脈弁狭窄","Madelung変形","四肢近位優位の短縮"],a:0,
+ e:"SGA性低身長の背景として重要。11p15 のメチル化異常や母性ダイソミー7が知られる。",r:"症例2 関連 p.51-55"},
+
+/* ── 骨系統疾患 ── */
+{c:"bone",q:"軟骨無形成症の原因遺伝子と変異の性質は。",o:["FGFR3の機能喪失変異","FGFR3の機能獲得変異","SHOXのハプロ不全","COL2A1の変異"],a:1,
+ e:"FGFR3は軟骨内骨化のブレーキ役。機能獲得＝ブレーキが踏まれっぱなしになる。常染色体優性だが、大多数は新生突然変異。",r:"症例 p.56-59"},
+{c:"bone",q:"軟骨無形成症の変異として大多数を占めるのは。",o:["Gly380Arg","Asn540Lys","Lys650Glu","Tyr278Cys"],a:0,
+ e:"Gly380Arg がほぼ全例。Asn540Lys は低軟骨形成症（hypochondroplasia）に多い。",r:"症例 p.56-59 図7"},
+{c:"bone",v:"生後2か月の軟骨無形成症児。哺乳中の無呼吸と、覚醒時の呼吸障害が増悪してきた。",
+ q:"最も警戒すべき合併症は。",o:["中耳炎","大後頭孔狭窄による頸髄圧迫","胃食道逆流","気管軟化症"],a:1,
+ e:"乳児期の最重大合併症。呼吸障害・突然死につながるため、この時期の呼吸症状は必ずここを疑う。",r:"症例 p.57-59"},
+{c:"bone",q:"軟骨無形成症で年長児に多い、いびき・睡眠時無呼吸への対応として挙げられるのは。",o:["経過観察のみ","アデノイド・扁桃摘出","気管切開が第一選択","GH増量"],a:1,
+ e:"顔面中央部の低形成に扁桃・アデノイドが重なる。難聴（滲出性中耳炎）と発達遅滞の評価も並行して行う。",r:"症例 p.57"},
+{c:"bone",q:"軟骨無形成症の成人身長（無治療）のおよその値は。",o:["男 約130 cm / 女 約124 cm","男 約145 cm / 女 約138 cm","男 約120 cm / 女 約112 cm","男 約155 cm / 女 約148 cm"],a:0,
+ e:"GH治療で得られる上乗せはおよそ数cm規模。数字を知っておくと、家族への説明が具体的になる。",r:"症例 p.59"},
+{c:"bone",q:"軟骨無形成症に対するGH治療の用量は。",o:["0.175 mg/kg/週","0.23 mg/kg/週","0.35 mg/kg/週","0.5 mg/kg/週"],a:2,
+ e:"適応があり 0.35 mg/kg/週。加えて脚延長術も選択肢として説明対象になる。",r:"症例 p.59"},
+{c:"bone",q:"低軟骨形成症（hypochondroplasia）で多い FGFR3 変異は。",o:["Gly380Arg","Asn540Lys","Lys650Met","Arg248Cys"],a:1,
+ e:"軟骨無形成症より軽症で、低身長のみが目立ち特発性低身長として扱われていることがある。四肢の短縮が軽いぶん見逃されやすい。",r:"症例 p.56-59"},
+
+/* ── 症候群性低身長 ── */
+{c:"syn",q:"Noonan症候群の原因遺伝子として最も頻度が高いのは。",o:["PTPN11","RAF1","SOS1","KRAS"],a:0,
+ e:"RAS/MAPK経路の異常症（RASopathy）。PTPN11 が最多。",r:"症例 p.60-63"},
+{c:"syn",q:"Noonan症候群で最も多い心病変は。",o:["心室中隔欠損","肺動脈弁狭窄","大動脈縮窄","心房中隔欠損"],a:1,
+ e:"弁の肥厚を伴う肺動脈弁狭窄が最多。加えて肥大型心筋症があり、RAF1変異ではその頻度が高い。",r:"症例 p.60-63"},
+{c:"syn",q:"Noonan症候群で見落とされやすい合併症は。",o:["凝固異常による出血傾向","難聴のみ","腎不全","甲状腺機能亢進症"],a:0,
+ e:"手術・観血的処置の前に確認しておく。翼状頸、眼間開離、眼瞼下垂、耳介低位、盾状胸と乳頭間開離、停留精巣なども所見として押さえる。",r:"症例 p.63"},
+{c:"syn",v:"低身長で紹介された女児。身長に比して座高が高く、前腕と下腿が相対的に短い。手関節に変形があり腱鞘炎を繰り返す。",
+ q:"最も考えられるのは。",o:["軟骨無形成症","SHOX異常症（Léri-Weill 型）","Noonan症候群","Turner症候群のみ"],a:1,
+ e:"中節（前腕・下腿）優位の短縮＋Madelung変形。四肢の近位が短い軟骨無形成症とは短縮部位が違う。ここの区別が診断のスクリーニングになる。",r:"症例 p.64-67"},
+{c:"syn",q:"SHOX遺伝子の所在と病態は。",o:["常染色体上の機能獲得変異","偽常染色体領域（PAR1）にあり、ハプロ不全で低身長","X染色体長腕の欠失","ミトコンドリア遺伝子"],a:1,
+ e:"男女とも2コピー必要で、1コピーになると低身長になる。Turner症候群の低身長の大部分もこれで説明される。",r:"症例 p.65-67"},
+{c:"syn",q:"SHOX異常症について正しいのは。",o:["男性のほうが重篤である","女性のほうが重篤である","性差はない","思春期以降に発症する"],a:1,
+ e:"女性のほうが低身長は重い。また年齢とともに低身長がはっきりしてくるため、幼児期に −2 SD 未満でなくても除外できない。",r:"症例 p.67"},
+{c:"syn",q:"SHOX異常症の遺伝学的検査として主となるのは。",o:["点変異のシークエンス","欠失の検出（MLPA等）","メチル化解析","染色体G分染のみ"],a:1,
+ e:"点変異は少なく、欠失が主体。近年はエンハンサー領域の欠失も報告され、どこまでが病的かはまだ整理の途上。",r:"症例 p.67 / p.83"},
+
+/* ── GH治療の実際 ── */
+{c:"tx",q:"GH分泌不全性低身長症に対するGHの標準的な投与量は。",o:["0.175 mg/kg/週","0.23 mg/kg/週","0.35 mg/kg/週","0.5 mg/kg/週"],a:0,
+ e:"これが基準線。SGA性低身長 0.23、軟骨無形成症 0.35 と、適応ごとに別の数字が並ぶので混ぜない。",r:"レクチャー2 p.75 / 症例 p.43"},
+{c:"tx",q:"重症GH分泌不全で著明な低身長（−3.5 SD 未満）の症例に対して本書が目安とする量は。",o:["0.175 mg/kg/週","0.25 mg/kg/週","0.35 mg/kg/週","0.7 mg/kg/週"],a:2,
+ e:"−2.5〜−3.5 SD では 0.25 mg/kg/週、−3.5 SD 未満で 0.35 mg/kg/週。エビデンスがない領域であることも同時に押さえる。",r:"症例 p.43"},
+{c:"tx",q:"思春期のGH分泌不全症例で成人身長を改善しうるとされる併用は。",o:["アロマターゼ阻害薬","LHRHアナログ","経口エストロゲン","甲状腺ホルモン"],a:1,
+ e:"GH単独に対し、LHRHアナログ併用が成人身長を改善することが対照試験で示されている。思春期の伸びしろを削られないようにする発想。",r:"症例 p.41"},
+{c:"tx",q:"GH治療のモニタリングとして本書が示す関係は。",o:["IGF-1 SDスコアの上昇と身長SDスコアの改善が相関する","IGFBP-3のみが指標になる","GH頂値を再検して調整する","体重増加で判定する"],a:0,
+ e:"IGF-1 の動きが効いているかどうかの手がかりになる。増量の判断にも、上限を超えていないかの安全確認にも使える。",r:"症例2 p.55 / レクチャー2 p.75"},
+{c:"tx",q:"GH治療中の耐糖能について正しいのは。",o:["高率に糖尿病を発症する","OGTTで変化を認めうるが、糖尿病発症はまれ","耐糖能は改善する","評価は不要"],a:1,
+ e:"インスリン抵抗性は上がりうるが、実際に耐糖能異常が問題化した症例は多くない。それでもリスク因子のある児では追う。",r:"症例1 p.50"},
+{c:"tx",v:"GH治療を1年続けたが、身長増加率がほとんど改善しない。",
+ q:"最初に確認すべきでないのは。",o:["アドヒアランス（実際に打てているか）","甲状腺機能と栄養状態","診断そのものの見直し（GH不応症など）","ただちにGHを倍量にする"],a:3,
+ e:"反応不良はまず「効かない理由」を探す。増量はその後。GH不応症であれば量を増やしても伸びない。",r:"レクチャー2 p.75 / 臨床Tips p.81"},
+{c:"tx",q:"GH治療で追いつき成長が進んでいるときに骨年齢／暦年齢比は。",o:["1から遠ざかる","1に近づく","変化しない","2を超える"],a:1,
+ e:"2〜3年以内に1を上回る動きを示すことが多い。骨年齢だけを見て「進みすぎだから中止」と即断せず、身長SDの改善と合わせて読む。",r:"症例2 p.53"},
+{c:"tx",q:"低身長の鑑別として、GH-IGF軸以外に成長率を落とすものは。",o:["甲状腺機能低下症、コルチゾール過剰、性腺機能低下、中枢性尿崩症","高血圧のみ","鉄欠乏のみ","近視"],a:0,
+ e:"TRH-TSH-T4、ACTH-コルチゾール、LHRH-LH/FSH-性ステロイド、AVP のいずれの異常でも成長率は落ちる。ステロイド投与中も同様。低身長は内分泌全体の窓口。",r:"臨床Tips p.81"},
+/* ══════ 巻の二・水代謝異常 ══════ */
+{bk:"water",c:"wcdi",q:"AVPが集合管で水再吸収を起こす経路として正しいのは。",o:["V1受容体を介してAQP1を活性化する","V2受容体を介してAQP2の合成と管腔側膜への移送を促進する","直接AQP2を開口させる","基底膜側のAQP3を減少させる"],a:1,
+ e:"AVP→V2受容体→AQP2の合成と膜移送。管腔側から取り込まれた水は基底膜側の水チャネルから血中へ戻る。中枢性は上流（AVPが出ない）、腎性は下流（受容体・チャネルが応じない）と整理する。",r:"症例1 p.87"},
+{bk:"water",c:"wcdi",q:"尿中AQP2の測定について正しいのは。",o:["中枢性と腎性の鑑別ができる","どちらも低値をとると予想され、中枢性と腎性の鑑別はできない","腎性でのみ高値になる","中枢性でのみ高値になる"],a:1,
+ e:"水再吸収が働いていないという点は両者に共通。鑑別はAVP値とバソプレシン負荷への反応で行う。",r:"症例1 p.87"},
+{bk:"water",c:"wdx",v:"多尿・多飲で受診。水制限試験でプラトーの尿浸透圧139 mOsm/kg、血漿浸透圧282 mOsm/kg。水性バソプレシン投与後、尿浸透圧は1,018 mOsm/kgまで上昇した。",
+ q:"診断は。",o:["腎性尿崩症","中枢性尿崩症","習慣性多飲","浸透圧利尿"],a:1,
+ e:"濃縮できないが、外から入れれば濃縮できる＝上流の欠損。血漿浸透圧300 mOsm/kg以上でAVPが0.15 pg/mL未満であることも支持する。",r:"症例1 p.86-87"},
+{bk:"water",c:"wcdi",q:"中枢性尿崩症で尿濃縮能がさらに落ちる機序として述べられているのは。",o:["糸球体濾過量の低下","尿量増加により対向流（カウンターカレント）機構が働きにくくなる","近位尿細管の障害","アルドステロン過剰"],a:1,
+ e:"髄質の浸透圧勾配が洗い流される。だから治療開始直後は、AVPを入れてもすぐには最大濃縮尿が出ず、数日かけて濃縮尿が出るようになる。",r:"症例1 p.87 / p.89"},
+{bk:"water",c:"wcdi",q:"治療開始直後に十分な濃縮尿が得られないとき、まず考えるべきなのは。",o:["ただちに腎性尿崩症と診断しなおす","髄質浸透圧勾配の回復に数日かかるためで、経過をみる","DDAVPを直ちに倍量にする","水分制限を強化する"],a:1,
+ e:"合成・膜移送に加えて髄質勾配の再構築が要る。日のオーダーで改善してくる。",r:"症例1 p.89"},
+{bk:"water",c:"wcdi",q:"病歴聴取で尿崩症を疑う手がかりとして最も有用なのは。",o:["日中の飲水量だけを聞く","夜間に起きて排尿するかどうかを聞く","口渇の有無だけを聞く","体重の増減を聞く"],a:1,
+ e:"夜間に起きて排尿するかは、真の多尿と昼間の習慣的な多飲を分ける。逆に精神発達遅滞のある児では、口渇を訴えられず多飲を伴わない多尿となることがある。",r:"症例1 p.88-89"},
+{bk:"water",c:"wcdi",q:"AVP遺伝子異常による家族性中枢性尿崩症（常染色体優性）の発症様式は。",o:["出生直後から重症の多尿となる","出生時は正常で、乳幼児期以降に発症してくる","思春期以降にのみ発症する","一過性で自然軽快する"],a:1,
+ e:"異常蛋白が小胞体で正しく折りたためずERストレスを起こし、AVP産生細胞が徐々に脱落する。細胞が減るのに時間がかかるため、すぐには症状が出ない。",r:"症例1 p.88"},
+{bk:"water",c:"wcdi",v:"9歳男児。特発性中枢性尿崩症としてDDAVPで加療中。頭部MRIは初診時正常だった。",
+ q:"経過観察で最も重要なのは。",o:["以後の画像は不要である","胚細胞腫瘍が後から顕在化しうるため、画像と腫瘍マーカーの追跡を続ける","GH分泌能のみ追う","甲状腺エコーを追う"],a:1,
+ e:"特発性と診断された症例から後に胚細胞腫瘍やリンパ球性漏斗下垂体炎が判明することがある。初回画像の正常は除外にならない。髄液の胎盤性アルカリホスファターゼが診断に有用とされる。",r:"症例d p.90 / p.88"},
+{bk:"water",c:"wcdi",q:"中枢性尿崩症とGH分泌不全がそろっているとき、まず考えるべきは。",o:["両者の合併は一般的なので特に問題ない","一般に合併はまれであり、器質性病変を疑う","GH分泌不全が原因で尿崩症が生じている","測定誤差である"],a:1,
+ e:"器質性を除けば、中枢性尿崩症にGH分泌不全が合併することはまれ。並んだら視床下部下垂体の器質性病変を探す。",r:"症例1 p.87"},
+{bk:"water",c:"wcdi",q:"全前脳胞症（holoprosencephaly）に合併しうる水代謝異常は。",o:["尿崩症およびSIADH","腎性尿崩症のみ","低カリウム血症","高カルシウム血症"],a:0,
+ e:"正中構造の形成異常に視床下部下垂体系の異常が並ぶ。尿崩症とSIADHのどちらも起こしうる。",r:"p.94 / 文献7"},
+
+/* 診断と負荷試験 */
+{bk:"water",c:"wdx",q:"水制限試験に続くバソプレシン負荷で、尿浸透圧の「有意な上昇」の目安は。",o:["20 mOsm/kg 以上","50 mOsm/kg 以上","100 mOsm/kg 以上","500 mOsm/kg 以上"],a:2,
+ e:"100 mOsm/kg 以上の上昇を有意とする。これを満たさなければ中枢性の裏づけにならない。",r:"習慣性多飲 症例 p.93"},
+{bk:"water",c:"wdx",q:"血中AVP値の単独測定について正しいのは。",o:["AVP値だけで尿崩症を確定できる","正常者と尿崩症の値がオーバーラップするため、AVP値だけでは診断できない","AVPは常に測定不能となる","AVPは尿でのみ評価する"],a:1,
+ e:"だから血漿浸透圧との対応で読む。血漿浸透圧300 mOsm/kg以上でAVPが抑制されていない、といった組み合わせで意味をもつ。",r:"症例d p.90"},
+{bk:"water",c:"wdx",q:"水制限試験の判定でもっとも難しいとされているのは。",o:["採血のタイミング","プラトーをどう定めるか","バソプレシンの投与経路","尿比重の測定"],a:1,
+ e:"尿浸透圧が頭打ちになった点をどこで切るかで結論が変わる。プラトーの取り方は試験の弱点として意識しておく。",r:"症例d p.90"},
+{bk:"water",c:"wdx",q:"高張食塩水負荷試験の位置づけとして適切なのは。",o:["すべての多尿症例で第一に行う","水制限試験で診断がつく症例では不要である","腎性尿崩症の確定に必須である","新生児で第一選択となる"],a:1,
+ e:"習慣性多飲の症例でも、水制限＋バソプレシン負荷で結論が出れば高張食塩水負荷は要らない。侵襲の順に積む。",r:"習慣性多飲 症例 p.93"},
+{bk:"water",c:"wdx",q:"下垂体後葉の画像所見として中枢性尿崩症を示唆するのは。",o:["後葉の高信号（bright spot）の消失","前葉の腫大","トルコ鞍の石灰化","茎の肥厚のみ"],a:0,
+ e:"ただし所見が軽微なこともあり、画像だけで中枢性と器質性の区別がつくとは限らない。詳細な解析ではじめて異常がわかることもまれではない。",r:"症例1 p.88"},
+
+/* DDAVPの使いかた */
+{bk:"water",c:"wtx",q:"DDAVP治療の原則として本書が強調しているのは。",o:["常時効いている状態を保つ","少なくとも1日1回は効果が切れる時間をつくる","夜間のみ投与する","効果が切れたら直ちに追加する"],a:1,
+ e:"切れる時間がないと自由水が抜けず水中毒に向かう。とくに内因性AVP分泌不全が重度で外因性に完全依存している症例で重要。",r:"症例1 p.91"},
+{bk:"water",c:"wtx",q:"DDAVPが「切れた」と患者・家族に判断させるサインは。",o:["口渇が出ること","2〜3秒で終わらない、数秒続く排尿や一定量以上の尿が出ること","体重が増えること","尿の色が濃くなること"],a:1,
+ e:"感覚ではなく排尿の実際で判断させる。切れたのを確認してから次を打つ、というルールにする。",r:"症例1 p.91"},
+{bk:"water",c:"wtx",v:"習慣性多飲と判明した児に、以前の医療機関でDDAVPが投与されていた。",
+ q:"起こりうる合併症は。",o:["高ナトリウム血症","水中毒による低ナトリウム血症とけいれん","高カリウム血症","脱水"],a:1,
+ e:"飲水は続くのに自由水が出せなくなる。多尿を心配してのDDAVP過剰投与とあわせて、実際に低Na血症を来した症例が報告されている。多飲の原因を確かめずに投与しない。",r:"p.104"},
+{bk:"water",c:"wtx",q:"ミニリンメルト（DDAVP舌下溶解錠）の利点として挙げられているのは。",o:["点鼻より血中濃度の変動が大きい","水なしで服用でき、日常での使い勝手がよい","効果時間が固定される","副作用がない"],a:1,
+ e:"投与量の細かい設定がしにくいなどの短所もあり、点鼻との使い分けになる。いずれにせよ「一度切らす」原則は変わらない。",r:"症例1 p.91"},
+
+/* 新生児・複合型 */
+{bk:"water",c:"wneo",v:"新生児。低血糖、口唇口蓋裂、小陰茎。ACTH<0.5 pg/mL、コルチゾール<1.16 μg/dL、GH<0.07 ng/mL、fT4<0.4 ng/dL。",
+ q:"補充を開始する順序として最も適切なのは。",o:["GHから開始する","ヒドロコルチゾン（副腎皮質ホルモン）から開始する","テストステロンから開始する","LT4から開始する"],a:1,
+ e:"副腎不全は生命に直結する。バイタルを安定させてから甲状腺、GHと積む。正中構造異常＋小陰茎＋低血糖の組は先天性複合下垂体機能低下症のサイン。",r:"関連症例1 p.92-93"},
+{bk:"water",c:"wneo",q:"ACTH分泌不全を伴う中枢性尿崩症で、コルチゾール補充を開始したときに起こりうるのは。",o:["尿崩症が軽快する","それまで隠れていた尿崩症が顕在化する","低血糖が悪化する","低カリウム血症になる"],a:1,
+ e:"コルチゾール不足のあいだは自由水が排泄できず多尿が目立たない。補充で自由水排泄が回復し、多尿が表に出る。",r:"関連症例1 p.92-93 / p.96"},
+{bk:"water",c:"wneo",q:"新生児・乳児のDDAVP治療でNa値の日内変動が大きくなる理由は。",o:["腎機能が未熟だから","自発的な飲水コントロールができないから","代謝が速いから","DDAVPの吸収が悪いから"],a:1,
+ e:"口渇に応じて飲む・控えるができない。分割投与や、投与前後のミルク量の調整でNaの振れを抑える。体重測定とNaプロフィールで詰めていく。",r:"関連症例1 p.93-94"},
+{bk:"water",c:"wneo",q:"新生児の多尿を評価するときの考えかたとして適切なのは。",o:["尿量の絶対値のみで判断する","不感蒸泄と哺乳量から予測される尿量と比較する","体重増加のみで判断する","尿比重のみで判断する"],a:1,
+ e:"不感蒸泄をおよそ600 mL/m2として、哺乳量から予想尿量を出し、実際の尿量と突き合わせる。新生児は元来ミルク量が多いので、絶対値だけでは多尿と言えない。",r:"症例1 p.89"},
+
+/* 腎性尿崩症 */
+{bk:"water",c:"wndi",v:"日齢22の男児。発熱で入院。Na 156 mEq/L、血漿浸透圧304 mOsm/kg、尿浸透圧118〜158 mOsm/kg、AVP 55.3 pg/mL。",
+ q:"診断は。",o:["中枢性尿崩症","腎性尿崩症","習慣性多飲","SIADH"],a:1,
+ e:"高張なのに希釈尿、しかもAVPは高い。上流は働いていて下流が応じていない。新生児期の原因不明の発熱と高Na血症は、腎性尿崩症の典型的な入り口。",r:"症例a p.98-99"},
+{bk:"water",c:"wndi",q:"腎性尿崩症の原因として最も多いのは。",o:["AQP2遺伝子異常","X連鎖のAVPR2（V2受容体）遺伝子異常","AVP遺伝子異常","腎形成異常"],a:1,
+ e:"AVPR2が最多。AQP2遺伝子異常は少数派。",r:"症例a・b p.98-101"},
+{bk:"water",c:"wndi",q:"X連鎖の腎性尿崩症が女性に発症しうる機序は。",o:["常染色体優性遺伝への変化","X染色体不活化の偏り（skewed lyonization）や母のモザイク","ミトコンドリア遺伝","インプリンティング異常"],a:1,
+ e:"不活化が90:10まで偏ることは考えにくく、60:40程度の軽い偏りでも症状が出うる、という読み方が示されている。女性だから否定、はできない。",r:"症例b p.100-102"},
+{bk:"water",c:"wndi",q:"バソプレシン負荷に対する腎性尿崩症の反応として典型的なのは。",o:["尿浸透圧が1,000 mOsm/kgまで上昇する","尿浸透圧がほとんど上昇しない","尿量が著明に減少する","血漿浸透圧が急上昇する"],a:1,
+ e:"症例では血漿浸透圧306 mOsm/kgに対し、負荷後も尿浸透圧は248 mOsm/kgまでしか上がらなかった。",r:"症例a p.98"},
+{bk:"water",c:"wndi",q:"腎性尿崩症の治療として適切な組み合わせは。",o:["DDAVPの増量","十分な水分投与・塩分制限・サイアザイド系利尿薬","水分制限","ステロイド"],a:1,
+ e:"入れる水を確保し、溶質負荷を減らす。症例では200〜300 mL/kg/日の水分投与を要した。",r:"症例a・b p.98-101 / p.105"},
+{bk:"water",c:"wndi",q:"蓄尿から食塩摂取量を推定する式として正しいのは。",o:["尿中Na（mEq/L）×蓄尿量（L/日）÷17","尿中Na（mEq/L）×蓄尿量（L/日）÷34","尿中Na（mEq/L）＋蓄尿量（L/日）","尿中Na（mEq/L）×体重÷17"],a:0,
+ e:"塩分制限が守れているかを数字で確かめる。成人なら家庭全体で続けられる1日8g程度が現実的な目標として挙げられている。",r:"p.101"},
+{bk:"water",c:"wndi",q:"腎性尿崩症で腎不全に至りうる最も重要な合併症の経路は。",o:["繰り返す脱水による急性腎障害のみ","排尿回数が少ないこと（infrequent voiding）による膀胱拡張・水腎症","糸球体腎炎の合併","尿路感染のみ"],a:1,
+ e:"大量の尿を溜め込んでから出す習慣がつくと、膀胱容量が年齢相当の倍ほどに拡がり、水腎症から腎不全へ進む。排尿回数と1回尿量を必ず記録させる。",r:"症例b p.102-103 / p.105"},
+{bk:"water",c:"wndi",q:"膀胱拡張・水腎症を来した腎性尿崩症への対応として本書で選択されたのは。",o:["利尿薬の中止","夜間の尿道カテーテル留置による膀胱ドレナージ","水分制限","腎移植"],a:1,
+ e:"夜間に溜め込む時間を作らせない。膀胱容量と1日尿量から重症度を見積もる。",r:"症例b p.103"},
+{bk:"water",c:"wndi",q:"腎性尿崩症でDDAVPが有効となりうるのはどんな場合か。",o:["常に無効である","部分型で、バソプレシン負荷に一定の尿浸透圧上昇がみられる場合","高用量にすれば必ず有効である","中枢性を合併している場合のみ"],a:1,
+ e:"負荷でまったく反応しない症例ではDDAVPにも反応しないと予想できる。負荷試験は診断だけでなく治療の見通しにも使う。",r:"p.105"},
+{bk:"water",c:"wndi",q:"多尿を主訴に内分泌外来を受診した60例（糖尿病を除く）の内訳として本書が示したのは。",o:["腎性尿崩症が最多","中枢性尿崩症が最多（35例、うち特発性4例）","習慣性多飲が最多","分類不能が最多"],a:1,
+ e:"腎性尿崩症は5例と少数。頻度の実感をもっておくと、目の前の多尿をどこから疑うかの順序が決まる。",r:"p.104"},
+
+/* 低Na血症・SIADH・CSWS */
+{bk:"water",c:"whypo",q:"SIADHの典型的な検査値の組み合わせは。",o:["血漿浸透圧305〜320、尿浸透圧35〜120","血漿浸透圧240〜260、尿浸透圧350〜650","血漿浸透圧正常、尿浸透圧低値","両者とも高値"],a:1,
+ e:"薄い血に濃い尿。尿崩症はその裏返しで、濃い血に薄い尿（血漿305〜320、尿35〜120）。この2組を対にして覚える。",r:"表3 p.94"},
+{bk:"water",c:"whypo",q:"SIADHと中枢性尿崩症を分ける最も本質的な点は。",o:["尿量の絶対値","血漿浸透圧と尿浸透圧の向きが逆であること","AVPの測定法","体重の変化"],a:1,
+ e:"尿量だけでは判断を誤る。血漿と尿の浸透圧を対で読む。",r:"p.94"},
+{bk:"water",c:"whypo",q:"CSWS（cerebral salt wasting）の診断の目安に含まれないのは。",o:["血清Na<130 mEq/L","中枢神経の外傷・手術から1週以内の発症","尿中Na 200 mEq/L以上","体液量の増加"],a:3,
+ e:"CSWSは脱水を伴う。ここがSIADHとの最大の分かれ目で、輸液の方向がまったく逆になる。",r:"表4 p.95"},
+{bk:"water",c:"whypo",q:"SIADHとCSWSを鑑別するうえで決定的なのは。",o:["血清Na値の程度","体液量（脱水があるか）","尿量","血糖値"],a:1,
+ e:"Na値だけでは分けられない。CSWSでは尿量が通常の10〜20倍にもおよび脱水を認める。誤ると、脱水の子に水分制限をかけることになる。",r:"表4 p.95"},
+{bk:"water",c:"whypo",v:"口唇裂手術後の乳児。術後3日目に血清Naが20 mEq/L低下。水分投与量と尿量に変化はなく、体重も減っていない。",
+ q:"最も考えられるのは。",o:["CSWS","SIADHによる低ナトリウム血症","DDAVP過量","腎性尿崩症の増悪"],a:1,
+ e:"尿量と体重が動いていない＝脱水ではない。ストレスによるAVP分泌でSIADH様の病態が生じうる。同様の症例が複数報告されている。",r:"関連症例2 p.95-96"},
+{bk:"water",c:"whypo",q:"AVPR2の機能亢進変異による NSIAD（腎性抗利尿不適合症候群）で特徴的なのは。",o:["AVPが高値である","AVPが低値〜測定感度以下なのに濃縮尿を排泄する","尿中Naが低い","高ナトリウム血症を来す"],a:1,
+ e:"受容体側が勝手に入りっぱなしになる。臨床的にSIADHと見える状態の一部にはAVPが低値の一群があり、SIADHの診断にAVP測定が必須ではない理由になっている。",r:"p.97 / 文献1"},
+{bk:"water",c:"whypo",v:"下垂体機能低下症で通院中の成人。平日は問題ないが、週末に疲労がたまると全身浮腫を生じる。今回、悪心で朝食を摂れず受診、血清Na 115 mEq/L、血清浸透圧242 mOsm/kg、体重はいつもより2 kg以上多い。",
+ q:"病態として最も考えられるのは。",o:["CSWS","DDAVP過量とコルチゾール補充不足の重なり","腎性尿崩症","SIADHを来す腫瘍"],a:1,
+ e:"疲労時に飲水と服薬の型が崩れ、自由水が抜けなくなる。DDAVPを減量し、ヒドロコルチゾンはストレス時に増量する方針で改善した。外来では「必ず一度切らす」ことを繰り返し確認する。",r:"関連症例3 p.96-97"},
+{bk:"water",c:"whypo",q:"下垂体機能低下症の患者に対するシックデイの指導として適切なのは。",o:["DDAVPを増量する","ヒドロコルチゾンを増量し、DDAVPは切れる時間を確保する","両方とも中止する","水分を制限する"],a:1,
+ e:"ストレス時に足りなくなるのはコルチゾール。DDAVPはむしろ効きすぎが問題になる。方向が逆であることを患者に伝えておく。",r:"関連症例3 p.96-97"},
+{bk:"water",c:"whypo",q:"中枢性尿崩症の患者が低ナトリウム血症で搬送されたとき、最初に確認すべきなのは。",o:["腎機能","DDAVPの投与量と、効果が切れる時間があったか","甲状腺機能","血糖"],a:1,
+ e:"医原性がまず疑わしい。低Na血症で見つかった症例には、DDAVP過剰投与と、習慣性多飲へのDDAVP投与が含まれていた。",r:"p.104 / p.96"},
+{bk:"water",c:"whypo",q:"低ナトリウム血症の補正で注意すべきことは。",o:["できるだけ速やかに正常化する","急激な補正を避ける","ナトリウムは経口のみで補う","補正速度は問題にならない"],a:1,
+ e:"高Na血症の補正も同様で、水分を入れすぎてNaが下がりすぎることに注意する、と繰り返し述べられている。1〜2時間ごとのNa測定を要する場面もある。",r:"p.100-101"},
+{bk:"water",c:"whypo",q:"腎性尿崩症の家族に伝えておくべき受診のタイミングとして適切なのは。",o:["朝まで待って様子をみる","夜間に具合が悪くなったら朝まで待たずに受診する","次の定期外来で相談する","電話相談のみでよい"],a:1,
+ e:"急速に高Na血症へ傾きうる。「夜悪くなったら朝まで待たない」と具体的に伝えることが大切だと明記されている。",r:"症例b p.100"},
+/* ══════ 巻の三・甲状腺 ══════ */
+{bk:"thy",c:"tdx",q:"原発性甲状腺機能低下症で最も鋭敏な診断マーカーは。",o:["fT4","fT3","TSH","サイログロブリン"],a:2,
+ e:"T4の低下はTSH上昇で代償されるため、TSHが先に、かつ大きく動く。治療効果の判断マーカーとしてもTSHが最良とされる。",r:"p.133"},
+{bk:"thy",c:"tdx",q:"原発性甲状腺機能低下症で、fT4とfT3のどちらが先に低下するか。",o:["fT3が先に低下する","fT4が先に低下し、fT3は比較的保たれる","同時に低下する","どちらも低下しない"],a:1,
+ e:"甲状腺内でT4からT3への変換が亢進し、限られた材料をT3に振り向ける。だからfT3が正常でも甲状腺機能低下症は否定できない。",r:"p.133"},
+{bk:"thy",c:"tdx",q:"TSHが正常〜低値で、かつfT4も低値のとき考えるべきは。",o:["原発性甲状腺機能低下症","中枢性甲状腺機能低下症または euthyroid sick syndrome","甲状腺ホルモン不応症","Basedow病"],a:1,
+ e:"TSHが上がっていないことが手がかり。下垂体側の問題か、非甲状腺疾患による変化かを分ける。",r:"診断アルゴリズム p.114"},
+{bk:"thy",c:"tdx",q:"新生児マススクリーニングで拾えない甲状腺機能低下症として注意すべきなのは。",o:["重症の原発性CH","遅発性TSH上昇例（スクリーニング時はTSH正常）","甲状腺無形成","ヨード過剰症"],a:1,
+ e:"スクリーニング時にTSHが正常でも、あとからTSHが上昇してくる症例がある。低出生体重児などで問題になり、再検の体制が要る。",r:"p.117"},
+{bk:"thy",c:"tdx",q:"甲状腺の形態評価とシンチグラフィの組み合わせで「腫大あり・取り込みあり」なら考えるのは。",o:["甲状腺無形成","異所性甲状腺","甲状腺ホルモン合成障害","中枢性CH"],a:2,
+ e:"作れないぶん刺激されて腫れる。取り込みなし＝無形成、異所への取り込み＝異所性甲状腺、と3つに分ける。",r:"診断アルゴリズム p.116"},
+{bk:"thy",c:"tch",q:"先天性甲状腺機能低下症でサイログロブリン（Tg）が著明高値（>800 ng/mL程度）のとき示唆されるのは。",o:["甲状腺無形成","甲状腺ホルモン合成障害","ヨード過剰症","中枢性CH"],a:1,
+ e:"組織はあって作ろうとしている。逆に無形成ならTgは出ず、ヨード過剰では高値になりにくい。Tgは補助的だが方向を決めてくれる。",r:"p.107 / p.128"},
+{bk:"thy",c:"tch",q:"日本のガイドラインにおける先天性甲状腺機能低下症のLT4開始量は。",o:["1〜3 μg/kg/日","5〜8 μg/kg/日","10〜15 μg/kg/日","20〜25 μg/kg/日"],a:2,
+ e:"重症例では速やかに立ち上げる。ただし過剰投与で甲状腺中毒症の値をとらない治療法が望まれる、という但し書きもつく。",r:"p.116"},
+{bk:"thy",c:"tch",q:"甲状腺形成異常（dysgenesis）の責任遺伝子として挙げられているのは。",o:["NKX2-1（TITF1）、PAX8、FOXE1（TITF2）、TSHR","TG、TPO、DUOX2","THRB、THRA","SLC16A2"],a:0,
+ e:"転写因子群と受容体。ただし責任遺伝子が見つからない症例のほうが多い。",r:"p.111"},
+{bk:"thy",c:"tch",v:"先天性甲状腺機能低下症の児。良性遺伝性舞踏病があり、新生児期に呼吸障害を繰り返した。",
+ q:"考えられる遺伝子は。",o:["FOXE1","NKX2-1（TITF1）","PAX8","TPO"],a:1,
+ e:"脳・肺・甲状腺の3つが揃う（brain-lung-thyroid）。甲状腺だけを見ていると拾えない。",r:"表 p.111"},
+{bk:"thy",c:"tch",q:"FOXE1（TITF2）異常症で甲状腺以外に伴う所見は。",o:["舞踏病","口蓋裂と特徴的な硬い毛髪","難聴","心奇形"],a:1,
+ e:"口蓋裂＋針のような髪＋甲状腺無形成という組。顔と髪で気づける遺伝性CH。",r:"表 p.111"},
+{bk:"thy",c:"tch",q:"甲状腺ホルモン合成障害（dyshormonogenesis）の原因遺伝子に含まれないのは。",o:["TG、TPO","DUOX2、DUOXA2","NIS（SLC5A5）、PDS（SLC26A4）","THRB"],a:3,
+ e:"THRBは甲状腺ホルモン不応症の遺伝子で、合成の障害ではない。合成障害はヨードの取り込み・有機化・カップリング・脱ヨードの各段階に対応する。",r:"表7 p.129"},
+{bk:"thy",c:"tch",v:"甲状腺腫と感音難聴を伴う小児。パークロレート放出試験が陽性。",
+ q:"最も考えられるのは。",o:["Pendred症候群（PDS/SLC26A4異常）","TG異常症","NKX2-1異常症","橋本病"],a:0,
+ e:"ヨードの有機化障害なので、パークロレートで取り込んだヨードが放出される。難聴が並んだら思い出す。",r:"表7 p.129"},
+{bk:"thy",c:"tch",q:"DUOX2異常症の臨床像として知られているのは。",o:["常に永続性の重症CHとなる","一過性CHから永続性まで幅があり、母体ヨード過剰と重なって発症することもある","甲状腺無形成を来す","難聴を必発する"],a:1,
+ e:"遺伝素因と環境（ヨード）が重なって表に出る。一過性に見えても、後に再燃しうる。",r:"p.129 / 文献4"},
+
+/* ヨード */
+{bk:"thy",c:"tiod",q:"ヨード過剰が甲状腺機能低下症を起こす機序は。",o:["Jod-Basedow現象","Wolff-Chaikoff効果","TSH受容体阻害","脱ヨード酵素の欠損"],a:1,
+ e:"ヨード過剰は甲状腺ホルモン合成を抑える。成人は数日でescapeするが、胎児・新生児は甲状腺機能の成熟が不十分でescapeできず、機能低下症に至りうる。",r:"p.125"},
+{bk:"thy",c:"tiod",q:"新生児のヨード過剰症の原因として本書に挙がっていないのは。",o:["妊娠中の羊水造影","ポビドンヨードによるうがいの習慣","昆布茶・ひじきなど海藻の多量摂取","母体のリチウム内服"],a:3,
+ e:"造影剤、消毒薬、食事の3つが実際の症例として並んでいる。問診で「毎日何を飲んでいたか」まで踏み込まないと拾えない。",r:"症例1〜4 p.121-127"},
+{bk:"thy",c:"tiod",q:"ヨード過剰症を疑ったときに測定するのは。",o:["尿中ヨード（あるいは血中ヨード）","TRAb","カルシトニン","抗Tg抗体"],a:0,
+ e:"曝露を数字で確かめる。原因を止めれば多くは一過性に経過し、正常化する。",r:"表6 p.127"},
+{bk:"thy",c:"tiod",q:"妊娠中のヨード推奨摂取量として本書が挙げているのは。",o:["約30 μg/日","約130 μg/日","約1,300 μg/日","制限は不要"],a:1,
+ e:"ヨードは不足も過剰も問題になる。日本では海藻由来の過剰が現実的な問題として起きる。",r:"p.125"},
+{bk:"thy",c:"tiod",q:"ヨード過剰による機能低下症と、ホルモン合成障害を分ける補助的所見は。",o:["ヨード過剰ではTgが著明高値になりにくい","ヨード過剰ではTgが必ず1,000 ng/mLを超える","ヨード過剰ではTSHが上がらない","ヨード過剰では甲状腺が描出されない"],a:0,
+ e:"合成障害では材料が詰まってTgが高くなる。ヨード過剰は抑制なので、そこまで上がらない。",r:"p.127"},
+
+/* 母体由来・新生児 */
+{bk:"thy",c:"tneo",q:"母体Basedow病の児をフォローすべき基準として挙げられているのは。",o:["母のTRAb（第1世代）≧50%、（第3世代）≧10 IU/L、TSAb≧500%","母のTSHが低いこと","母が抗甲状腺薬を内服していること単独","母の甲状腺腫の大きさ"],a:0,
+ e:"抗体価が胎盤通過のリスクを示す。母体の抗体価が不明な場合も要注意群として扱う、というマニュアルになっている。",r:"取り扱いマニュアル p.131-132"},
+{bk:"thy",c:"tneo",v:"母がBasedow病でコントロール不良のまま妊娠・出産。児はマススクリーニング正常だが、TSHが上がらないままfT4が低い。",
+ q:"考えられるのは。",o:["原発性CH","母体の甲状腺機能亢進による中枢性先天性甲状腺機能低下症","ヨード過剰症","新生児Basedow病"],a:1,
+ e:"胎児期の過剰な甲状腺ホルモン曝露が胎児の視床下部下垂体を抑え込む。TSHが上がらないためスクリーニングをすり抜ける。",r:"p.151 / 文献2"},
+{bk:"thy",c:"tneo",q:"母体のTSBAb（TSH刺激阻害抗体）が児に及ぼすのは。",o:["一過性の甲状腺機能亢進症","一過性の甲状腺機能低下症","永続性の甲状腺無形成","影響しない"],a:1,
+ e:"抗体が消えるまでの一過性。症例では母のTSBAbが高値で、児のTRAbが月単位で低下し正常化した。",r:"関連症例 p.130-131"},
+{bk:"thy",c:"tneo",q:"新生児Basedow病の発症時期として典型的なのは。",o:["出生直後のみ","母のTRAbが妊娠20週以降に高値であった児で、生後数日〜数週に発症","生後6か月以降","乳児期後半"],a:1,
+ e:"抗甲状腺薬が先に抜けてから抗体作用が表に出るため、症状の出現が遅れることがある。体重増加不良と頻脈が主症状。",r:"p.151"},
+{bk:"thy",c:"tneo",q:"甲状腺機能低下症の妊婦におけるLT4補充の目標は。",o:["TSH 2.5 μIU/mL 以下","TSH 10 μIU/mL 以下","fT4 のみで管理する","妊娠中は減量する"],a:0,
+ e:"妊娠中はむしろ増量が要る。胎児の神経発達に母体のT4が寄与するため、下げすぎない管理が方針になる。",r:"p.131"},
+
+/* 不応・輸送・代謝 */
+{bk:"thy",c:"tres",v:"14歳女子。甲状腺腫大。fT4 2.6 ng/dL、fT3 6.0 pg/mL と高値だが TSH 2.6 μIU/mL と正常。TRAb 陰性。",
+ q:"最も考えられるのは。",o:["Basedow病","甲状腺ホルモン不応症（THRB異常）","破壊性甲状腺炎","TSH産生腫瘍以外は考えにくい"],a:1,
+ e:"甲状腺ホルモンが高いのにTSHが抑制されていない、という不一致が核心。Basedowなら TSH は測定感度以下まで落ち、TRAbが陽性になる。",r:"症例1 p.137-139"},
+{bk:"thy",c:"tres",q:"甲状腺ホルモン不応症の大多数の原因遺伝子は。",o:["THRA（TRα）","THRB（TRβ）","SLC16A2","SECISBP2"],a:1,
+ e:"常染色体優性。変異はリガンド結合ドメインに集中する。",r:"p.137-139"},
+{bk:"thy",c:"tres",q:"全身型（GRTH）と下垂体型（PRTH）の関係について、現在の理解は。",o:["まったく別の疾患である","同一の病態で、無症状から亢進症状まで連続的な幅がある","PRTHのみ遺伝性である","GRTHは後天性である"],a:1,
+ e:"古典的に大別されてきたが、同じ変異でも症状の出やすさが異なる。型で分けるより、個々の症状で判断する。",r:"p.139"},
+{bk:"thy",c:"tres",v:"低身長と精神運動発達遅滞のある小児。fT3が高値、fT4が低値、TSHは正常。重度の筋緊張低下とジストニアを認める。男児。",
+ q:"最も考えられるのは。",o:["MCT8（SLC16A2）欠損症","THRB異常症","SECISBP2異常症","橋本病"],a:0,
+ e:"X連鎖のAllan-Herndon-Dudley症候群。T3を細胞内に運ぶトランスポーターが欠け、組織によって過剰と不足が同時に起こる。fT3高値・fT4低値というちぐはぐな並びが手がかり。",r:"症例4・5 p.143-145"},
+{bk:"thy",c:"tres",q:"SECISBP2（SBP2）異常症の甲状腺機能パターンは。",o:["fT4高値・fT3低値・TSH軽度高値","fT4低値・fT3高値","両者とも低値","両者とも高値でTSH抑制"],a:0,
+ e:"セレノプロテインである脱ヨード酵素が働かず、T4からT3への変換が落ちる。血中セレンが低く、低身長・GH分泌不全・感音難聴・易疲労性を伴う。",r:"症例3 p.143"},
+{bk:"thy",c:"tres",q:"THRA（TRα）異常症の特徴として適切なのは。",o:["著明な甲状腺腫を伴う","便秘・低身長・精神運動発達遅滞を伴い、甲状腺機能検査の異常は軽度","fT4が著明高値になる","TSHが測定感度以下となる"],a:1,
+ e:"検査値の振れが小さいため見逃されやすい。臨床像から疑って初めて拾える。",r:"p.137 / p.145"},
+
+/* Basedow・亢進症 */
+{bk:"thy",c:"tgrav",q:"バセドウ病診断ガイドラインの検査所見に含まれないのは。",o:["fT4・fT3のいずれかが高値","TSH低値（0.1 μU/mL以下）","TRAbまたはTSAb陽性","抗Tg抗体高値"],a:3,
+ e:"検査所見は4項目（ホルモン高値、TSH低値、抗体陽性、ヨード摂取率高値・シンチでびまん性）。臨床所見1つ以上＋この4つすべてで「バセドウ病」、1〜3のみなら「確からしいバセドウ病」。",r:"表1 p.157"},
+{bk:"thy",c:"tgrav",q:"抗甲状腺薬による無顆粒球症の頻度と発症時期は。",o:["1万人に1人、1年以降に多い","1,000人に1人、投与開始2〜3週以内に多い","100人に1人、初回投与直後","まれで時期は問わない"],a:1,
+ e:"発熱と強い咽頭痛が出たらただちに受診・白血球確認、と最初に伝えておく。コンプライアンスが悪かった患者がきちんと飲みはじめた後に発症することもある。",r:"p.157"},
+{bk:"thy",c:"tgrav",q:"小児Basedow病におけるMMIの開始量として本書が挙げているのは。",o:["0.1 mg/kg/日","0.5 mg/kg/日","2 mg/kg/日","成人量固定"],a:1,
+ e:"成人のガイドラインでは重症度別に軽症15 mg/日、重症30 mg/日2回と定められている。小児は体重あたりで立てる。",r:"p.161 / 治療ガイドライン抜粋 p.159"},
+{bk:"thy",c:"tgrav",q:"PTU（プロピルチオウラシル）でとくに問題となる重篤な副作用は。",o:["無顆粒球症のみ","MPO-ANCA関連血管炎","再生不良性貧血","横紋筋融解症"],a:1,
+ e:"MMIとPTUで副作用の顔が違う。一方で妊娠初期はMMIの胎児奇形（頭皮欠損、臍腸管遺残、食道閉鎖）を避けてPTUが選ばれる。",r:"p.157 / p.161"},
+{bk:"thy",c:"tgrav",v:"新生児。体重増加不良と頻脈。fT3 13.1 pg/mL、fT4 7.53 ng/dL と高値。TRAb・TSAb・TSBAb すべて陰性、眼球突出なし。母のいとこにも同様の乳児期発症例がある。",
+ q:"最も考えられるのは。",o:["新生児Basedow病","TSH受容体の機能獲得変異による非自己免疫性甲状腺機能亢進症","破壊性甲状腺炎","甲状腺ホルモン不応症"],a:1,
+ e:"抗体がすべて陰性で家族内発症がある。常染色体優性、または新生変異。抗体陽性のBasedowと治療方針も見通しも異なるので、必ず分ける。",r:"症例1・2 p.147-149"},
+{bk:"thy",c:"tgrav",q:"抗甲状腺薬治療の効果判定について本書が述べているのは。",o:["TSHが最も早く反応する","治療開始後しばらくTSHは抑制されたままで、fT4・fT3で判断する","抗体価で判断する","甲状腺腫の大きさのみで判断する"],a:1,
+ e:"TSHは遅れて戻る。TSHだけを見ていると効いていないと誤読する。逆に慢性甲状腺炎の回復ではT4のレベルで回復がわかる。",r:"p.155-157"},
+{bk:"thy",c:"tgrav",q:"甲状腺機能亢進症で腸管からの薬物吸収について知られているのは。",o:["低下する","亢進しており、薬剤の吸収に影響しうる","変化しない","完全に停止する"],a:1,
+ e:"薬の効きが読みにくくなる一因として挙げられている。",r:"p.161"},
+
+/* 破壊性・慢性甲状腺炎・その他 */
+{bk:"thy",c:"tthy",v:"12歳女子。イライラと頻脈で受診。TSH 0.03 μIU/mL未満、fT4 2.79 ng/dL と甲状腺中毒症。TRAb陰性、Tg 1,330 ng/mL と高値。甲状腺の痛みはない。",
+ q:"最も考えられるのは。",o:["Basedow病","破壊性甲状腺炎（無痛性甲状腺炎）","急性化膿性甲状腺炎","TSH受容体機能獲得変異"],a:1,
+ e:"TRAb陰性＋Tg高値＋ヨード摂取率低値。濾胞が壊れて漏れ出ているだけなので自然軽快する。抗甲状腺薬を出す病態ではない。ここを取り違えることが、この章で最も注意されている。",r:"症例 p.163"},
+{bk:"thy",c:"tthy",q:"破壊性甲状腺炎とBasedow病を分ける最も有用な検査は。",o:["fT4の高さ","ヨード摂取率（破壊性では低値、Basedowでは高値）","TSHの低さ","甲状腺腫の有無"],a:1,
+ e:"どちらも甲状腺中毒症でTSHは抑制される。取り込みの向きが逆になるところで分ける。TRAbも助けになる。",r:"p.163 / p.153"},
+{bk:"thy",c:"tthy",q:"急性化膿性甲状腺炎の背景として半数以上に認められるのは。",o:["下咽頭梨状窩瘻","甲状舌管遺残","気管食道瘻","扁桃周囲膿瘍"],a:0,
+ e:"だから繰り返す。左側の発症が多い。診断は咽頭からの造影で瘻孔を示すこと。",r:"p.163"},
+{bk:"thy",c:"tthy",v:"11歳男子。この1年ほとんど身長が伸びていない。体重はむしろ増えた。TSH 200 μIU/mL以上、fT4 0.47 ng/dL。",
+ q:"この所見の組み合わせが示唆するのは。",o:["GH分泌不全症","重症の後天性甲状腺機能低下症（慢性甲状腺炎）","Cushing症候群","思春期遅発症"],a:1,
+ e:"成長率だけが落ちて体重は増える、という組み合わせが特徴的。GH分泌不全では通常ここまで極端に伸びが止まらない。",r:"症例1・2 p.151-153"},
+{bk:"thy",c:"tthy",q:"重症の甲状腺機能低下症で下垂体腫大・トルコ鞍拡大を認めたときの対応は。",o:["ただちに手術を検討する","LT4補充を行い、1〜2か月での改善をみる","経過観察のみ","放射線治療を行う"],a:1,
+ e:"TSH産生細胞の過形成なので、補充で戻る。腫瘍と間違えるほど大きくなることがあり、ここを知らないと不要な介入につながる。",r:"p.155"},
+{bk:"thy",c:"tthy",q:"重度の原発性甲状腺機能低下症に思春期早発（乳腺発達や卵巣嚢胞）を伴う病態は。",o:["McCune-Albright症候群","Van Wyk-Grumbach症候群","中枢性思春期早発症","Noonan症候群"],a:1,
+ e:"甲状腺機能低下症でありながら性発達が進む、という一見矛盾した組み合わせ。補充で改善する。",r:"p.155"},
+{bk:"thy",c:"tthy",q:"萎縮性甲状腺炎で陽性となることが知られている抗体は。",o:["TSAb","TSBAb（TSH刺激阻害抗体）","抗MPO抗体","抗ミトコンドリア抗体"],a:1,
+ e:"慢性甲状腺炎には腫大性と萎縮性のサブタイプがあり、萎縮性ではブロック型の抗体が関与する。抗体の性質が変われば臨床像も変わる。",r:"p.153 / 文献2"},
+{bk:"thy",c:"tthy",q:"Hashitoxicosis とは。",o:["橋本病の経過中に一過性の甲状腺中毒症を呈する状態","橋本病にBasedowが合併した状態のみを指す","抗甲状腺薬の副作用","ヨード過剰による中毒症"],a:0,
+ e:"破壊による漏出が主体と考えられ、経過とともに機能低下へ向かう。Basedowの合併とは区別して考える。",r:"p.155 / p.165"},
+{bk:"thy",c:"tthy",q:"甲状腺機能低下症の治療開始時に、成長について家族へ伝えておくべきことは。",o:["身長は必ず完全に回復する","キャッチアップは得られるが、完全でないことがある","治療しても伸びは変わらない","身長は治療の指標にならない"],a:1,
+ e:"早期に治療した症例では知能・身長ともほぼ回復するとされるが、発見が遅れた症例では取り戻しきれないことがある。過度の期待も過度の不安も与えない説明にする。",r:"p.117 / 表4 p.117"},
+{bk:"thy",c:"tthy",q:"甲状腺機能低下症の患者・家族への説明として本書が勧めているのは。",o:["起こりうる合併症を網羅的に説明する","治療の重要性を理解させることに重点を置き、ほぼ起こらない症状で不必要な不安を与えない","説明は最小限にする","副作用のみ説明する"],a:1,
+ e:"服薬が長期にわたるため、コンプライアンスを保つことが治療の実質になる。何を言わないかも設計する。",r:"p.117"},
+{bk:"thy",c:"tdx",q:"抗甲状腺薬内服中の甲状腺機能低下症で、LT4補充を行うときに注意すべきなのは。",o:["特にない","甲状腺ホルモン補充はコルチゾール代謝を亢進させるため、副腎不全があれば先に対応する","LT4は禁忌である","TSHは測定しない"],a:1,
+ e:"副腎不全を見落としたままT4を入れると、コルチゾールの消費が増えて危機を招く。下垂体機能低下症の一部としてTSH分泌不全がある症例では、この順序が命に関わる。",r:"p.135"},
+{bk:"thy",c:"tdx",q:"重度の甲状腺機能低下状態では血中コルチゾールがどう見えるか。",o:["常に低値となる","高値をとることがあり、ACTH分泌不全の診断を紛らわしくする","測定できない","変化しない"],a:1,
+ e:"コルチゾール代謝が落ちて血中値が保たれるため、副腎不全が隠れる。ACTHが低値であることが手助けになる、と症例で強調されている。",r:"症例 p.135 / 文献1"},
+/* ══════ 巻の四・カルシウム・骨 ══════ */
+{bk:"ca",c:"bonebase",q:"くる病の組織学的な本態は。",o:["骨基質そのものの減少","類骨（石灰化していない骨基質）の増加","破骨細胞の消失","軟骨の過形成"],a:1,
+ e:"作られた骨基質にCa・Pが沈着しない。成長板では石灰化が始まらないため軟骨細胞が整列できず、正常なリモデリングも起こらない。骨端線が閉じた後に同じことが起これば骨軟化症と呼ぶ。",r:"レクチャー4 p.219"},
+{bk:"ca",c:"bonebase",q:"ビタミンDの25位水酸化（肝）について正しいのは。",o:["PTHにより促進される","代謝調節を受けにくく、血中25(OH)D濃度はビタミンD摂取量を反映する","低リン血症で促進される","1,25(OH)2Dにより抑制される"],a:1,
+ e:"だから栄養状態の指標として25(OH)Dを測る。調節を受けるのは腎の1α水酸化のほうで、こちらはPTHと低リン血症で促進、1,25(OH)2Dで抑制される。",r:"レクチャー4 p.219-221"},
+{bk:"ca",c:"bonebase",q:"FGF23の作用として正しい組み合わせは。",o:["腎でのリン再吸収を抑制し、1α水酸化酵素を抑制する","リン再吸収を促進し、1,25(OH)2Dを増やす","Ca再吸収を抑制する","PTH分泌を促進する"],a:0,
+ e:"骨細胞から出てリンを捨てさせ、しかも活性型ビタミンDを作らせない。受容体はFGFR1（IIIc）とαKlothoの複合体。低リン血症性くる病はこの過剰で説明される。",r:"レクチャー4 p.221 / p.213"},
+{bk:"ca",c:"bonebase",q:"血清リン値の年齢変化として正しいのは。",o:["年齢による変動はない","乳児で高く（4.8〜8.2 mg/dL程度）、成人に向けて低下する（2.7〜4.7 mg/dL程度）","乳児で低く成人で高い","思春期に最低となる"],a:1,
+ e:"成人の基準で乳児のリンを読むと、低リン血症を見逃す。カルシウムと違い、リンは年齢別の値で判断する。",r:"表1 p.221"},
+
+/* 副甲状腺機能低下症 */
+{bk:"ca",c:"pth",v:"新生児。けいれんで入院。Ca 4.4 mg/dL、P 9.3 mg/dL。心奇形の既往があり、口蓋の異常を指摘されている。",
+ q:"最も考えられるのは。",o:["ビタミンD欠乏性くる病","22q11.2欠失症候群による副甲状腺機能低下症","偽性副甲状腺機能低下症","低マグネシウム血症"],a:1,
+ e:"低Ca＋高Pという副甲状腺機能低下のパターンに、円錐動脈幹の心奇形と口蓋裂が並ぶ。頻度は3,000〜4,000人に1人で、決してまれではない。",r:"症例1 p.167-169"},
+{bk:"ca",c:"pth",q:"22q11.2欠失症候群の責任遺伝子として想定されているのは。",o:["GATA3","TBX1","GNAS","CASR"],a:1,
+ e:"ハプロ不全で説明される。ただしすべての表現型がTBX1だけで説明できるかは明らかでなく、TBX1変異では機能低下・亢進の双方が報告されている。",r:"p.169-170"},
+{bk:"ca",c:"pth",q:"22q11.2欠失症候群の低カルシウム血症について正しいのは。",o:["必ず新生児期に発症する","新生児期に出るものから思春期に顕性化するものまで幅がある","成人では起こらない","治療は不要である"],a:1,
+ e:"一度正常化しても、成長やストレスで再び表に出る。「新生児期に問題なかった」は今後の否定にならない。",r:"p.169"},
+{bk:"ca",c:"pth",v:"低カルシウム血症でけいれんを起こした乳児。難聴があり、腎の形態異常も指摘されている。",
+ q:"考えられる症候群は。",o:["HDR症候群（GATA3ハプロ不全）","22q11.2欠失症候群","Kenny-Caffey症候群","偽性副甲状腺機能低下症"],a:0,
+ e:"Hypoparathyroidism・Deafness・Renal anomaly。難聴はほぼ必発だが、腎奇形を欠く症例もあり、三徴が揃わなくても否定できない。",r:"p.173"},
+{bk:"ca",c:"pth",q:"軽度のPTH分泌不全を診断するために行う負荷試験は。",o:["EDTA負荷・NaHCO3負荷","インスリン負荷","PTH負荷","カルシウム負荷"],a:0,
+ e:"低Caのストレスをかけて、PTHが十分に立ち上がるかをみる。安静時の値だけでは軽症例を拾えない。",r:"p.170"},
+{bk:"ca",c:"pth",q:"副甲状腺機能低下症で活性型ビタミンDを増やしてもCaが上がらないとき、追加を検討するのは。",o:["リン負荷","低リンミルク","高カルシウム食のみ","サイアザイド"],a:1,
+ e:"高リン血症が低Caを助長する。リンを下げる方向を足すという発想が要る。",r:"p.173"},
+
+/* CaSR */
+{bk:"ca",c:"casr",v:"低カルシウム血症でアルファカルシドールを要する児。血清Caは低めなのに、尿中Ca/Cr比が0.4〜1.2と高い。",
+ q:"最も考えられるのは。",o:["ビタミンD依存性くる病","カルシウム感知受容体（CaSR）の機能獲得変異","偽性副甲状腺機能低下症","22q11.2欠失症候群"],a:1,
+ e:"受容体が「Caは足りている」と誤認するため、PTHが出ず、腎はCaを捨てる。低Caなのに尿中Caが多いというちぐはぐさが決め手。",r:"症例 p.175"},
+{bk:"ca",c:"casr",q:"CaSR機能獲得変異による低カルシウム血症で、尿中Ca排泄を減らすために併用するのは。",o:["フロセミド","サイアザイド（ヒドロクロロチアジド）","ビスホスホネート","炭酸カルシウムのみ"],a:1,
+ e:"サイアザイドは尿中Caを下げる。これにより活性型ビタミンDの必要量も減らせ、腎石灰化のリスクを抑えられる。",r:"p.175-177 / 文献"},
+{bk:"ca",c:"casr",q:"CaSR機能獲得変異が通常の副甲状腺機能低下症と異なる点は。",o:["血清Caを保つのに必要なビタミンD量が多く、血清Caのわりに尿中Ca排泄が多い","高リン血症を伴わない","PTHが著明高値となる","治療が不要である"],a:0,
+ e:"同じ「低Ca・PTH低め」でも、腎でのCaの扱いが違う。これを知らずにCaを目標値まで上げにいくと、腎石灰化・尿路結石を作る。",r:"p.177"},
+{bk:"ca",c:"casr",q:"CaSRの重症の機能獲得変異で合併しうる病態は。",o:["Bartter症候群様の病態","Gitelman症候群","腎性尿崩症","ネフローゼ症候群"],a:0,
+ e:"ヘンレ係蹄太い上行脚での膜電位が保てず、傍細胞経路のCa再吸収が働かなくなる。Bartter症候群type Vとして知られる。",r:"p.176"},
+{bk:"ca",c:"casr",q:"FHH（家族性低カルシウム尿性高カルシウム血症）の原因遺伝子として知られているのは。",o:["CASR・GNA11・AP2S1","GNAS・PRKAR1A","MEN1・RET","PHEX・FGF23"],a:0,
+ e:"CaSRの機能喪失側。それぞれFHH1・2・3に対応する。AP2S1はCaSRのエンドサイトーシスに関わる。",r:"表 p.193 / p.207"},
+{bk:"ca",c:"casr",q:"高カルシウム血症の患者でFHHを見分けることが重要な理由は。",o:["悪性腫瘍の合併が多いから","副甲状腺摘出の対象にならないから","急性期治療が異なるから","PTHが測定できないから"],a:1,
+ e:"原発性副甲状腺機能亢進症と生化学が似るが、手術しても治らない。家族歴と尿中Ca排泄の低さで疑う。",r:"p.193 / p.207"},
+
+/* 偽性副甲状腺機能低下症 */
+{bk:"ca",c:"php",q:"偽性副甲状腺機能低下症（PHP）の本態は。",o:["PTHが分泌されない","PTHは分泌されているが標的臓器が反応しない","Caの吸収障害","ビタミンDの活性化障害"],a:1,
+ e:"だからPTHは高値をとる。低Ca・高P・PTH高値という組み合わせが入り口になる。",r:"p.181"},
+{bk:"ca",c:"php",q:"PHP I型とII型を分けるのは。",o:["PTH負荷での尿中cAMP上昇の有無","血清Caの値","AHOの有無","遺伝形式"],a:0,
+ e:"I型はcAMP上昇もリン利尿もない。II型はcAMP上昇はあるがリン利尿がない。I型はさらにIa・Ibに分かれる。",r:"p.181"},
+{bk:"ca",c:"php",v:"低身長と肥満、中手骨の短縮を認める児。低Ca・高P・PTH高値。TSHも軽度高値。",
+ q:"最も考えられるのは。",o:["PHP Ia","PPHP","PHP II","副甲状腺機能低下症"],a:0,
+ e:"Albright骨異栄養症（AHO：短指症・低身長・肥満・円形顔貌・皮下骨化）に多ホルモン不応が加わる。母由来アレルのGNAS変異による。",r:"症例1 p.179-181"},
+{bk:"ca",c:"php",q:"PHP Ib の分子基盤は。",o:["GNASのコード領域の点変異","GNAS領域のメチル化異常（母由来）","PRKAR1A変異","PDE4D変異"],a:1,
+ e:"STX16の欠失などがメチル化異常を引き起こす。AHOを欠くことが多いが、あることもあり、Iaとの臨床像はオーバーラップする。TSHの軽度上昇を伴う例もある。",r:"症例2 p.185-187"},
+{bk:"ca",c:"php",q:"PPHP（偽性偽性副甲状腺機能低下症）の特徴は。",o:["AHOがありホルモン不応もある","AHOはあるがホルモン不応はなく、父由来のGNAS変異による","AHOはないがホルモン不応がある","後天性である"],a:1,
+ e:"同じ遺伝子でも、父由来か母由来かで表現型が変わる。父由来変異では子宮内発育遅延を呈することが報告されている。",r:"p.185-187 / 文献2"},
+{bk:"ca",c:"php",q:"母由来のGNAS変異でPTH不応が生じる理由は。",o:["腎近位尿細管ではGNASが母由来アレルからのみ発現しているため","父由来アレルの発現量が多いため","変異が優性阻害として働くため","PTH受容体が同時に変異するため"],a:0,
+ e:"ゲノムインプリンティング。一方で甲状腺ではインプリンティング調節を受けず、少なくとも部分的にPTH／TSH反応性が保たれる。組織ごとに事情が違う。",r:"p.183 / p.187"},
+{bk:"ca",c:"php",q:"父由来GNAS変異で深部組織への異所性骨化が進行する病態は。",o:["POH（進行性骨異形成症）","PHP Ia","acrodysostosis","GACI"],a:0,
+ e:"同じ父由来変異でもPPHPとPOHで重症度が違う。皮下にとどまらず筋・筋膜へ骨化が及ぶ。",r:"症例 p.185-187"},
+{bk:"ca",c:"php",q:"acrodysostosis の原因遺伝子として同定されているのは。",o:["GNAS","PRKAR1A・PDE4D","CASR","MEN1"],a:1,
+ e:"GPCR-cAMP-PKA経路の下流。ホルモン不応を伴うものと伴わないものがあり、PHPと連続した病態として捉えられている。",r:"図4・表 p.183 / 文献1"},
+{bk:"ca",c:"php",q:"PHPで乳幼児期から現れうる所見は。",o:["肥満","高身長","多尿","難聴"],a:0,
+ e:"低Caが表に出る前から肥満と低身長が進む。生化学だけを待っていると診断が遅れる。",r:"p.183"},
+
+/* 副甲状腺機能亢進症 */
+{bk:"ca",c:"hpt",q:"小児の原発性副甲状腺機能亢進症の原因として最も多いのは。",o:["腺腫（約70%）","MEN1","MEN2","家族性"],a:0,
+ e:"腺腫が約69%、MEN1が約19%、MEN2が約6%、家族性が約6%。ただし小児では背景に遺伝性疾患が隠れている割合が成人より高い。",r:"p.191"},
+{bk:"ca",c:"hpt",q:"小児の原発性副甲状腺機能亢進症が診断される契機として少なくないのは。",o:["健診での高Ca血症","尿路結石をきたして初めて診断される","骨折","けいれん"],a:1,
+ e:"症状が非特異的で見過ごされやすい。10万人に2〜5人とまれだが、高Ca血症を見たら必ずPTHを測る。",r:"p.191"},
+{bk:"ca",c:"hpt",q:"高カルシウム血症の急性期治療として本書の症例で行われたのは。",o:["補液・フロセミド・ゾレドロン酸","水分制限とサイアザイド","活性型ビタミンD","PTH製剤"],a:0,
+ e:"入れて出す。生理食塩水による補液が基本で、サイアザイドはCaを保持する方向なので避ける。",r:"症例1 p.188-189"},
+{bk:"ca",c:"hpt",v:"副甲状腺腺腫の摘出後、血清Caが急速に低下し、Ca 9.3 mg/dLの時点でしびれを訴えた。",
+ q:"この病態と対応として適切なのは。",o:["hungry bone syndrome。基準値内でも症状があればそれを優先してコントロールする","正常値なので経過観察でよい","高Ca血症の再燃である","低Mg血症は無関係である"],a:0,
+ e:"骨が一気にCaを取り込む。数値が正常範囲でも急な低下でテタニーが出るため、症状を優先する。術前からアルファカルシドールとCaを開始して備える。低Mg血症はPTH分泌を抑えるのでMgも補う。",r:"症例1 p.189-191"},
+{bk:"ca",c:"hpt",q:"MEN1・MEN2A・HPT-JT の責任遺伝子の組み合わせとして正しいのは。",o:["MEN1 / RET / CDC73","RET / MEN1 / CASR","CASR / GNA11 / AP2S1","GNAS / PRKAR1A / PDE4D"],a:0,
+ e:"HPT-JT（副甲状腺機能亢進症・顎腫瘍症候群）はCDC73（パラフィブロミン）。若年の副甲状腺機能亢進症では家族歴と併存腫瘍を必ず確認する。",r:"表 p.193"},
+
+/* ビタミンD関連くる病 */
+{bk:"ca",c:"rickd",q:"くる病の診断の手引き（2014年）の大項目に含まれるのは。",o:["低リン血症","X線でのくる病変化と高ALP血症","25(OH)D低値","O脚"],a:1,
+ e:"大項目は画像と高ALP。低リン/低Ca血症、臨床症状、25(OH)D低値は小項目。大項目2つと小項目2つでくる病と診断する。",r:"表3 p.199-201"},
+{bk:"ca",c:"rickd",q:"高ALP血症の基準として、1歳未満で用いられるのは。",o:["500 IU/L以上","1,200 IU/L以上","3,000 IU/L以上","5,000 IU/L以上"],a:1,
+ e:"1歳以降は1,000 IU/L以上が目安。成長期のALPは元来高いので、年齢別の線で判断する。",r:"表3 p.201"},
+{bk:"ca",c:"rickd",q:"ビタミンD欠乏の判定に用いる25(OH)D値の目安は。",o:["40 ng/mL以下","30 ng/mL以下","20 ng/mL（50 nmol/L）以下","5 ng/mL以下"],a:2,
+ e:"より確実には15 ng/mL以下。ただし測定法が標準化されておらず、値の解釈には注意が要る。",r:"表3 p.201"},
+{bk:"ca",c:"rickd",q:"日本の小児でビタミンD欠乏性くる病の誘因として本書が挙げているのは。",o:["完全母乳栄養、日光曝露不足、食物アレルギーによる除去食、母体のビタミンD不足","過剰なカルシウム摂取","高たんぱく食","運動過多"],a:0,
+ e:"5症例とも母が完全母乳で、卵・乳の除去が重なっていた。母体側の欠乏が背景にあることが多い点が繰り返し強調されている。",r:"表4 p.201 / p.197-199"},
+{bk:"ca",c:"rickd",q:"ビタミンD欠乏性くる病の治療として本書が用いているのは。",o:["アルファカルシドール 0.05〜0.1 μg/kg/日","アルファカルシドール 1 μg/kg/日","ネイティブビタミンD 5万単位/日","カルシウム単独補充"],a:0,
+ e:"ただし本来はネイティブビタミンDの補充のほうが生理的である、とも述べられている。誘因が改善していれば、少量あるいは中止でも正常化していく。",r:"p.197-199 / p.203"},
+{bk:"ca",c:"rickd",q:"ビタミンD依存性くる病1A型（1α水酸化酵素欠損、CYP27B1）の検査所見は。",o:["25(OH)D低値・1,25(OH)2D低値","25(OH)D正常・1,25(OH)2D低値","25(OH)D正常・1,25(OH)2D高値","両者とも高値"],a:1,
+ e:"材料はあるが最終段階に進めない。生理的補充量の活性型ビタミンDで治療できる。",r:"症例5 p.203 / 文献2"},
+{bk:"ca",c:"rickd",v:"独歩できない乳幼児。くる病様変化と低Ca血症。頭髪と眉毛がきわめて少なく、脱毛が目立つ。",
+ q:"最も考えられるのは。",o:["ビタミンD欠乏性くる病","ビタミンD受容体（VDR）異常症","1α水酸化酵素欠損症","低リン血症性くる病"],a:1,
+ e:"脱毛はVDR異常症に特徴的で、他のくる病では見ない。治療には大量のビタミンDを要し、ネイティブビタミンDで5万単位/日という量になる。成人になり改善することがある。",r:"症例6 p.203-205"},
+{bk:"ca",c:"rickd",q:"尿中Ca/Cr比の低値がもつ意味として本書が挙げているのは。",o:["原発性副甲状腺機能亢進症の指標","ビタミンD欠乏による二次性副甲状腺機能亢進症の指標となりうる","腎機能低下の指標","高カルシウム尿症の除外"],a:1,
+ e:"PTHが上がってCaを腎で回収しているぶん、尿に出てこない。簡便な補助指標として使える。",r:"p.203 / 文献3"},
+
+/* 低リン血症性くる病 */
+{bk:"ca",c:"rickp",v:"O脚と低身長で紹介された幼児。Ca 8.9〜9.3 mg/dL、P 2.1〜2.8 mg/dL、ALP 1,732〜2,495 IU/L、PTHは正常上限程度、1,25(OH)2D 37.7〜40.0 pg/mL、尿中Ca/Cr 0.0、TmP/GFR低下。",
+ q:"最も考えられるのは。",o:["ビタミンD欠乏性くる病","X連鎖性低リン血症性くる病（XLH）","ビタミンD依存性くる病","偽性副甲状腺機能低下症"],a:1,
+ e:"低リン血症のわりに1,25(OH)2Dが上がっていないことが核心。欠乏性なら低リンに反応して1,25(OH)2Dは高値になる。Caは正常で尿中Ca/Crも低い。",r:"症例1 p.205-207"},
+{bk:"ca",c:"rickp",q:"XLHの責任遺伝子と病態は。",o:["FGF23の直接の変異","PHEX異常によりFGF23が分解されず高値となる","VDR異常","CYP27B1異常"],a:1,
+ e:"FGF23過剰が本態。リン再吸収が抑制され、かつ1α水酸化も抑えられるので、低リンなのに活性型ビタミンDが増えない。",r:"p.211-213"},
+{bk:"ca",c:"rickp",q:"腎でのリン喪失を評価する指標として本書が推奨するのは。",o:["%TRP","TmP/GFR","尿中P濃度","尿中P/Cr比"],a:1,
+ e:"%TRPより有用とされる。低リン血症性くる病の診断で必須の検査。",r:"p.207"},
+{bk:"ca",c:"rickp",q:"低リン血症性くる病の治療におけるリン酸塩の投与量の目安は。",o:["PO4として5〜10 mg/kg/日","PO4として40〜80 mg/kg/日","PO4として200 mg/kg/日固定","リンは投与しない"],a:1,
+ e:"アルファカルシドール 0.05〜0.1 μg/kg/日を併用する。分割投与にしないと血中リンが上がらない。",r:"p.207-209"},
+{bk:"ca",c:"rickp",q:"低リン血症性くる病の治療中に監視すべき指標として本書が挙げているのは。",o:["尿中Ca/Cr比が0.3（成人0.2）を超えないこと","血清Caが11 mg/dLを超えないこと","1,25(OH)2Dが50 pg/mL未満であること","ALPが2,000 IU/L未満であること"],a:0,
+ e:"リンを入れすぎると二次性・三次性副甲状腺機能亢進症と腎石灰化を招く。ALPは半年〜1年での改善を目標にする。",r:"p.209"},
+{bk:"ca",c:"rickp",q:"血中FGF23測定の臨床的意義は。",o:["ビタミンD欠乏性くる病では20 pg/mL未満となり、低リン血症性くる病との鑑別に使える","すべてのくる病で高値となる","治療効果の判定にのみ使う","小児では測定できない"],a:0,
+ e:"低リン血症を見たときに、FGF23が出ているかどうかで原因の系統が分かれる。",r:"p.209 / 文献2,3"},
+{bk:"ca",c:"rickp",q:"ADHR（常染色体優性低リン血症性くる病）の分子機序は。",o:["PHEXの欠失","FGF23の切断部位（RXXR）の変異により分解されなくなる","αKlothoの欠損","NPT2の変異"],a:1,
+ e:"分解を免れたFGF23が働き続ける。腫瘍性骨軟化症（TIO）は腫瘍がFGF23を産生する。いずれもFGF23過剰という一点に集約される。",r:"図9 p.213"},
+{bk:"ca",c:"rickp",q:"乳児全身性動脈石灰化症（GACI）について正しいのは。",o:["ENPP1異常が知られ、後に低リン血症性くる病を続発しうる","カルシウム過剰摂取が原因である","くる病は合併しない","治療法は確立している"],a:0,
+ e:"動脈石灰化で始まった児が、のちに骨のリンで問題を起こす。同じ分子が別の場面で別の顔を見せる。",r:"関連症例 p.211"},
+{bk:"ca",c:"rickp",q:"低リン血症性くる病の女性例について本書が述べているのは。",o:["女性は発症しない","女性のほうが軽症の傾向があり、診断されていない症例がある可能性がある","女性のほうが重症である","性差はない"],a:1,
+ e:"X連鎖優性なので女性も発症するが、軽ければ見過ごされる。家族歴を取るときは軽症の女性を意識して聞く。",r:"p.207"},
+
+/* 骨形成不全症 */
+{bk:"ca",c:"oi",q:"骨形成不全症の大多数を占める原因遺伝子は。",o:["COL1A1 / COL1A2（常染色体優性）","CRTAP（常染色体劣性）","SERPINH1","SP7"],a:0,
+ e:"Sillence分類I〜IVがこれに当たる。近年報告されたV型以降の多くは常染色体劣性で、コラーゲンの修飾や折りたたみに関わる分子の異常。",r:"表1 p.217"},
+{bk:"ca",c:"oi",q:"I型コラーゲンの三重らせん形成にとって決定的なのは。",o:["Gly-X-Y の繰り返しにおけるグリシンが置換されないこと","プロリンの量","リジンの数","C末端の長さ"],a:0,
+ e:"グリシンは最も小さく、三本鎖の中心に収まる。ここが大きな残基に置き換わると、らせんが組めない。",r:"図 p.219"},
+{bk:"ca",c:"oi",q:"骨形成不全症の治療として確立しつつあるのは。",o:["成長ホルモン","パミドロネートの静脈内投与","活性型ビタミンD単独","カルシウム大量補充"],a:1,
+ e:"骨密度と骨折頻度が改善する。診断がつけば介入できるという点で、鑑別の意義が大きい。",r:"p.215"},
+{bk:"ca",c:"oi",v:"1歳児。頭部腫脹で受診し、複数の骨折を認めた。外傷歴ははっきりせず、身なりは整っている。",
+ q:"評価として必須なのは。",o:["虐待の可能性と骨形成不全症の双方を検討する","ただちに虐待として通告のみ行う","経過観察とする","ビタミンD欠乏のみを考える"],a:0,
+ e:"青色強膜、歯牙形成不全、家族歴、骨密度を確認する。どちらか一方に決め打ちしないことが、この症例で最も強調されている。",r:"症例 p.215-217"},
+{bk:"ca",c:"oi",q:"骨形成不全症の予後について本書が述べているのは。",o:["身長は必ず正常化する","治療により骨折頻度は減り、身長も追いつくことが期待できる症例がある","治療しても変わらない","骨折は成人期に増える"],a:1,
+ e:"病型により幅が大きい。周産期致死型から、成人まで診断されない軽症まで連続している。",r:"p.219"},
+/* ══════ 巻の五・思春期発来異常 ══════ */
+{bk:"pub",c:"pubbase",q:"思春期発来のホルモン軸を上位から並べると。",o:["LHRH → キスペプチン → LH/FSH → 性ステロイド","キスペプチン → LHRH → LH/FSH → 性ステロイド","LH/FSH → LHRH → 性ステロイド","性ステロイド → キスペプチン → LHRH"],a:1,
+ e:"KNDyニューロン（キスペプチン・ニューロキニンB・ダイノルフィン）がLHRHニューロンを制御する。思春期発来はLHRHニューロンの抑制が解除され、脈動的分泌が始まることで起こる。",r:"レクチャー5 p.261 / p.229"},
+{bk:"pub",c:"pubbase",q:"二次性徴が現れる前に最初に捉えられる変化は。",o:["夜間睡眠中のLH上昇","昼間のFSH上昇","テストステロンの上昇","骨年齢の促進"],a:0,
+ e:"二次性徴の1〜2年前から夜間のLHが上がりはじめる。またLHはFSHに比して先に上昇するので、LH優位はLHRH依存性を示す手がかりになる。",r:"p.227"},
+{bk:"pub",c:"pubbase",q:"中枢性思春期早発症の原因遺伝子として同定され、父由来アレルから発現するのは。",o:["KISS1R","MKRN3","GNAS","CHD7"],a:1,
+ e:"KNDyニューロンあるいはLHRHニューロンを抑制していると考えられている。抑制が外れると早発になる。",r:"p.231"},
+{bk:"pub",c:"pubbase",q:"ACTH分泌不全症におけるadrenarcheについて正しいのは。",o:["adrenarcheとDHEA-Sの上昇は生じない","adrenarcheのみ生じる","DHEA-Sは著明高値となる","影響しない"],a:0,
+ e:"一方で、通常のadrenarcheにACTHの上昇はみられない。ACTHは必要だが、adrenarcheの引き金そのものではない、という関係になる。",r:"p.228 / 文献2"},
+
+/* 思春期早発症（中枢性） */
+{bk:"pub",c:"pp",q:"思春期早発症の診断の手引きで、女児の乳房発育の年齢基準は。",o:["6歳6か月未満","7歳6か月未満","8歳6か月未満","9歳未満"],a:1,
+ e:"陰毛・腋毛・小陰唇発育は8歳未満、初経は10歳6か月未満。男児は精巣・陰茎・陰嚢の発育が9歳未満、陰毛10歳未満、腋毛・ひげ・声変わり11歳未満。",r:"診断の手引き p.263"},
+{bk:"pub",c:"pp",q:"LHRH試験でLHRH依存性（中枢性）思春期早発症を支持する所見は。",o:["LH頂値8 mIU/mL以上かつLH頂値>FSH頂値","FSH頂値がLH頂値を上回ること","LH頂値が前思春期レベルであること","基礎値のみで判断できる"],a:0,
+ e:"高感度法での値。LHRH非依存性ではLH頂値は前思春期レベルに抑制されており、ここで二分される。",r:"レクチャー5 p.261 / p.227"},
+{bk:"pub",c:"pp",q:"中枢性思春期早発症の原因分布として正しいのは。",o:["女児は約70%が特発性、男児は器質性が40〜50%を占める","男女とも特発性が大部分","男女とも器質性が大部分","女児で器質性が多い"],a:0,
+ e:"男児の早発は器質性を疑ってかかる。女児でも視床下部過誤腫が約10%を占めるので、画像を省略はできない。",r:"表2・3 p.229"},
+{bk:"pub",v:"5歳男児。陰茎の発育と声変わり。MRIで視床下部に腫瘤を認め、年単位で大きさが変わらない。笑い発作の既往がある。",
+ c:"pp",q:"この病変への対応として適切なのは。",o:["直ちに摘出術を行う","先天奇形であり、腫瘍として摘出する対象ではない","放射線治療を行う","化学療法を行う"],a:1,
+ e:"視床下部過誤腫はLHRHを分泌する先天奇形。大きさが変わらないことが画像上の鑑別点になる。てんかんを伴う例と、早発以外の症状がない例がほぼ同数という報告がある。",r:"p.227 / 表1 p.227"},
+{bk:"pub",c:"pp",q:"中枢性思春期早発症に対するリュープロレリンの標準的な用量は。",o:["3 μg/kg を4週ごと","30 μg/kg を4週ごと","300 μg/kg を4週ごと","体重によらず一定量"],a:1,
+ e:"視床下部過誤腫では45〜60 μg/kg程度を要することがある。効果判定はLHRH試験で前思春期レベル（1〜2 mIU/mL）に抑えられているかを確認する。",r:"p.263"},
+{bk:"pub",c:"pp",q:"LHRHアナログの効果判定でのLHRH試験について本書が述べているのは。",o:["全時点の採血が必要","30分値を測定するだけで十分である","基礎値のみでよい","試験は不要である"],a:1,
+ e:"抑制されていれば30分値で分かる。頻回採血の負担を減らせる。",r:"p.263"},
+{bk:"pub",c:"pp",q:"LHRHアナログ治療を終了した後、月経発来までの期間の目安は。",o:["1〜2か月","おおよそ1〜2年","5年以上","再開しないことが多い"],a:1,
+ e:"家族に事前に伝えておく期間。治療終了後に性早熟が再燃した症例も知られている。",r:"p.265"},
+{bk:"pub",c:"pp",q:"思春期早発症の治療適応について本書が慎重を求めている理由は。",o:["副作用が重篤だから","境界年齢で発症した症例では最終身長の改善が明らかでないという報告があるから","診断が困難だから","保険適用がないから"],a:1,
+ e:"若年発症で器質性が疑われる例は絶対的適応に近い。一方、境界域の症例は正常のバリエーションであることが多く、社会的・精神的問題とあわせて判断する。",r:"レクチャー5 p.261"},
+{bk:"pub",c:"pp",q:"中枢性思春期早発症に伴う成長の変化として診断基準に挙がるのは。",o:["成長速度が2年以上にわたって標準値の1.5 SD以上","体重増加","頭囲の増大","BMIの上昇"],a:0,
+ e:"骨年齢の促進とあわせて評価する。伸びが速いことは早発を支持するが、同時に最終身長を損なう方向でもある。",r:"診断の手引き p.263"},
+
+/* LHRH非依存性 */
+{bk:"pub",c:"pind",q:"LHRH非依存性思春期早発症で原則としてみられないのは。",o:["精巣・卵巣の腫大","陰毛の発生","乳腺の腫大","骨年齢の促進"],a:0,
+ e:"ゴナドトロピンを介さないので性腺そのものは大きくならない。性徴だけが進んで性腺が小さいという不一致が手がかりになる。",r:"p.233"},
+{bk:"pub",c:"pind",v:"6歳男児。声変わりと陰毛発育。LHRH試験でLH頂値0.5 mIU/mL以下と抑制されている。精巣に腫瘤を認めた。",
+ q:"最も考えられるのは。",o:["中枢性思春期早発症","精巣の性ステロイド産生腫瘍","McCune-Albright症候群","副腎皮質過形成"],a:1,
+ e:"LHが抑制されているのに男性化が進む＝末梢からのステロイド。腫瘍摘出後にLH頂値が正常化したことが、抑制が解けたことを示している。",r:"症例1 p.233"},
+{bk:"pub",c:"pind",q:"McCune-Albright症候群の分子基盤は。",o:["GNASの生殖細胞系列変異","GNASの体細胞変異（モザイク）","MKRN3の変異","CHD7の変異"],a:1,
+ e:"モザイクだから組織ごとに現れ方が違い、3徴（性早熟・カフェオレ斑・多骨性線維性骨異形成）すべてが揃うとは限らない。",r:"p.237 / 文献"},
+{bk:"pub",c:"pind",q:"早発乳房（premature thelarche）の特徴として正しいのは。",o:["成長率の著明な加速を伴う","一過性で、成長率の加速や骨年齢の促進を伴わない","必ず初経に至る","LH頂値が高値となる"],a:1,
+ e:"卵胞からのエストロゲン分泌と消退で一過性の乳腺腫大が起こる。年の単位でなく月の単位で消長するのが典型。治療対象にならない。",r:"症例3 p.235 / p.229"},
+{bk:"pub",c:"pind",q:"顆粒膜細胞腫瘍のマーカーとして本書の症例で用いられたのは。",o:["AFP","AMH（抗ミュラー管ホルモン）","β-hCG","CEA"],a:1,
+ e:"術前に高値で、摘出後に低下した。卵巣の性索間質性腫瘍を疑ったときに測る。",r:"症例3 p.235"},
+{bk:"pub",c:"pind",q:"hCG産生腫瘍による男児の性早熟で特徴的なのは。",o:["精巣はまったく大きくならない","精巣がある程度腫大し、女性化乳房を伴うことがある","陰毛が生じない","LHが高値となる"],a:1,
+ e:"hCGはLH様に働くのでLeydig細胞を刺激し、精巣がある程度大きくなる。非依存性の原則から外れる例外として押さえる。",r:"Column p.237"},
+
+/* 低ゴナドトロピン性性腺機能低下症 */
+{bk:"pub",c:"hh",q:"Kallmann症候群の病態として正しいのは。",o:["下垂体の形成異常","LHRHニューロンの遊走障害に嗅覚障害を伴う","性腺の形成異常","受容体の機能獲得"],a:1,
+ e:"嗅神経とLHRHニューロンが同じ経路をたどるため、両方が障害される。KAL1（X連鎖）、FGFR1、PROKR2、CHD7などが知られ、digenic/oligogenicの報告もある。",r:"p.245 / 表2"},
+{bk:"pub",c:"hh",v:"停留精巣の手術歴がある男子。思春期未発来。夜間20分ごとのLH測定で19回とも0.03 mIU/mL以下であった。",
+ q:"この所見が示すのは。",o:["体質性思春期遅発症","低ゴナドトロピン性性腺機能低下症を強く示唆する","高ゴナドトロピン性性腺機能低下症","測定エラー"],a:1,
+ e:"体質性遅発症なら夜間に脈動が出はじめる。まったく出ないことが決め手になる。停留精巣・小陰茎の既往は、その一部がゴナドトロピン分泌不全に由来するという意味で手がかりになる。",r:"症例1 p.239 / p.247"},
+{bk:"pub",c:"hh",q:"低ゴナドトロピン性性腺機能低下症の診断において、新生児期〜乳児期が重要な理由は。",o:["この時期に一過性の性ホルモン分泌増加（mini-puberty）があり、その反応で評価できる","この時期は検査値が安定しているから","治療開始が早いほどよいから","遺伝子検査ができるから"],a:0,
+ e:"生後数か月のこの窓を逃すと、思春期年齢まで判定が難しくなる。ただし出生直後は胎盤由来のhCGでテストステロンが保たれるため、そこは差し引いて読む。",r:"p.243 / p.245"},
+{bk:"pub",c:"hh",q:"hCG負荷試験について本書が述べているのは。",o:["単独で低ゴナドトロピン性性腺機能低下症を診断できる","低ゴナドトロピン性でも反応することがあり、単独では診断できない","反応がなければ必ず無精巣症である","小児では実施できない"],a:1,
+ e:"性腺が反応する能力と、上位が指令を出す能力は別。反応の有無だけで上流の障害を否定できない。",r:"p.247"},
+{bk:"pub",c:"hh",v:"思春期未発来の男子。夜盲をきっかけに網膜色素変性症と診断された。肥満がある。",
+ q:"考えられる症候群は。",o:["Bardet-Biedl症候群","Prader-Willi症候群","Klinefelter症候群","CHARGE症候群"],a:0,
+ e:"線毛（cilia）の異常が本態であることが判明してきている。網膜色素変性・肥満・多指症・腎異常などが並ぶ。",r:"症例3 p.241 / p.245"},
+{bk:"pub",c:"hh",q:"PROKR2変異について本書が紹介しているのは。",o:["Kallmann症候群に限られる","GH・ACTH・TSH・LH/FSH分泌不全を伴う複合型下垂体機能低下症の原因ともなりうる","甲状腺機能亢進症を来す","副腎不全のみを来す"],a:1,
+ e:"同じ遺伝子が、嗅覚障害を伴う孤発性の性腺機能低下から複合型下垂体機能低下症まで幅広い表現型をとる。",r:"p.248 / 文献"},
+{bk:"pub",c:"hh",q:"低ゴナドトロピン性性腺機能低下症の男性で挙児を目指す場合の治療は。",o:["テストステロン単独","hCGに加えFSHを併用する","LHRHアナログ","エストロゲン"],a:1,
+ e:"hCG 1,000 U 週2回程度から始め、精子形成を目指す段階でFSHを加える。テストステロン補充だけでは精子形成は起こらない。",r:"p.243 / p.247"},
+{bk:"pub",c:"hh",q:"肥満のある思春期未発来の男子でGH刺激試験を解釈するときの注意は。",o:["肥満ではGH頂値が非肥満者に比べ低値となり、GH分泌不全と誤りうる","肥満ではGH頂値が高値となる","肥満は影響しない","GH試験は禁忌である"],a:0,
+ e:"肥満そのものがGH分泌を抑える。低身長・肥満・思春期未発来が並ぶと、複数の誤診の入り口ができる。",r:"p.243"},
+
+/* 思春期遅発症 */
+{bk:"pub",c:"dp",q:"思春期発来の各指標について、1標準偏差はおよそどれくらいか。",o:["約3か月","約1年","約3年","約5年"],a:1,
+ e:"乳房発育1.4年、陰毛1.6年、初経0.98年、成長のピーク1.05年と報告されている。だから2SDの遅れはおよそ2〜3年の遅れに相当する。",r:"表 p.265"},
+{bk:"pub",c:"dp",q:"性腺からの性ステロイド産生が不十分と判断する目安として本書が挙げるのは。",o:["男性 テストステロン0.1 ng/mL以下、女性 エストラジオール20 pg/mL以下","男性 1.0 ng/mL以下、女性 50 pg/mL以下","LH基礎値のみで判断","判断できない"],a:0,
+ e:"ただし一般的な測定法での値であり、感度の問題がつきまとう。数値だけでなく身体所見と組み合わせる。",r:"p.266"},
+{bk:"pub",c:"dp",q:"体質性思春期遅発症の典型的な経過は。",o:["身長増加は正常範囲だが2〜3年の遅れがあり、家族歴を認めることが多い","乳児期から成長率が低い","骨年齢が促進する","家族歴はない"],a:0,
+ e:"クラスで一番小さくなった時期に外来に来る。かつて親も同じ経過をたどっていることが多い。",r:"p.266"},
+{bk:"pub",c:"dp",q:"高ゴナドトロピン性性腺機能低下症の頻度として正しいのは。",o:["Klinefelter症候群は男性の約500人に1人、Turner症候群は女性の約2,000人に1人","ともに1万人に1人","Klinefelterのほうがまれである","いずれもきわめてまれ"],a:0,
+ e:"決してまれではない。思春期遅発の鑑別で最初に置く2疾患。",r:"p.266"},
+{bk:"pub",c:"dp",q:"Klinefelter症候群の性腺所見として正しいのは。",o:["精巣は5 mLを超えて大きくなることはまれだが、男性ホルモンによる陰毛発生は生じることがまれではない","精巣は正常に発育する","陰毛はまったく生じない","精巣容積は10 mLを超える"],a:0,
+ e:"陰毛があるから正常、とは言えない。精巣容積を必ず測る。",r:"p.267"},
+{bk:"pub",c:"dp",q:"Turner症候群の月経について正しいのは。",o:["全例で無月経となる","20〜25%では少なくとも1回は月経を認め、一部は周期的に認める","半数以上で妊孕性が保たれる","初経は必ず正常に来る"],a:1,
+ e:"月経があることはTurner症候群の否定にならない。低身長や身体所見とあわせて染色体検査を検討する。",r:"p.267"},
+{bk:"pub",c:"dp",q:"体質性思春期遅発症と低ゴナドトロピン性性腺機能低下症の鑑別が難しい理由は。",o:["発来前にはLH・FSHの値が両者で大きく重なるから","LHが測定できないから","画像が同じだから","治療法が同じだから"],a:0,
+ e:"時間をかけて経過をみる、あるいは性ステロイド補充を一度中断して自然発来の有無を確認する、という方法で分けていく。",r:"p.267"},
+{bk:"pub",c:"dp",q:"男児で性ステロイド補充中に自然な思春期発来を確認する方法は。",o:["補充を継続したままLHを測る","補充を一時中断し、LH・FSH・テストステロンの立ち上がりを確認する","hCG負荷を行う","骨年齢のみで判断する"],a:1,
+ e:"補充中は外因性のホルモンで軸が抑えられ、判定できない。切ってみないと分からない。",r:"p.267"},
+
+/* Prader-Willi */
+{bk:"pub",c:"pws",q:"Prader-Willi症候群の責任領域と成因は。",o:["15q11-13の父由来領域の欠失・母性ダイソミー・インプリンティング異常","15q11-13の母由来領域の異常","11p15のメチル化異常","22q11.2の欠失"],a:0,
+ e:"母由来側の異常はAngelman症候群になる。同じ領域で親由来が入れ替わると別の疾患になる。",r:"症例1 p.251"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群の新生児期に最も特徴的なのは。",o:["過食","重度の筋緊張低下と哺乳障害（経管栄養を要することがまれでない）","肥満","低身長"],a:1,
+ e:"過食と肥満は乳幼児期以降に移ってから問題になる。新生児期はむしろ食べられない。この二相性を知らないと診断が遅れる。",r:"p.253 / 診断基準 p.255"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群でGH治療を開始する前に必須の評価は。",o:["骨年齢","閉塞性睡眠時無呼吸の評価（アデノイド・扁桃、必要ならポリソムノグラフィ）","甲状腺機能のみ","心エコーのみ"],a:1,
+ e:"GH開始後3〜6か月以内の死亡例が報告されている。開始前と開始後のモニタリングの両方が要る。",r:"p.253 / p.255"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群に対するGH治療で期待できるのは。",o:["身長増加・体組成の改善・粗大運動発達の改善","過食の消失","知的発達の正常化","睡眠時無呼吸の改善"],a:0,
+ e:"低身長の改善だけが目的ではない。除脂肪量が増え、運動発達が進むことが治療の主眼のひとつになる。",r:"表 p.253"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群の糖尿病について正しいのは。",o:["単純性肥満に比してインスリン分泌が低い","インスリン分泌が過剰である","糖尿病は合併しない","1型糖尿病が多い"],a:0,
+ e:"同じ肥満度でも代謝の背景が違う。単純性肥満と同じ想定で管理しない。",r:"p.253"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群の減量指導で注意すべきなのは。",o:["通常のエネルギー量では身長増加が得られない一方、必要量が少ないため慎重な設定を要する","エネルギー制限は不要である","たんぱく質を制限する","運動は禁忌である"],a:0,
+ e:"必要エネルギーが低いので通常の計算式が合わない。減らしすぎれば伸びが止まる。",r:"p.253"},
+{bk:"pub",c:"pws",q:"Prader-Willi症候群の身体所見として挙げられるのは。",o:["低色素症、小さい手足、粘着性の唾液、痛覚閾値の上昇","巨大児、多毛、高身長","多指症、網膜色素変性","口蓋裂、難聴"],a:0,
+ e:"嘔吐が少ないことも特徴で、腹部疾患のサインが出にくいという実務上の意味をもつ。ジグソーパズルの異常な能力も診断基準の小項目に入る。",r:"診断基準 p.255"},
+
+/* PCOS */
+{bk:"pub",c:"pcos",q:"日本産科婦人科学会のPCOS診断基準（2007年）の3項目は。",o:["月経異常・多嚢胞性卵巣・血中男性ホルモン高値またはLH基礎値高値かつFSH正常","肥満・多毛・無月経","インスリン抵抗性・多毛・肥満","無月経・不妊・肥満"],a:0,
+ e:"3つすべてを満たすことが必要。肥満例（BMI≧25）ではLH≧FSHのみでも可とされる。",r:"表1 p.259"},
+{bk:"pub",c:"pcos",q:"多嚢胞性卵巣の超音波所見の定義は。",o:["片側に5個以上の小卵胞","少なくとも一方の卵巣に2〜9 mmの小卵胞が10個以上","1 cm以上の卵胞が多数","卵巣の腫大のみ"],a:1,
+ e:"1 cm以上の卵胞が存在する時期は検出率が下がることに留意する、とも付されている。測るタイミングで結論が変わる。",r:"表1 p.259"},
+{bk:"pub",c:"pcos",q:"思春期のPCOS疑い例に成人の診断基準を用いることについて本書が述べているのは。",o:["そのまま適用してよい","思春期例への適用は困難であり、慎重な判断が要る","思春期では診断できない","基準は思春期用に作られている"],a:1,
+ e:"思春期は月経不整も多嚢胞様所見も生理的に起こりうる。時間をかけて確かめるほうが安全。",r:"p.259"},
+{bk:"pub",v:"月経異常・低い声・多毛で受診した女子。外陰部に黒色素沈着、陰核肥大、インスリン高値を認める。",
+ c:"pcos",q:"まず除外すべきなのは。",o:["甲状腺機能低下症","副腎腫瘍・Cushing症候群・先天性副腎皮質過形成などの男性化を来す疾患","糖尿病","下垂体腫瘍"],a:1,
+ e:"男性化が強い、あるいは進行が速いときはPCOSと決める前に器質性を潰す。黒色表皮腫はインスリン抵抗性のサインで、PCOSでも見られる。",r:"症例1 p.257 / p.259"},
+{bk:"pub",c:"pcos",q:"本書の症例で、月経周期に関連した精神症状の改善に有用であったのは。",o:["メトホルミン","エストロゲン製剤","抗精神病薬の増量","LHRHアナログ"],a:0,
+ e:"インスリン抵抗性の改善を介して、多毛と精神症状の双方に効いた症例が紹介されている。診断基準を満たさなくても臨床的に有用なことがある。",r:"症例2 p.259-261 / 文献4"},
+/* ══════ 巻の六・副腎皮質疾患 ══════ */
+{bk:"adr",c:"adrbase",q:"副腎皮質と副腎髄質の発生学的由来は。",o:["ともに中胚葉","皮質は中胚葉、髄質は外胚葉（神経堤）","ともに外胚葉","皮質は内胚葉、髄質は中胚葉"],a:1,
+ e:"起源が違うのに一つの臓器に収まっている。だからこそ、皮質の異常が髄質に影響するという関係が意味をもつ。",r:"レクチャー6 p.315"},
+{bk:"adr",c:"adrbase",q:"21水酸化酵素欠損症で副腎髄質にも異常が生じる理由は。",o:["髄質にも21水酸化酵素があるから","ノルアドレナリンからアドレナリンへの変換に高濃度のコルチゾールが必要だから","ACTHが髄質を直接刺激するから","アルドステロンが髄質を制御するから"],a:1,
+ e:"皮質から髄質へ流れる血液の高いコルチゾール濃度がPNMTを働かせている。21水酸化酵素欠損症ではアドレナリン分泌が低下し、髄質の形成異常も報告されている。",r:"p.315 / 文献1"},
+{bk:"adr",c:"adrbase",q:"ステロイド合成の律速段階を担うのは。",o:["CYP11A1","StAR（コレステロールのミトコンドリア内への輸送）","CYP21A2","HSD3B2"],a:1,
+ e:"コレステロールがミトコンドリア内膜に届かなければ、その先の酵素がいくらあっても始まらない。だからStAR異常は全ステロイドの合成障害になる。",r:"p.317-318"},
+{bk:"adr",c:"adrbase",q:"副腎皮質の3層と産生ホルモンの対応で正しいのは。",o:["球状層＝アルドステロン、束状層＝コルチゾール、網状層＝副腎アンドロゲン","球状層＝コルチゾール、束状層＝アルドステロン","3層とも同じホルモンを作る","網状層＝アルドステロン"],a:0,
+ e:"球状層はCYP11B2を発現しCYP17A1を発現しない。束状層はその逆。層ごとに酵素の顔ぶれが違うことが、産物の違いを作っている。",r:"図 p.317"},
+{bk:"adr",c:"adrbase",q:"妊娠中の尿中エストリオール（E3）が示すのは。",o:["母体の副腎機能","胎児の副腎機能","胎盤の血流","羊水量"],a:1,
+ e:"胎児副腎のDHEA-Sが胎盤でE3に変換される。胎児のACTH分泌不全症や副腎低形成では低値になる。",r:"p.319"},
+{bk:"adr",c:"adrbase",q:"中枢性尿崩症（AVP分泌不全）で副腎不全が生じない理由から言えるのは。",o:["AVPのACTH分泌への寄与はCRFに比べ限定的である","AVPはACTH分泌に関与しない","ACTHはAVPのみで調節される","副腎はACTHに依存しない"],a:0,
+ e:"AVPもACTH分泌を促すが、CRFが中心。実際の患者から生理を逆算できる、よい例になっている。",r:"p.320"},
+{bk:"adr",c:"adrbase",q:"大量のヒドロコルチゾン投与（1日80〜100 mg/m2）で高血圧・低カリウム血症を生じうる機序は。",o:["アルドステロン分泌の亢進","11β-HSD2の処理能を超え、コルチゾールがミネラルコルチコイド作用を発揮する","レニンの上昇","カテコラミンの上昇"],a:1,
+ e:"腎ではコルチゾールがコルチゾンに不活化されて受容体に届かないようになっている。量が処理能を超えると、その仕組みが破れる。",r:"p.320"},
+{bk:"adr",c:"adrbase",q:"backdoor pathway（代替経路）が臨床的に重要なのは。",o:["アルドステロン合成","17OHPやプロゲステロンからテストステロン・DHTが産生される経路であること","コルチゾール合成","エストロゲン合成"],a:1,
+ e:"通常のDHEA→アンドロステンジオン経路を通らずに男性ホルモンができる。21水酸化酵素欠損症やPORD（P450オキシドレダクターゼ欠損症）での男性化を説明する。",r:"図8 p.321-322"},
+
+/* 副腎不全 */
+{bk:"adr",c:"ai",q:"副腎不全でもっとも多い症状は。",o:["発熱","悪心・嘔吐・下痢","頭痛","けいれん"],a:1,
+ e:"消化器症状なので胃腸炎と区別がつかない。しかも内服できなくなるという最悪の組み合わせになる。",r:"p.267"},
+{bk:"adr",c:"ai",q:"ストレス時のステロイドカバーとして本書が用いる量は。",o:["ヒドロコルチゾン 6〜8 mg/m2/日","ヒドロコルチゾン 25〜30 mg/m2/回を6時間ごと（1日100 mg/m2）","ヒドロコルチゾン 300 mg/m2/回","プレドニゾロン 1 mg/kg/日"],a:1,
+ e:"正常人のコルチゾール分泌量は6〜8 mg/m2/日で、強いストレスではその約10倍まで増える。カバーはその生理を再現する量になっている。",r:"p.273 / p.301"},
+{bk:"adr",c:"ai",q:"副腎不全を疑う血中コルチゾール値の目安は。",o:["30 μg/dL未満","15 μg/dL未満（重症では5 μg/dL以下）","50 μg/dL未満","値によらない"],a:1,
+ e:"全身状態が悪いときにこの値なら、上がるべき場面で上がっていないと判断する。悩むなら投与する、が原則。",r:"p.271"},
+{bk:"adr",v:"副腎不全でフォロー中の児。夜中から突然の嘔吐が続き、内服できないままぐったりして反応が乏しくなった。",
+ c:"ai",q:"最も適切な対応は。",o:["経過をみて朝に受診させる","ヒドロコルチゾンの静脈内投与を直ちに行う","内服を再度試みる","制吐薬のみ投与する"],a:1,
+ e:"死亡例の解析では、けいれんや嘔吐で内服できなかった症例が多くを占めていた。静注が難しければ胃チューブからの投与でも代用できる。",r:"症例2 p.269 / 表2 p.273"},
+{bk:"adr",c:"ai",q:"経口摂取できないときのステロイド投与について本書が述べているのは。",o:["静注のみが有効である","胃チューブからの投与で代用可能である","坐薬しか使えない","経皮吸収でよい"],a:1,
+ e:"手段がないことを理由に投与を諦めない。家庭ではデキサメタゾンの皮下注を持たせておく方法も紹介されている。",r:"p.271 / p.305"},
+{bk:"adr",c:"ai",q:"ステロイド長期投与による医原性副腎不全について正しいのは。",o:["成人でプレドニゾロン10〜15 mg/日以上が目安で、回復に3〜6か月を要する","1週間の投与でも永続的に抑制される","小児では起こらない","吸入ステロイドでは起こらない"],a:0,
+ e:"ベタメタゾン（リンデロン）はヒドロコルチゾンの約30倍の力価があり、シロップで長く出されていた児が抑制を来していた症例が紹介されている。",r:"症例6 p.273-275"},
+{bk:"adr",c:"ai",q:"副腎不全の低ナトリウム血症について正しいのは。",o:["常に脱水による","グルココルチコイド欠乏では水中毒による低Na、ミネラルコルチコイド欠乏では脱水による低Naで、輸液の方針が異なる","常に水中毒による","Naは低下しない"],a:1,
+ e:"同じ低Naでも入れる水の量が変わる。中枢性（ACTH分泌不全）ではNa補充が必要ないことが多い、という違いも押さえる。",r:"p.275 / p.321"},
+{bk:"adr",c:"ai",q:"シックデイの受診の目安として本書が挙げているのは。",o:["症状が3〜4日以上続く場合","発熱が出た時点で必ず受診","症状があっても内服できていれば受診不要","入院は不要"],a:0,
+ e:"あらかじめ通常の3倍量を処方しておき、飲めなくなったら受診、というルールにしておく。感染で家族全員が下痢し、本人だけが致死的経過をとった症例が報告されている。",r:"p.287 / 表2 p.273"},
+
+/* 21水酸化酵素欠損症 */
+{bk:"adr",c:"cah",q:"先天性副腎皮質過形成のうち21水酸化酵素欠損症が占める割合は。",o:["約30%","約50%","80〜90%以上","ほぼ100%"],a:2,
+ e:"日本での頻度はおよそ18,000〜20,000人に1人。マススクリーニングの対象になっている。",r:"p.277 / レクチャー p.323"},
+{bk:"adr",c:"cah",q:"CYP21A2にde novo変異や遺伝子変換が生じやすい理由は。",o:["変異ホットスポットがあるから","きわめて相同性の高い偽遺伝子が隣接して存在するから","X染色体上にあるから","ミトコンドリア遺伝子だから"],a:1,
+ e:"偽遺伝子CYP21A1Pとの間で組換えが起こる。両親が保因者でない症例があっても否定材料にならない。",r:"レクチャー p.323"},
+{bk:"adr",c:"cah",q:"日本人の非古典型21水酸化酵素欠損症で多い変異は。",o:["Val281Leu","Pro30Leu","Ile172Asn","イントロン2の変異"],a:1,
+ e:"欧米ではVal281Leuが多いが、日本人ではPro30Leuが多いと報告されている。塩喪失型はイントロン2変異や欠失、単純男性化型はIle172Asnが代表。",r:"p.325 / 文献2"},
+{bk:"adr",c:"cah",q:"新生児マススクリーニングの17OHPで偽陽性が問題になるのは。",o:["満期正常児","低出生体重児・早産児","女児のみ","男児のみ"],a:1,
+ e:"尿中プレグナントリオロン（P3）のGC/MS測定が確定に有用で、満期児・早産児のいずれでも診断を確定できると報告されている。",r:"p.315-316 / 文献2"},
+{bk:"adr",c:"cah",q:"非古典型21水酸化酵素欠損症の診断の目安として挙げられているのは。",o:["ACTH負荷後の17OHPが15 ng/mL以上","基礎の17OHPが1 ng/mL以上","ACTH負荷後のコルチゾールが低値","尿中17KSの高値"],a:0,
+ e:"基礎値だけでは判定できない。ただし治療を要するかどうかは症状で判断すべきで、無症状例の扱いは定まっていない。",r:"p.325"},
+{bk:"adr",v:"日齢12の女児。Na 126 mEq/L、K 10.2 mEq/L、17OHP 422 ng/mL。外性器に男性化を認める。",
+ c:"cah",q:"最も適切な初期対応は。",o:["遺伝子検査の結果を待って治療を開始する","結果を待たずにステロイド補充と輸液を開始する","経過観察する","利尿薬を投与する"],a:1,
+ e:"塩喪失型の副腎クリーゼ。水として130〜200 mL/kg、Naとして5〜10 mEq/kgを含む輸液が必要になる。新生児ではNaClを最初から数 mEq/kg/日で入れることが望ましい、とされている。",r:"症例1 p.277 / p.291 / p.295"},
+{bk:"adr",c:"cah",q:"男児の21水酸化酵素欠損症で、精巣腫瘍と間違われることがあるのは。",o:["Leydig細胞腫","精巣内の異所性副腎組織（adrenal rest）の腫大","胚細胞腫瘍","精巣捻転"],a:1,
+ e:"コントロール不良でACTHが高いと大きくなる。腫瘍と誤って摘出しないよう、まずコントロールを見直す。",r:"p.316 / p.323"},
+{bk:"adr",c:"cah",q:"21水酸化酵素欠損症で骨年齢が促進する主な機序は。",o:["アンドロゲンの直接作用のみ","アンドロゲンから変換されたエストロゲンによる","コルチゾール過剰による","ACTHによる"],a:1,
+ e:"骨年齢の促進はエストロゲン依存的とされる。一方、身長そのものへの影響は相対的にエストロゲン非依存的な部分もあり、単純な話ではない。",r:"p.283-284 / p.325"},
+
+/* CAHの治療コントロール */
+{bk:"adr",c:"cahtx",q:"21水酸化酵素欠損症のコントロール指標として本書が最も重視するのは。",o:["血中ACTH","早朝第一尿・内服前の尿中プレグナントリオロン（P3）","血中17OHPの単回測定","血中コルチゾール"],a:1,
+ e:"血中の値は日内変動と服薬タイミングで大きく振れる。ACTHが高いというだけでは増量しない、と明記されている。",r:"p.291 / p.301-303"},
+{bk:"adr",c:"cahtx",q:"ヒドロコルチゾン投与量と最終身長の関係として報告されているのは。",o:["投与量は最終身長に影響しない","30 mg/m2/日を超える投与量では最終身長が有意に低くなる","多いほど身長が伸びる","関係は不明である"],a:1,
+ e:"30 mg/m2以下の群と超える群で、最終身長と標的身長の差がそれぞれ約 −1.6 cm と約 −9.2 cm と報告されている。抑えすぎも害になる。",r:"p.287"},
+{bk:"adr",c:"cahtx",q:"フロリネフとNaClの投与量が適正かを判断するのに最も有用な指標は。",o:["血清Na値","体重増加率","血清K値","血圧"],a:1,
+ e:"数値が正常範囲でも足りていないことがある。体重が増えているかどうかが、いちばん確かな答えになる。",r:"p.301"},
+{bk:"adr",c:"cahtx",q:"デキサメタゾンを21水酸化酵素欠損症に用いる条件として本書が挙げているのは。",o:["新生児期から用いる","最終身長に達していること","塩喪失型に限る","コントロール良好例に限る"],a:1,
+ e:"ヒドロコルチゾンの1/150〜1/120から開始し、必要に応じて1/150→1/120→1/100→1/80→1/70と上げていく。成長期に使うと骨への影響が大きい。",r:"p.305"},
+{bk:"adr",c:"cahtx",q:"21水酸化酵素欠損症の治療で「完全にはできない」とされているのは。",o:["コルチゾールの補充","グルココルチコイドで過剰な男性ホルモンを完全に抑制すること","塩類の補充","電解質の正常化"],a:1,
+ e:"完全に抑えようとすれば過剰投与になり、低身長と肥満を招く。だからどこかで折り合いをつける治療になる。",r:"p.287"},
+{bk:"adr",c:"cahtx",q:"ACTH過剰による色素沈着が目立つ部位として挙げられているのは。",o:["口唇・手掌・乳輪・外陰部・関節部の皮膚","顔面のみ","背部のみ","下腿のみ"],a:0,
+ e:"腋下や外陰部は男女とも通常の診療で評価しにくいので、口唇と手掌で見るのがよい、と実務的な助言が添えられている。",r:"p.285 / p.307"},
+{bk:"adr",c:"cahtx",q:"手術など身体的ストレスの前に本書が推奨しているのは。",o:["ステロイドは通常量でよい","早めのステロイド増量（術前からのカバー）","ステロイドを減量する","ステロイドを中止する"],a:1,
+ e:"術前日から増量しておいた症例が紹介されている。ストレスがかかってから追いかけるのでは間に合わないことがある。",r:"p.293 / p.295"},
+
+/* 先天性リポイド副腎過形成 */
+{bk:"adr",c:"lipoid",q:"先天性リポイド副腎過形成の責任遺伝子と病態は。",o:["CYP11A1の欠損のみ","STAR異常による、コレステロール輸送障害と蓄積脂質による細胞障害の two-hit","CYP21A2の欠損","MC2Rの異常"],a:1,
+ e:"まずStAR依存性の合成が落ち、次に溜まったコレステロールエステルが細胞を壊す。この二段構えが、遅発例が存在する理由にもなっている。",r:"p.297 / p.303"},
+{bk:"adr",c:"lipoid",q:"先天性リポイド副腎過形成の46,XY症例の外性器は。",o:["正常男性型","女性型","男性型で尿道下裂を伴う","不明瞭"],a:1,
+ e:"精巣でもテストステロンが作れないため。46,XXでは外性器は正常女性型になる。",r:"症例1 p.297"},
+{bk:"adr",v:"先天性リポイド副腎過形成の46,XX女性。思春期を自然に迎えたが、その後に多発性の卵巣嚢胞と卵巣腫大が進行し、腹痛で救急受診した。",
+ c:"lipoid",q:"最も警戒すべき合併症と対応は。",o:["卵巣捻転。女性ホルモン補充（Kaufman療法）で嚢胞を縮小させる","卵巣癌。直ちに両側摘出","感染。抗菌薬","出血。輸血のみ"],a:0,
+ e:"約70%に卵巣嚢胞が生じるとされる。LH過剰が背景にあり、Kaufman療法で基礎値を下げて嚢胞を縮ませることができる。放置すれば捻転で緊急手術になる。",r:"症例1 p.297-301"},
+{bk:"adr",c:"lipoid",q:"先天性リポイド副腎過形成の46,XX例の妊孕性について報告されているのは。",o:["妊娠は不可能である","無排卵が一般的だが、クロミフェンとプロゲステロンによる妊娠・出産例が報告されている","自然妊娠が通常である","報告がない"],a:1,
+ e:"一般的には無排卵で妊孕性は乏しい。それでも例外が報告されている、という水準で理解しておく。",r:"p.299 / 文献1"},
+
+/* 副腎低形成・ACTH不応症 */
+{bk:"adr",c:"ahc",q:"DAX1（NR0B1）異常による先天性副腎低形成の特徴は。",o:["常染色体劣性で男女に発症","X連鎖で原則男性に発症し、低ゴナドトロピン性性腺機能低下症を合併する","女性のみに発症","性腺機能は正常"],a:1,
+ e:"副腎不全と性腺機能低下がセットで来る。遅発性の症例も知られており、成人期の発症もある。",r:"症例1 p.305 / 文献3"},
+{bk:"adr",c:"ahc",q:"DAX1異常症の性腺機能低下症に対するゴナドトロピン治療について正しいのは。",o:["有効であり第一選択となる","原則として適応にならない","LHRHアナログが有効","hCG単独で十分"],a:1,
+ e:"性腺そのものの機能も特殊で、ゴナドトロピンを補っても精子形成が起こらない。低ゴナドトロピン性だから治療できる、とは限らない例。",r:"p.305-307"},
+{bk:"adr",v:"生後まもなくから著明な色素沈着と反復する低血糖。ACTH 1,501 pg/mL、コルチゾール<0.5 μg/dL。一方でアルドステロンとPRAは保たれ、Na・Kは正常。",
+ c:"ahc",q:"最も考えられるのは。",o:["21水酸化酵素欠損症","ACTH不応症（家族性グルココルチコイド欠損症）","先天性リポイド副腎過形成","副腎白質ジストロフィー"],a:1,
+ e:"糖質コルチコイド系だけが落ちて鉱質コルチコイド系が保たれる、という選択的な障害。MC2R（ACTH受容体）やMRAPの異常による。電解質が正常だから副腎不全ではない、と読まないこと。",r:"症例 p.303"},
+{bk:"adr",c:"ahc",q:"ACTH不応症の原因として近年同定されてきたのは。",o:["MC2R・MRAPに加え、MCM4やNNTなど","CYP21A2","STAR","ABCD1"],a:0,
+ e:"原因不明とされてきた群から次々と見つかっている。ミトコンドリアの酸化ストレス処理に関わる分子が含まれる点が示唆的。",r:"表 p.309 / 文献10"},
+{bk:"adr",c:"ahc",q:"POMC異常症で副腎不全に伴う特徴的な所見は。",o:["肥満と赤毛","低身長と難聴","多毛と高血圧","難聴と腎奇形"],a:0,
+ e:"POMCはACTHとMSHの共通前駆体。メラノコルチン系の破綻が色と食欲の両方に出る。",r:"p.309 / 文献8"},
+{bk:"adr",c:"ahc",q:"SF-1（NR5A1）異常症について正しいのは。",o:["常に副腎不全を伴う","近年は副腎不全を合併しない症例がほとんどで、機序はハプロ不全である","女性のみに発症","副腎皮質のみに影響する"],a:1,
+ e:"初期に報告されたXY性分化異常＋副腎不全の像は、むしろ例外的だった。報告が増えると疾患の顔つきが変わる、という好例。",r:"p.307 / 文献2"},
+
+/* 副腎白質ジストロフィー */
+{bk:"adr",c:"ald",q:"副腎白質ジストロフィーの原因遺伝子と遺伝形式は。",o:["ABCD1、X連鎖（原則男性に発症）","STAR、常染色体劣性","NR0B1、X連鎖","MC2R、常染色体劣性"],a:0,
+ e:"頻度は1/20,000〜1/50,000。小児大脳型、AMN（副腎脊髄ニューロパチー）、Addison病のみの型、女性発症者に分かれる。",r:"p.311"},
+{bk:"adr",c:"ald",q:"副腎白質ジストロフィーの診断に用いる生化学的指標は。",o:["極長鎖脂肪酸（C26/C22比など）","17OHP","VLDL","アシルカルニチン"],a:0,
+ e:"ABCD1がコードするALDタンパクの異常で極長鎖脂肪酸が蓄積する。男児の原因不明の副腎不全では必ず測る。",r:"表 p.311"},
+{bk:"adr",c:"ald",q:"副腎白質ジストロフィーの初発症状として挙げられているのは。",o:["「聞こえにくい」「書き直しが多くなった」「字が汚くなった」など","多尿・多飲","発熱","関節痛"],a:0,
+ e:"神経症状は最初とても曖昧な形で出る。学校からの指摘がきっかけになることもある。",r:"p.313"},
+{bk:"adr",c:"ald",q:"副腎白質ジストロフィーで有効性が確立している治療は。",o:["ステロイド補充のみ","造血幹細胞移植（早期に行うこと）","食事療法のみ","対症療法のみ"],a:1,
+ e:"進行してからでは効果が乏しい。だから副腎不全だけで発症した段階で診断できることに意味がある。",r:"p.311-313"},
+{bk:"adr",c:"ald",q:"副腎不全の男児を診たときに副腎白質ジストロフィーを鑑別に置くべき理由は。",o:["副腎不全のみで発症し、神経症状に先行することがあるから","必ず神経症状が先行するから","女児に多いから","治療法がないから"],a:0,
+ e:"Addison病だけを見て終わると、移植の窓を逃す。原因が特定できない副腎不全の男児では極長鎖脂肪酸を測る、が実務上の結論になる。",r:"p.311"},
+{bk:"adr",c:"ald",q:"副腎白質ジストロフィーで副腎不全のコントロール指標として本書が述べているのは。",o:["尿中パラメーターが使える","21水酸化酵素欠損症の尿中P3のような尿パラメーターは使えず、血中値と臨床所見で判断する","ACTHのみで判断する","指標は不要である"],a:1,
+ e:"疾患が違えば使える指標も違う。CAHの流儀をそのまま持ち込まない。",r:"p.313"},
+/* ══════ 巻の七・性分化疾患 ══════ */
+{bk:"dsd",c:"dsdbase",q:"未分化性腺が精巣あるいは卵巣へ分化する仕組みとして述べられているのは。",o:["SRYの有無のみで決まる","SOX9優位で精巣、βカテニン優位で卵巣となり、互いを抑制し合う","AMHが分化を決める","テストステロンが分化を決める"],a:1,
+ e:"どちらか一方が立てばもう一方が抑えられる、拮抗する関係。だから片方の破綻が反対側の分化を呼び込む。",r:"p.391 / p.369"},
+{bk:"dsd",c:"dsdbase",q:"SOX9の重複によって生じるのは。",o:["46,XY性腺形成不全","46,XX male（SRY陰性の精巣発生）","Turner症候群","卵巣形成不全"],a:1,
+ e:"SRYがなくてもSOX9が十分に働けば精巣ができる。SRYはSOX9を立ち上げるスイッチにすぎない、という理解につながる。",r:"p.367 / 文献1"},
+{bk:"dsd",c:"dsdbase",q:"母体のアンドロゲンが通常は胎児に影響しない理由は。",o:["胎盤を通過しないから","胎盤のアロマターゼによりエストロゲンに変換されるから","肝臓で代謝されるから","母体で消費されるから"],a:1,
+ e:"だからアロマターゼ異常症では母体側も児も男性化する。この関門が破れる条件を知っていると、46,XX DSDの鑑別が組み立てられる。",r:"p.349"},
+{bk:"dsd",c:"dsdbase",q:"男性外性器の発生に最も重要なホルモンは。",o:["テストステロン","ジヒドロテストステロン（DHT）","AMH","エストラジオール"],a:1,
+ e:"Wolff管の維持はテストステロン、外性器の男性化はDHT。同じ男性化でも担当が分かれている。",r:"p.385"},
+{bk:"dsd",c:"dsdbase",q:"backdoor pathwayについて正しいのは。",o:["DHT産生に寄与し、5α還元酵素欠損症ではfrontdoorとともに障害される","アルドステロン合成の経路である","コルチゾール合成の経路である","エストロゲン合成の経路である"],a:0,
+ e:"17OHPやプロゲステロンから、テストステロンを経由せずにDHTへ至る経路。21水酸化酵素欠損症やPORDでの男性化にも関わる。",r:"図5 p.389 / p.353"},
+
+/* 性染色体異常 */
+{bk:"dsd",c:"sexchr",v:"社会的女性として養育されてきた症例。性腺を陰嚢内に触れず、染色体は45,X/46,XY。片側は索状性腺、対側は精巣様の組織であった。",
+ q:"診断は。",o:["Turner症候群","混合型性腺形成不全（MGD）","完全型アンドロゲン不応症","卵精巣性DSD"],a:1,
+ e:"45,X/46,XYで、左右の性腺の分化度が異なる。養育性は主に外性器の形態と手術の可能性から決める。",r:"症例1 p.327"},
+{bk:"dsd",c:"sexchr",q:"MGDにおける45,X/46,XYのモザイク比について正しいのは。",o:["末梢血の比率が全身の比率を正確に反映する","組織によりモザイク比が異なり、末梢血の比率と性腺の比率は一致しないことがある","健常人ではモザイクは存在しない","比率は年齢で変わらない"],a:1,
+ e:"だから末梢血だけで表現型を予測できない。性腺組織や口腔粘膜細胞でのFISH解析が有用になる。",r:"p.329-331"},
+{bk:"dsd",c:"sexchr",q:"MGDで性腺摘出が必要とされる理由は。",o:["ホルモン産生が過剰だから","性腺芽腫（gonadoblastoma）が生じ、そこから悪性転化しうるから","感染源になるから","痛みを伴うから"],a:1,
+ e:"性腺芽腫自体は良性だが、dysgerminomaへの悪性転化がある。またMGDでは性腺から女性ホルモンが分泌される可能性は理論的にないため、思春期には補充が必要になる。",r:"p.329"},
+{bk:"dsd",c:"sexchr",q:"Klinefelter症候群の頻度と精巣所見は。",o:["男性500〜1,000人に1人、精巣は成人でも10 mL未満（通常6 mL程度）","男性1万人に1人、精巣は正常","女性2,000人に1人","精巣は15 mL以上になる"],a:0,
+ e:"思春期は始まるが精巣は正常発達しない。実際の外来受診数はTurner症候群の1/10以下で、診断されていない症例が多いと考えられている。",r:"p.333"},
+{bk:"dsd",c:"sexchr",q:"Klinefelter症候群でテストステロンが低下しゴナドトロピンが上昇しはじめる時期は。",o:["乳児期","思春期前","15歳以上","成人後期のみ"],a:2,
+ e:"それ以前は正常範囲のことが多い。だから思春期前にホルモン値が正常でも否定できず、身体所見と染色体で診断する。",r:"p.333"},
+{bk:"dsd",c:"sexchr",q:"Klinefelter症候群の診断のきっかけとして挙げられているのは。",o:["女性化乳房、停留精巣、尿道下裂、小精巣、行動・学習の問題","低身長","多毛","高血圧"],a:0,
+ e:"本書の症例は児童精神科の受診がきっかけだった。「ひげが薄い」という訴えから紹介に至っている。",r:"症例 p.333"},
+{bk:"dsd",c:"sexchr",q:"Klinefelter症候群の妊孕性について現在示されているのは。",o:["まったく不可能である","micro-TESEとICSIにより挙児が得られる可能性がある","自然妊娠が通常である","治療法はない"],a:1,
+ e:"46,XY/47,XXYの一部では妊孕性が保たれる可能性も指摘されている。早い時期に見通しを伝えられることに意味がある。",r:"p.333"},
+
+/* Turner症候群 */
+{bk:"dsd",c:"turner",q:"Turner症候群の頻度と代表的症状は。",o:["女性2,000人に1人、低身長と性腺機能低下症","女性500人に1人、高身長","男性500人に1人","女性1万人に1人"],a:0,
+ e:"新生児期は手背・足背のリンパ浮腫と翼状頸、幼児期以降は低身長が診断の入り口になる。",r:"p.339"},
+{bk:"dsd",c:"turner",q:"Turner症候群の低身長の主因として考えられているのは。",o:["GH分泌不全","SHOX遺伝子のハプロ不全","甲状腺機能低下症","栄養障害"],a:1,
+ e:"正常女性より約12 cm低いことが知られており、SHOXハプロ不全という仮説と矛盾しない。",r:"p.342"},
+{bk:"dsd",c:"turner",q:"Turner症候群のゴナドトロピン値の解釈で注意すべきなのは。",o:["常に高値である","乳幼児期に高値、その後いったん低下し、思春期年齢で再上昇するため年齢により解釈が変わる","常に低値である","測定の意義がない"],a:1,
+ e:"間の時期に測って正常だったから否定、とはできない。年齢を踏まえて読む。",r:"p.342"},
+{bk:"dsd",c:"turner",q:"翼状頸の評価方法として本書が推奨するのは。",o:["首の皮膚を引っ張って判断する","正面あるいは背面から、輪郭の線がみえるかで判断する","つまんで厚みを測る","年長になるまで判断しない"],a:1,
+ e:"引っ張ると皮膚の伸展性のある症例で偽陽性になる。乳幼児は首が相対的に短く判断しにくいが、重度の症例なら寝かせた状態でも分かる。",r:"図4 p.342-343"},
+{bk:"dsd",c:"turner",q:"Turner症候群の月経について正しいのは。",o:["全例で無月経となる","20〜30%で月経をみるが、周期的に生じる症例でも多くは排卵していないと予測される","半数以上で妊娠可能である","初経は正常に来る"],a:1,
+ e:"月経があることは診断の否定にならない。妊孕性についての説明は、隠さずに、しかし年齢に応じて行うことが強調されている。",r:"p.341"},
+{bk:"dsd",c:"turner",q:"Turner症候群の女性ホルモン補充療法の始め方として本書が述べているのは。",o:["最初から成人量で開始する","ごく微量から開始する（プレマリン1/2錠など）","思春期年齢まで一切行わない","GH治療終了後にのみ行う"],a:1,
+ e:"最終的にはプレマリン0.625 mg（1〜23日）とプロベラ5 mg（10〜23日）といった形になる。急に立ち上げると骨端線が早く閉じる。",r:"p.346-347"},
+{bk:"dsd",c:"turner",q:"Turner症候群で長期的に監視すべき重大な合併症は。",o:["大動脈の拡張・解離","肝硬変","腎不全","白血病"],a:0,
+ e:"3〜5年ごとのMRIや超音波、血圧は1年ごと、という追跡が提案されている。橋本病の合併も多く、抗体陽性が半数を超えるという自験データが示されている。",r:"p.347-348"},
+{bk:"dsd",c:"turner",q:"Turner症候群の骨密度について本書が示しているのは。",o:["正常である","多くの症例で −2 SD以下と低値をとる","高値をとる","測定できない"],a:1,
+ e:"腰椎QCTでの検討。女性ホルモン補充を始める前から低値であり、補充のタイミングが骨に影響する。",r:"p.343-345"},
+
+/* 46,XX DSD */
+{bk:"dsd",c:"xxdsd",q:"46,XX DSDで男性化を来す内因性の要因として挙げられているのは。",o:["21水酸化酵素欠損症、アロマターゼ異常症、P450オキシドレダクターゼ欠損症","甲状腺機能低下症","下垂体腫瘍","副甲状腺機能亢進症"],a:0,
+ e:"外因性としては母への男性ホルモン投与、母体側の妊娠ルテオーマや卵巣腫瘍がある。母と児の両方を見にいく。",r:"p.349"},
+{bk:"dsd",c:"xxdsd",q:"先天性副腎皮質過形成に対する出生前デキサメタゾン治療について本書が述べているのは。",o:["妊娠9週以前に開始されなければ意味がない","妊娠20週以降でよい","分娩直前でよい","時期は問わない"],a:0,
+ e:"外性器の分化はきわめて早い時期に決まる。間に合わなければ効果が期待できない、という時間の制約がついてまわる。",r:"p.349"},
+{bk:"dsd",v:"46,XXの新生児。外性器の男性化があり、頭蓋縫合の早期癒合と橈尺骨癒合、関節拘縮を認める。母は妊娠中に男性化症状を呈していた。",
+ c:"xxdsd",q:"最も考えられるのは。",o:["21水酸化酵素欠損症","P450オキシドレダクターゼ欠損症（PORD）","アンドロゲン受容体異常症","混合型性腺形成不全"],a:1,
+ e:"PORはCYP17A1・CYP21A2・CYP19A1などに電子を供給し、コレステロール合成に関わるCYP51A1にも関与する。だから骨癒合異常を伴う。母体の男性化も特徴。尿ステロイドプロファイルが診断に有用。",r:"症例 p.351-353"},
+{bk:"dsd",c:"xxdsd",q:"PORDのマススクリーニングでの注意点は。",o:["17OHPが低値となる","17OHPが上昇しうるため、21水酸化酵素欠損症と紛らわしい","スクリーニングに引っかからない","男児のみ拾われる"],a:1,
+ e:"数値だけを見て21水酸化酵素欠損症と決めない。外性器所見や骨の所見が分かれ道になる。",r:"p.353"},
+{bk:"dsd",c:"xxdsd",q:"21水酸化酵素欠損症の46,XX症例の妊孕性について、両親に説明すべきことは。",o:["妊娠は不可能である","女性として妊娠可能であること","必ず不妊治療を要すること","説明は不要である"],a:1,
+ e:"外性器の男性化があっても内性器は女性であり、多くは女性としての性自認をもつ。この2点を早い段階で伝えることが勧められている。",r:"p.357"},
+
+/* 46,XY DSD */
+{bk:"dsd",c:"xydsd",v:"両側の精巣を陰嚢内に触れない男児。LHRH負荷でLH・FSHともに著明高値、hCG負荷でテストステロンは反応せず、子宮・卵巣も認めない。外性器は完全に男性型。",
+ q:"診断とその意味するところは。",o:["無精巣症。男性化が完了しているので、精巣は男性分化の早い時期には存在していた","完全型アンドロゲン不応症","混合型性腺形成不全","卵精巣性DSD"],a:0,
+ e:"AMHが働いてMüller管が退縮し、テストステロンで外性器が男性化した後に精巣が消えた。だから「はじめから無かった」のではない。",r:"症例1 p.357-359"},
+{bk:"dsd",c:"xydsd",q:"性腺が触知できない症例で精巣の有無を評価するのに有用な血中マーカーは。",o:["AMH（抗ミュラー管ホルモン）","テストステロン","エストラジオール","FSH"],a:0,
+ e:"精巣があればAMHが検出される。侵襲的な検索の前に、血液でひとつ絞り込める。",r:"図2 p.359 / 文献2"},
+{bk:"dsd",c:"xydsd",q:"WT1異常症のうちFrasier症候群の特徴は。",o:["イントロン9のスプライシング異常による。FSGSで腎不全は比較的遅く、性腺芽腫のリスクがある","エクソン変異でWilms腫瘍が高頻度","腎障害を伴わない","女性のみに発症する"],a:0,
+ e:"Denys-Drash症候群のほうが腎不全の発症が早く、Wilms腫瘍が多い。同じ遺伝子でも変異の場所で顔つきが変わる。",r:"p.361-363 / 表 p.363"},
+{bk:"dsd",c:"xydsd",v:"46,XYの新生児。四肢の短縮と弯曲、側弯を認め、喉頭軟化症による呼吸障害がある。外性器は女性型。",
+ c:"xydsd",q:"最も考えられるのは。",o:["campomelic dysplasia（SOX9異常症）","軟骨無形成症","Noonan症候群","PORD"],a:0,
+ e:"頻度は10万〜20万人に1人、常染色体優性。SOX9は骨格形成と精巣分化の両方に必要なので、骨と性分化が同時に障害される。",r:"症例 p.365-367"},
+{bk:"dsd",c:"xydsd",q:"NR5A1（SF-1）異常による46,XY DSDについて、家系を診るときの手がかりは。",o:["父の低身長","母に早発卵巣不全がみられることがある","兄弟の難聴","家族歴はない"],a:1,
+ e:"ヘテロの女性では卵巣機能低下として現れる。児のDSDから家系全体の情報が引き出せる。",r:"p.371-373 / 文献4"},
+{bk:"dsd",c:"xydsd",q:"46,XY complete gonadal dysgenesis（Swyer症候群）で認められるのは。",o:["子宮が存在する","子宮は存在しない","精巣が正常に発達する","外性器が男性型である"],a:0,
+ e:"精巣が分化しないためAMHが出ず、Müller管が退縮しない。だから完全型アンドロゲン不応症とはここで分かれる。",r:"p.369-370"},
+
+/* アンドロゲン受容体異常症 */
+{bk:"dsd",v:"外性器は完全な女性型の乳児。鼠径部の腫瘤に対し「卵巣ヘルニア」と診断されていたが、内容は精巣であった。染色体は46,XY。",
+ c:"ais",q:"この症例で最も重要な教訓は。",o:["卵巣ヘルニアと言われたら、触れているものが精巣ではないかを想定して触診する","直ちに摘出する","染色体検査は不要である","外性器が女性型なら46,XXである"],a:0,
+ e:"完全型アンドロゲン不応症はこの経路で見つかることが典型的。膣は盲端で、AMHが働いているため子宮はない。",r:"症例4 p.379-381 / p.381"},
+{bk:"dsd",c:"ais",q:"完全型アンドロゲン不応症の思春期に起こることは。",o:["陰毛が発生し乳腺は発達しない","乳腺は発達するが陰毛は生じない","男性化が進む","何も起こらない"],a:1,
+ e:"テストステロンがアロマターゼでエストラジオールに変換されるため乳腺は発達する。一方、アンドロゲン作用が働かないので陰毛は生じない。",r:"p.381 / p.383"},
+{bk:"dsd",c:"ais",q:"アンドロゲン受容体異常症のホルモンパターンは。",o:["LH高値、テストステロン正常〜高値","LH低値、テストステロン低値","LH高値、テストステロン低値","すべて正常"],a:0,
+ e:"受容体が効かないためネガティブフィードバックがかからず、LHが上がりテストステロンも上がる。数字は男性型なのに表現型は女性型、という不一致が診断の核心。",r:"p.375-377"},
+{bk:"dsd",c:"ais",q:"アンドロゲン受容体機能の古典的な評価法として述べられているのは。",o:["血中テストステロンの測定","皮膚線維芽細胞での受容体の親和性・受容体数・温度不安定性の解析","AMHの測定","精巣生検"],a:1,
+ e:"親和性も受容体数も正常なのに温度不安定性のみ異常、という症例が本書に出てくる。数が足りていても働きが保たれるとは限らない。",r:"症例1・2 p.375-377 / p.381"},
+{bk:"dsd",c:"ais",q:"部分型アンドロゲン不応症で思春期にみられるのは。",o:["女性化乳房","完全な男性化","無月経","低身長"],a:0,
+ e:"アンドロゲン作用が弱いぶん、エストロゲン作用が相対的に前に出る。養育性が男性の症例で問題になる。",r:"症例3 p.377"},
+{bk:"dsd",c:"ais",q:"アンドロゲン受容体異常症で性腺を摘出する主な理由は。",o:["ホルモン産生の抑制","腫瘍化のリスク","感染予防","痛みの軽減"],a:1,
+ e:"摘出後は女性ホルモンの補充が必要になる。摘出の時期と本人への説明のタイミングは、切り離せない問題として扱われている。",r:"p.375-377 / p.393"},
+
+/* 5α還元酵素欠損症 */
+{bk:"dsd",c:"srd5",q:"5α還元酵素欠損症（SRD5A2）の診断の鍵となる検査所見は。",o:["T/DHT比の上昇（hCG負荷後に評価）","テストステロンの低値","AMHの低値","LHの低値"],a:0,
+ e:"テストステロンは作れるがDHTに変換できない。ただし他の疾患と値がオーバーラップしうるため、遺伝子解析で確定する。",r:"症例1 p.385 / p.389"},
+{bk:"dsd",c:"srd5",q:"5α還元酵素欠損症の思春期に起こる特徴的な変化は。",o:["さらに女性化する","男性化（変声、筋肉の発達）が進むが、頭部がはげ上がることはない","何も変化しない","乳腺が発達する"],a:1,
+ e:"外性器の男性化にはDHTが要るが、思春期の体の男性化はテストステロンでかなり進む。担当ホルモンの違いがそのまま経過の違いになる。",r:"p.395"},
+{bk:"dsd",c:"srd5",q:"5α還元酵素欠損症で養育性が女性であった症例の経過について報告されているのは。",o:["全例が女性のまま経過する","思春期以降に相当数（25〜30%以上）が男性へ移行する","全例が男性へ移行する","報告はない"],a:1,
+ e:"思春期の身体的変化が性自認の形成に影響しうることを示している。だから幼少期の性別決定を一度きりの決定として扱わない。",r:"p.395"},
+{bk:"dsd",c:"srd5",q:"5α還元酵素欠損症とアンドロゲン受容体異常症を治療反応で分ける点は。",o:["5α還元酵素欠損症ではDHTクリームに反応するが、受容体異常症では反応が乏しい","両者とも反応しない","両者とも反応する","テストステロン注射で分かれる"],a:0,
+ e:"受容体が壊れていればDHTを入れても届かない。治療反応そのものが診断情報になる、という関係。",r:"p.387"},
+{bk:"dsd",c:"srd5",q:"5α還元酵素欠損症でfrontdoor pathwayとbackdoor pathwayの関係は。",o:["frontdoorのみが障害される","backdoorのみが障害される","両方の経路が障害される","いずれも障害されない"],a:2,
+ e:"どちらの経路も最終段階で5α還元を必要とする。だから代替経路が救いにならない。",r:"図5 p.389"},
+
+/* 卵精巣性DSD */
+{bk:"dsd",c:"ovo",q:"卵精巣性DSDの染色体核型として最も多いのは。",o:["46,XY","46,XX（46,XYの約3〜4倍）","45,X","47,XXY"],a:1,
+ e:"46,XX/46,XYキメラ、45,X/46,XXモザイクなども報告されている。核型は一つに定まらない。",r:"p.391"},
+{bk:"dsd",c:"ovo",q:"卵精巣性DSDの性腺の組み合わせとして知られている3つの型は。",o:["一側が精巣で対側が卵巣／一側がovotestis／両側がovotestis","精巣のみ／卵巣のみ／なし","索状性腺のみ","1型しかない"],a:0,
+ e:"卵巣成分と精巣成分の分布が症例ごとに違う。だから外性器の所見も内性器の所見も一様にならない。",r:"p.391"},
+{bk:"dsd",c:"ovo",q:"卵精巣性DSDの男性例で思春期に生じうるのは。",o:["女性化乳房","高身長","低血糖","多毛"],a:0,
+ e:"残存する卵巣成分からのエストロゲン産生による。養育性が男性であれば、これは大きな問題になる。",r:"p.393"},
+{bk:"dsd",c:"ovo",q:"卵精巣性DSDが診断される契機として述べられているのは。",o:["新生児期の外性器異常のみ","思春期以降に女性化乳房や小精巣などをきっかけに診断されることがある","必ず出生時に診断される","診断されない"],a:1,
+ e:"本書の症例も年長になってからの診断だった。外性器の男性化が十分に進んだ症例では、生下時に気づかれにくい。",r:"症例 p.391 / p.393"},
+
+/* 説明と支援 */
+{bk:"dsd",c:"dsdbase",q:"DSDの本人への説明として本書が実践している姿勢は。",o:["成人するまで伝えない","「違うだけで、異常ではない」というスタンスが伝わるように、年齢に応じて話す","一度にすべて伝える","家族にのみ伝える"],a:1,
+ e:"染色体についても「男性はXY以外にXXY、XXXY、XY/X、XXなどの例外があり、女性もX以外にXXX、X/XYなどがある」という形で、幅のある事実として伝えている。",r:"p.375-377 / p.393"},
+{bk:"dsd",c:"dsdbase",q:"性腺摘出を受けた症例への説明として本書が挙げている要素は。",o:["未熟な性腺があったため摘出したこと、そのためホルモン補充が必要なこと、月経は生じないこと","手術の詳細のみ","染色体の説明のみ","説明は行わない"],a:0,
+ e:"何が起きたか、これから何が必要か、何が起こらないか。この3つを本人の言葉で受け取れる形にしていく。",r:"p.383 / p.390"},
+{bk:"dsd",c:"dsdbase",q:"DSDの診療体制として本書が示しているのは。",o:["内分泌科単独で行う","小児外科・泌尿器科・産婦人科・心理などを含む多職種のチームで検討する","外科単独で行う","家族が決める"],a:1,
+ e:"性別の決定、手術の適否、説明の時期。どれも一つの科では決められない。定期的なカンファレンスの形で運用されている例が紹介されている。",r:"p.349 / p.397"},
+{bk:"dsd",c:"dsdbase",q:"養育性の判断において確認すべきこととして述べられているのは。",o:["染色体のみ","性別違和（gender dysphoria）の有無を、思春期前から確認しておく","家族の希望のみ","外性器の所見のみ"],a:1,
+ e:"後から聞くのでは遅い。診療のどこかで、本人が自分の体と性別をどう感じているかを聞く場を用意しておく。",r:"p.383 / p.327"},
+/* ══════ 巻の八・腫瘍性疾患 ══════ */
+{bk:"tum",c:"pit",q:"成長率の低下や低身長を診たときに本書が求めているのは。",o:["まず経過観察する","一度はMRIで脳腫瘍を否定する","骨年齢だけで判断する","GH治療を開始する"],a:1,
+ e:"逆に、成長曲線の変化が脳腫瘍発見のきっかけになることもある。成長は視床下部下垂体の窓になっている。",r:"p.433"},
+{bk:"tum",c:"pit",q:"下垂体・鞍上部腫瘍の術後にみられる三相性反応（triphasic response）の順序は。",o:["SIADH → 尿崩症 → 回復","尿崩症（4〜5日）→ 抗利尿相（5〜7日）→ 永続的尿崩症","尿崩症のみが持続する","抗利尿相のみ"],a:1,
+ e:"第2相で油断してDDAVPを続けると水中毒になる。逆に第2相を見て「治った」と判断しても、第3相が来る。",r:"p.441 / 図 p.441"},
+{bk:"tum",v:"鞍上部腫瘍の患児。副腎機能低下と甲状腺機能低下があり補充を開始したところ、それまでなかった多尿が出現した。",
+ c:"pit",q:"この現象の呼び名と意味は。",o:["masked DI。副腎・甲状腺機能低下により隠れていた尿崩症が、補充により顕在化した","三相性反応の第2相","医原性尿崩症","SIADHからの回復"],a:0,
+ e:"コルチゾール不足のあいだは自由水が排泄できず多尿が目立たない。補充の順序を知らないと、副作用と誤解する。",r:"p.441"},
+{bk:"tum",c:"pit",q:"腫瘍やリンパ球性漏斗下垂体炎による中枢性尿崩症の予後について正しいのは。",o:["原疾患の治療により尿崩症も改善する","一過性のものを除き、尿崩症が改善することはほとんどない","自然に改善する","DDAVPで治癒する"],a:1,
+ e:"前葉機能は治療で動くことがあっても、後葉は戻らない。長期の補充を前提に説明する。",r:"p.443 / 文献3"},
+{bk:"tum",c:"pit",q:"下垂体茎の腫脹と中枢性尿崩症を認めたときに鑑別すべき非腫瘍性疾患は。",o:["Langerhans細胞組織球症","結核","サルコイドーシスのみ","川崎病"],a:0,
+ e:"胚細胞腫瘍と並んで、この部位の代表的な原因。生検で診断可能とされている。",r:"p.443 / 文献2"},
+{bk:"tum",c:"pit",q:"プロラクチノーマの治療の第一選択は。",o:["経蝶形骨洞手術","ドパミンアゴニスト（ブロモクリプチン、カベルゴリン）の内服","放射線治療","化学療法"],a:1,
+ e:"内服で縮小が期待できる。ただし中止すると再増大するため、長期の服薬が前提になる。",r:"p.443"},
+
+/* GH産生腫瘍 */
+{bk:"tum",v:"高身長と大きな手足を主訴に受診した男子。身長186 cm（父159 cm、母160 cm）。75 g糖負荷でGHが抑制されず、TRH負荷でGHが奇異性に上昇した。",
+ c:"acro",q:"診断は。",o:["体質性高身長","GH産生下垂体腺腫（acrogigantism）","Marfan症候群","甲状腺機能亢進症"],a:1,
+ e:"小児は骨端線が閉じていないので、末端肥大症ではなく高身長として現れる。両親の身長からかけ離れた高身長は、それ自体が所見になる。",r:"症例6 p.439"},
+{bk:"tum",c:"acro",q:"GH産生腫瘍の診断で用いられる負荷試験の所見は。",o:["75 g糖負荷でGHが抑制されない、TRH負荷でGHが奇異性上昇する","インスリン負荷でGHが上昇しない","アルギニン負荷で低反応","LHRH負荷で高反応"],a:0,
+ e:"通常なら糖負荷でGHは抑制され、TRHではGHは動かない。どちらも「起こらないはずのこと」が起きている。",r:"症例6 p.439"},
+{bk:"tum",c:"acro",q:"GH産生下垂体腺腫の手術による寛解率として述べられているのは。",o:["macroadenomaで約50%、microadenomaで80%以上","いずれも100%","いずれも30%以下","差はない"],a:0,
+ e:"腫瘍径で見通しが変わる。macroadenomaではIGF-1の正常化が遅れることもあり、時間をかけて評価する。",r:"p.441"},
+{bk:"tum",c:"acro",q:"GH受容体拮抗薬として述べられている薬剤は。",o:["オクトレオチド","ペグビソマント","カベルゴリン","ミトタン"],a:1,
+ e:"受容体に結合するがシグナルを生じないようにデザインされている。ソマトスタチンアナログとは作用点が違う。",r:"p.443"},
+{bk:"tum",c:"acro",q:"先天性（若年発症）下垂体腺腫の背景として本書が挙げているのは。",o:["10〜30%にAIP遺伝子異常。ほかにMEN1、Carney complex、家族性単独下垂体腺腫","すべて孤発性である","必ずMEN1である","遺伝的背景はない"],a:0,
+ e:"若年で下垂体腺腫を見たら、家系と併存腫瘍を確認する。McCune-Albright症候群でもGH産生腫瘍が生じうる。",r:"p.441"},
+
+/* Cushing */
+{bk:"tum",c:"cush",q:"小児Cushing症候群を疑う最も特徴的な所見は。",o:["肥満のみ","体重は増えているのに身長増加が得られないこと","高血圧のみ","多毛のみ"],a:1,
+ e:"単純性肥満では身長も伸びる。この乖離が、肥満外来のなかからCushingを拾い上げる物差しになる。",r:"p.451"},
+{bk:"tum",c:"cush",q:"Cushing症候群のスクリーニング検査として挙げられているのは。",o:["早朝尿遊離コルチゾール、深夜の血清コルチゾール、少量デキサメタゾン抑制試験","ACTH単回測定のみ","アルドステロン測定","レニン測定"],a:0,
+ e:"深夜の血清コルチゾールが5 μg/dLを超えることが手がかりになる。日内変動が保たれているかを見にいく検査群。",r:"図5 p.455"},
+{bk:"tum",c:"cush",q:"Cushing症候群の分類として正しいのは。",o:["ACTH依存性（Cushing病、異所性ACTH）とACTH非依存性（副腎腺腫、副腎がん、AIMAH、PPNAD）","ACTH依存性のみ","副腎性のみ","分類できない"],a:0,
+ e:"血漿ACTHの測定が最初の分岐点。5 pg/mL未満なら副腎性を疑う。",r:"表 p.454 / 図5 p.455"},
+{bk:"tum",c:"cush",q:"「2 mgで抑制されず8 mgで抑制される」というデキサメタゾン抑制試験の所見について本書が注意しているのは。",o:["Cushing病の確定所見である","Cushing病で典型的とされるが、そうならないこともあり、これのみでは確定できない","副腎腺腫の所見である","異所性ACTHの所見である"],a:1,
+ e:"典型例の型を覚えることと、それを確定根拠にすることは別。画像で異常がなければ両側下錐体静脈洞サンプリングへ進む。",r:"p.453 / 症例10 p.451"},
+{bk:"tum",c:"cush",q:"Cushing病の術後、治癒を示す指標として述べられているのは。",o:["ACTHの正常化","術後の血中コルチゾールが1〜2 μg/dL以下となること","尿量の正常化","体重の減少"],a:1,
+ e:"正常の副腎軸が抑制されきっている状態が、腫瘍が取れた証拠になる。裏返せば、その後は必ずステロイド補充が要る。",r:"p.456"},
+{bk:"tum",c:"cush",q:"Cushing病術後の副腎機能回復について本書が示唆しているのは。",o:["回復には長期を要し、ヒドロコルチゾンを少なめにすると回復が早まる可能性がある","回復は数日で完了する","回復しない","補充は不要である"],a:0,
+ e:"補充が多すぎると軸が立ち上がらない。ヒドロコルチゾン6〜8 mg/m2/日程度の少量投与が挙げられている。",r:"p.456-457"},
+{bk:"tum",c:"cush",q:"Cushing症候群の治療後にみられた成長について本書が述べているのは。",o:["身長は回復しない","治療後に身長増加と肥満度の低下がみられ、思春期発来と一致して説明されうる","体重のみ減る","変化しない"],a:1,
+ e:"止まっていた成長が動き出す。ステロイド投与中はGH分泌能の評価そのものが難しい、という注意も添えられている。",r:"p.454 / 図4"},
+
+/* 副腎腫瘍 */
+{bk:"tum",v:"幼児。陰毛が数本みられ徐々に増えてきた。DHEA-S・テストステロンが高値だが、コルチゾールとACTHの日内変動は保たれ、尿中遊離コルチゾールは正常範囲。腹部に腫瘤を認めた。",
+ c:"adrtum",q:"最も考えられるのは。",o:["副腎皮質腫瘍（男性ホルモン産生）","中枢性思春期早発症","21水酸化酵素欠損症","副腎白質ジストロフィー"],a:0,
+ e:"アンドロゲンだけが突出し、コルチゾール系は保たれている。小児の副腎皮質がんはこの形で発症することが多い。",r:"症例1 p.443-445"},
+{bk:"tum",c:"adrtum",q:"小児の副腎皮質がんの背景として知られている遺伝性疾患は。",o:["Li-Fraumeni症候群（TP53）","神経線維腫症1型","結節性硬化症","VHL病"],a:0,
+ e:"生殖細胞系列の変異に加え、腫瘍細胞にsecond hitが生じて発症するという古典的なモデル。5歳までに約90%が発症する。",r:"p.445"},
+{bk:"tum",c:"adrtum",q:"副腎皮質がんの治療について述べられているのは。",o:["摘出のみで十分である","摘出に加えミトタンを用いる。肉眼的に摘出できても微小転移がみられることが多い","化学療法は無効である","放射線治療が第一選択"],a:1,
+ e:"だから完全摘出後も追跡が要る。腫瘍が産生していたホルモンが再上昇の指標になる。",r:"症例1 p.443-445"},
+
+/* MEN・褐色細胞腫 */
+{bk:"tum",c:"men",q:"MEN2Aの原因遺伝子と、コドン634変異が占める割合は。",o:["RET、80〜90%","MEN1、50%","VHL、30%","NF1、10%"],a:0,
+ e:"甲状腺髄様がん・褐色細胞腫・副甲状腺機能亢進症の3つ。浸透率が高く、予防的甲状腺全摘が検討される。",r:"p.449"},
+{bk:"tum",c:"men",q:"MEN2Bの特徴として正しいのは。",o:["マルファン様体型・粘膜神経腫・腸管神経節腫症を伴い、副甲状腺病変のリスクはない","副甲状腺機能亢進症が主体である","甲状腺病変を伴わない","成人期にのみ発症する"],a:0,
+ e:"顔と体型で気づける型。副甲状腺を心配しなくてよい代わりに、髄様がんの発症がより早い。",r:"p.449"},
+{bk:"tum",c:"men",q:"甲状腺髄様がんの経過観察に用いるマーカーは。",o:["サイログロブリン","カルシトニンとCEA","AFP","CA19-9"],a:1,
+ e:"サイログロブリンは濾胞細胞由来の腫瘍のマーカーで、髄様がん（傍濾胞C細胞由来）には使えない。",r:"症例 p.445-447"},
+{bk:"tum",c:"men",q:"褐色細胞腫・パラガングリオーマで生殖細胞系列変異に由来する割合として述べられているのは。",o:["約5%","30〜40%","約70%","ほぼ100%"],a:1,
+ e:"SDHA/SDHB/SDHC/SDHD、VHL、RET、NF1、TMEM127、MAXなど。散発例に見えても遺伝子検索を検討する。",r:"p.447-449"},
+{bk:"tum",c:"men",q:"褐色細胞腫で原因遺伝子を絞り込むために有用とされる手法は。",o:["SDHBの免疫染色","電子顕微鏡","培養","血中カテコラミンの分画のみ"],a:0,
+ e:"多数の候補遺伝子を全部調べるのではなく、組織所見で当たりをつける。臨床所見（甲状腺病変→MEN2A、腸管神経節腫症→MEN2B、腎細胞がんや膵嚢胞→VHL）との組み合わせも手がかりになる。",r:"表3 p.449 / 文献1"},
+{bk:"tum",c:"men",q:"褐色細胞腫の生化学的診断に用いられるのは。",o:["血中・尿中カテコラミン、メタネフリン分画、クロモグラニンA","カルシトニン","ACTH","AMH"],a:0,
+ e:"高血圧や動悸だけでは拾えない。数値で確認する。",r:"症例 p.447"},
+
+/* 症候群性腫瘍素因 */
+{bk:"tum",v:"新生児。臍帯ヘルニアと巨舌、右半身肥大、出生後の低血糖を認めた。",
+ c:"synd",q:"考えられる症候群と、長期的に監視すべきものは。",o:["Beckwith-Wiedemann症候群。Wilms腫瘍・肝芽腫の発生を監視する","Prader-Willi症候群。肥満を監視する","Noonan症候群。心筋症を監視する","Silver-Russell症候群。低身長を監視する"],a:0,
+ e:"新生児期の低血糖は高インスリン血症による。片側肥大があると腫瘍リスクがより高いとされ、腹部超音波とAFPでの追跡が行われる。",r:"症例 p.447"},
+{bk:"tum",c:"synd",q:"Beckwith-Wiedemann症候群の責任領域は。",o:["15q11-13","11p15.5の2つのインプリンティング領域（H19 DMRとKvDMR1）","22q11.2","7q11.23"],a:1,
+ e:"父性ダイソミー、H19 DMRのメチル化亢進、KvDMR1のメチル化低下、CDKN1C変異など、複数の機序が同じ表現型に集まる。",r:"図1 p.447 / p.447"},
+{bk:"tum",c:"synd",q:"Carney complexの責任遺伝子とその機能は。",o:["PRKAR1A。PKAの調節サブユニットで、がん抑制遺伝子として働く","GNAS。Gsα","RET。受容体型チロシンキナーゼ","TP53。転写因子"],a:0,
+ e:"調節サブユニットが失われると、触媒サブユニットが解離しっぱなしになりcAMPシグナルが亢進する。cAMPを分解するPDE11Aの変異も報告されている。",r:"p.449-450 / 文献2,3"},
+{bk:"tum",c:"synd",q:"Carney complexの診断基準に含まれるのは。",o:["皮膚・粘膜の色素斑、粘液腫（皮膚・粘膜・心臓）、PPNAD、GH産生下垂体腺腫、砂粒腫様黒色性神経鞘腫など","低身長・肥満・発達遅滞","多発性骨折","難聴と腎奇形"],a:0,
+ e:"内分泌腫瘍だけでなく心臓粘液腫が含まれる点が重要で、これが生命予後を左右する。",r:"表4 p.450"},
+{bk:"tum",c:"synd",q:"PPNAD（原発性色素性結節性副腎皮質異形成）が属する分類は。",o:["ACTH依存性Cushing症候群","ACTH非依存性Cushing症候群","副腎不全","副甲状腺疾患"],a:1,
+ e:"副腎側が勝手にコルチゾールを出すのでACTHは抑制される。Carney complexの一部として現れる。",r:"表 p.454 / p.450"},
+{bk:"tum",c:"synd",q:"DICER1症候群で報告されている腫瘍として挙げられているのは。",o:["胸膜肺芽腫、下垂体芽腫、多結節性甲状腺腫、Sertoli-Leydig細胞腫、嚢胞性腎腫","Wilms腫瘍と肝芽腫のみ","甲状腺髄様がんのみ","副腎皮質がんのみ"],a:0,
+ e:"臓器を越えて腫瘍が並ぶ。浸透率は高くなく修飾因子の存在が推定されている、という点も押さえておく。",r:"p.450 / 文献6"},
+{bk:"tum",c:"synd",q:"MEN2の発端者が見つかったときの対応として本書が述べているのは。",o:["本人のみを追跡する","家族の遺伝子診断を検討し、異常がなくとも1年ごとの追跡を続ける","家族の検査は不要である","成人後に検査する"],a:1,
+ e:"浸透率が高く、発症前に介入できる疾患。だから家系への展開が診断の一部になる。",r:"p.449"},
+{bk:"tum",c:"pit",q:"下垂体腫瘍の術後にステロイドと甲状腺ホルモンを補充する順序として適切なのは。",o:["甲状腺ホルモンを先に入れる","ステロイド（ヒドロコルチゾン）を先に入れる","同時でよい","順序は問わない"],a:1,
+ e:"甲状腺ホルモンはコルチゾール代謝を亢進させるため、副腎不全があると危機を招く。この順序は章をまたいで繰り返し出てくる原則。",r:"p.441 / 巻の三 p.135"},
+{bk:"tum",c:"cush",q:"手術中からデキサメタゾンを投与することについて本書が注意しているのは。",o:["問題ない","内因性コルチゾールを測定する目的ではよいが、コルチゾール測定を目的とする場面ではヒドロコルチゾンは望ましくない","デキサメタゾンは禁忌である","測定に影響しない"],a:1,
+ e:"ヒドロコルチゾンはコルチゾールとして測定されてしまう。何を測りたいかで、入れる薬を選ぶ。",r:"p.453"},
+{bk:"tum",c:"pit",q:"下垂体腫瘍の治療後にGH分泌不全が残る場合、成人期に向けて必要になるのは。",o:["治療の終了","成人成長ホルモン分泌不全症としての再評価と、必要に応じた継続治療","GHの中止のみ","経過観察のみ"],a:1,
+ e:"小児期の治療が終わっても軸の異常は続く。成人期のガイドラインに沿って評価をつなぐ。",r:"p.439"},
+{bk:"tum",c:"adrtum",q:"副腎腫瘍によるCushing症候群で、血漿ACTHはどうなるか。",o:["高値となる","抑制され低値（5 pg/mL未満）となる","変化しない","測定できない"],a:1,
+ e:"腫瘍が勝手にコルチゾールを出すので下垂体が抑えられる。ACTHの高低が、最初の大きな分岐点になる。",r:"図5 p.455 / 症例 p.452"},
+{bk:"tum",c:"cush",q:"小児Cushing症候群でみられる身体所見として本書が挙げているのは。",o:["満月様顔貌、皮膚線条、近位筋の萎縮、うぶ毛の増加","高身長と長い四肢","脱毛と低体温","多尿と多飲"],a:0,
+ e:"ただし小児では肥満との区別が難しく、身体所見だけで拾おうとすると遅れる。成長曲線を必ず並べる。",r:"p.454"},
+/* ══════ 巻の九・糖尿病・肥満・低血糖 ══════ */
+{bk:"dm",c:"t1dm",q:"小児1型糖尿病のコントロール目標（HbA1c）は。",o:["年齢にかかわらず 7.5%未満","年齢別に 8.5%〜7.0%","6.0%未満","9.0%未満"],a:0,
+ e:"かつては年齢別に緩い目標が設定されていたが、現在は年齢にかかわらず7.5%未満。成人の目標は7.0%未満。",r:"p.463"},
+{bk:"dm",c:"t1dm",q:"HbA1cのNGSP値とJDS値の関係は。",o:["NGSP値 = JDS値 + 0.4","NGSP値 = JDS値 − 0.4","同一である","NGSP値 = JDS値 × 1.1"],a:0,
+ e:"古い文献やカルテの数値を読むときに要る。数値は測定法とセットで読む、という原則がここでも出てくる。",r:"p.459"},
+{bk:"dm",c:"t1dm",q:"持効型インスリンのうち、1日2回の投与を要することが多いとされるのは。",o:["インスリングラルギン","インスリンデテミル","インスリンデグルデク","いずれも1回"],a:1,
+ e:"作用時間の違いで打つ回数が変わる。1回で足りない製剤を1回で使うと、明け方に効果が切れる。",r:"p.463"},
+{bk:"dm",c:"t1dm",q:"カーボカウントにおける日本での1カーボの定義は。",o:["炭水化物5 g","炭水化物10 g","炭水化物15 g","炭水化物20 g"],a:1,
+ e:"米国では15 gとされることが多い。文献を読むときにこの差を意識しないと、比の値が合わなくなる。",r:"p.471"},
+{bk:"dm",c:"t1dm",q:"CSII（インスリンポンプ）を導入する意義として本書が挙げているのは。",o:["皮下注では一定にインスリンを投与できない点を補える","注射回数がゼロになる","血糖測定が不要になる","カーボカウントが不要になる"],a:0,
+ e:"基礎インスリンの時間ごとの調整ができる。まず1日4回の皮下注で指導し、家族の受け入れを見てからCSIIへ進む、という順序が示されている。",r:"p.463"},
+{bk:"dm",c:"t1dm",q:"持続血糖モニタリング（CGM）がとくに有用とされるのは。",o:["低血糖の自覚症状が出ない、あるいは日常的に低血糖にさらされている症例","HbA1cが良好な症例のみ","2型糖尿病のみ","新生児のみ"],a:0,
+ e:"点で測っていると、下がっている時間帯そのものが見えない。1日4〜6回の自己測定と組み合わせる。",r:"p.463-465"},
+{bk:"dm",c:"t1dm",q:"1型糖尿病で罹病期間30年以上の網膜症の頻度として示されているのは。",o:["約10%","約30%","約60%","ほぼ0%"],a:2,
+ e:"腎障害も同程度に高い。だからコントロールの意味を、遠い将来の数字として本人に伝えられるようにしておく。",r:"表6・7 p.471"},
+{bk:"dm",c:"t1dm",q:"思春期の1型糖尿病患者への外来対応として本書が実践しているのは。",o:["親と必ず同席させる","母とは別に外来に来させ、本人が話したがる内容を聞くことを中心にする","コントロールのみを議論する","受診間隔を延ばす"],a:1,
+ e:"時期によっては糖尿病のコントロールを深追いしない、とも書かれている。通院が途切れることのほうが害が大きい。",r:"p.463 / p.465 / 症例3 p.461"},
+{bk:"dm",c:"t1dm",q:"成人診療科への移行（transition）にあたり本書が用いているのは。",o:["紹介状のみ","本人の理解と自立を項目ごとに確認するチェックリスト","年齢による自動移行","移行は行わない"],a:1,
+ e:"病態の説明、シックデイ対応、薬剤の注文、進学・就職・妊娠の相談まで含む。移行は書類ではなく能力の受け渡し。",r:"表 p.462-463"},
+
+/* DKA */
+{bk:"dm",c:"dka",q:"糖尿病性ケトアシドーシス（DKA）の診断基準として挙げられているのは。",o:["高血糖（およそ300 mg/dL以上）、pH<7.3、HCO3−<15 mmol/L","高血糖のみ","pH<7.0のみ","尿ケトン陽性のみ"],a:0,
+ e:"摂取量によっては血糖が300 mg/dLより低いこともありうる。血糖値だけでDKAを否定しない。",r:"p.467"},
+{bk:"dm",c:"dka",q:"DKAにおけるインスリン投与の原則は。",o:["初回に大量のボーラスを静注する","0.1単位/kg/時の持続静注から始め、急速に血糖を下げない","皮下注のみで行う","血糖が下がるまで投与しない"],a:1,
+ e:"急いで下げることが目的ではなく、ゆっくり安全に下げる。脳浮腫を避けるための原則。",r:"p.469"},
+{bk:"dm",c:"dka",q:"DKAの治療中、血糖が下がってきたときに投与するのは。",o:["インスリンを中止する","糖を投与する（3〜5 mg/kg/分程度）","輸液を止める","重炭酸を投与する"],a:1,
+ e:"細胞が生きるのに必要な糖を入れる。インスリンは止めずに続け、ケトーシスの改善を待つ。",r:"p.469"},
+{bk:"dm",c:"dka",q:"重症DKAにおける水・電解質の喪失量の目安として示されているのは。",o:["水100 mL/kg、Na 6、K 4、Cl 4、P 3 mEq/kg","水30 mL/kg、Na 2 mEq/kg","水300 mL/kg、Na 20 mEq/kg","喪失はない"],a:0,
+ e:"補充計画は「維持量＋喪失量の1/2」で立てる。リンの喪失も無視できないため、投与するよう努める、とされている。",r:"p.469"},
+{bk:"dm",c:"dka",q:"DKAにおける重炭酸（メイロン）の使用について正しいのは。",o:["すべての症例で使用する","ISPADのガイドラインでは原則として用いない","pH 7.2未満で必ず使う","Naの負荷にはならない"],a:1,
+ e:"投与すればそのぶんNaが入る。また中枢神経系ではCO2が自由に通るため、細胞内アシドーシスを悪化させうる。極端な症例に限定される。",r:"p.467"},
+{bk:"dm",c:"dka",q:"DKAの治療中に脳浮腫を避けるために監視するのは。",o:["血漿浸透圧の変化（2×(Na+K)＋血糖/18＋BUN/2.8）をゆっくり下げること","血糖のみ","尿量のみ","体温"],a:0,
+ e:"補正Naが155 mEq/Lを超えるような症例ではとくに慎重を要する。血糖が下がるほどNaは上がる、という関係を頭に入れておく。",r:"p.469"},
+{bk:"dm",c:"dka",q:"DKAの発症に関与する抗インスリンホルモンとして挙げられているのは。",o:["アドレナリン、グルカゴン、コルチゾール、GH","インスリンのみ","甲状腺ホルモン","PTH"],a:0,
+ e:"インスリンを持続投与している状態でも、ストレス下ではDKAが起こりうる理由になっている。",r:"p.467"},
+
+/* 2型糖尿病 */
+{bk:"dm",c:"t2dm",q:"小児2型糖尿病と1型糖尿病を分ける臨床的特徴として本書が述べているのは。",o:["1型は肥満を伴わないか「小太り」程度なのに対し、2型は肥満を伴うことが多い","1型のほうが肥満が強い","肥満に差はない","2型は必ずやせている"],a:0,
+ e:"日本では学校検尿での尿糖陽性が発見のきっかけになることが多い。家族歴も濃厚なことが多い。",r:"p.473 / p.475"},
+{bk:"dm",c:"t2dm",q:"インスリン抵抗性の指標HOMA-Rの計算式は。",o:["空腹時IRI × 空腹時血糖 ÷ 405","空腹時IRI ÷ 空腹時血糖","空腹時血糖 ÷ 空腹時IRI","IRI × 体重"],a:0,
+ e:"インスリンが出ているのに血糖が下がらない、という状態を数値化する。",r:"p.477"},
+{bk:"dm",c:"t2dm",q:"血中CPR値によるインスリン依存状態の推定として述べられているのは。",o:["1 ng/mL以下はインスリン治療が必要、3 ng/mL以上はインスリン非依存と判断できる","3 ng/mL以下でインスリンが必要","CPRは判断に使えない","1 ng/mL以上でインスリン非依存"],a:0,
+ e:"2〜3 ng/mLが中間。1型か2型かの二択ではなく、どれだけ自前のインスリンが残っているかで治療を決める。",r:"p.477"},
+{bk:"dm",c:"t2dm",q:"インクレチン（GLP-1、GIP）について正しいのは。",o:["血糖依存的にインスリン分泌を促進するため、単独では低血糖を生じにくい","血糖と無関係にインスリンを出す","DPP-4により活性化される","小児には無効である"],a:0,
+ e:"DPP-4により不活性化されるので、DPP-4阻害薬とGLP-1受容体作動薬という2系統の薬になる。",r:"p.477"},
+{bk:"dm",c:"t2dm",q:"緩徐進行1型糖尿病（SPIDDM）の診断で重要なのは。",o:["GAD抗体などの膵島関連自己抗体が陽性で、発症後3か月以上インスリン療法を要さないこと","発症時からインスリンが必要なこと","抗体が陰性であること","肥満があること"],a:0,
+ e:"抗体陽性と分かった時点でインスリンが開始されることがあるが、この基準では経過を見る。抗体は経過とともに陰性化することもある。",r:"表5 p.469"},
+{bk:"dm",c:"t2dm",q:"HbA1cの解釈に注意を要する病態として挙げられているのは。",o:["溶血、腎不全、鉄欠乏性貧血、異常ヘモグロビン","高血圧","甲状腺機能亢進症","肥満"],a:0,
+ e:"赤血球の寿命や質が変われば、HbA1cは血糖を反映しなくなる。値が合わないときは検査そのものを疑う。",r:"表2 p.477"},
+
+/* 単一遺伝子糖尿病 */
+{bk:"dm",c:"mono",q:"日本のMODYで頻度が高いとされる原因遺伝子は。",o:["HNF1A（MODY3）、GCK（MODY2）、HNF4A（MODY1）","PDX1、NEUROD1","KCNJ11、ABCC8","WFS1、CISD2"],a:0,
+ e:"MODY5（HNF1B）は腎嚢胞・腎奇形を伴うなど、糖尿病以外の症状から気づける型もある。",r:"p.483"},
+{bk:"dm",c:"mono",v:"学校検尿で尿糖を指摘された小児。軽度の空腹時高血糖が続くが進行せず、家族の複数名にも軽い高血糖がある。",
+ c:"mono",q:"最も考えられるのは。",o:["GCK異常症（MODY2）","1型糖尿病","2型糖尿病","新生児糖尿病"],a:0,
+ e:"血糖のセットポイントがわずかに高いだけで進行しない。治療の対象にならないことが多く、それを知らないと不要な治療を始めてしまう。",r:"症例 p.479-481"},
+{bk:"dm",c:"mono",q:"HNF1A異常症（MODY3）の治療上の特徴は。",o:["インスリンが必須である","SU薬によく反応する","治療が不要である","メトホルミンのみ有効"],a:1,
+ e:"遺伝子が分かれば薬が変わる。抗体陰性のインスリン分泌不全を見たときに遺伝子を考える理由になる。",r:"p.483"},
+{bk:"dm",c:"mono",q:"新生児糖尿病の定義と、一過性型の最多の成因は。",o:["生後6か月未満の発症。一過性型では6q24のインプリント異常が最多","生後1年未満の発症。KCNJ11が最多","生後3か月未満。ABCC8が最多","定義はない"],a:0,
+ e:"生後6か月未満の糖尿病は1型ではまれで、単一遺伝子性を疑う。一過性型でも思春期以降に再発しうる。",r:"p.487 / 表 p.489"},
+{bk:"dm",c:"mono",q:"KCNJ11（Kir6.2）やABCC8（SUR1）の機能亢進変異による新生児糖尿病の治療で重要なのは。",o:["インスリンが唯一の治療である","SU薬に反応し、インスリンから離脱できることがある","治療法がない","食事療法のみ"],a:1,
+ e:"ATP感受性Kチャネルが開きっぱなしになり脱分極が起きない。SU薬はそのチャネルを閉じる。遺伝子診断がそのまま治療方針を変える代表例。",r:"p.487-489 / 文献8"},
+{bk:"dm",c:"mono",q:"Wolfram症候群（DIDMOAD）の4徴は。",o:["尿崩症・糖尿病・視神経萎縮・難聴","糖尿病・肥満・難聴・腎症","尿崩症・低身長・難聴・白内障","糖尿病・肝障害・難聴・網膜症"],a:0,
+ e:"視神経萎縮は成人年齢までにほとんどの症例で認められる。WFS1、CISD2が知られる。",r:"関連症例 p.485"},
+{bk:"dm",c:"mono",q:"ミトコンドリア糖尿病を疑う手がかりは。",o:["難聴を伴い、母系の家族歴がある","父系の家族歴","肥満","高身長"],a:0,
+ e:"母方祖父やそのきょうだいに糖尿病があった症例が本書に出てくる。家系図の書き方が診断につながる。",r:"症例5 p.485"},
+
+/* 肥満 */
+{bk:"dm",c:"obes",q:"小児肥満の管理における最大のゴールとして述べられているのは。",o:["直ちに標準体重にすること","成人への肥満のトラッキング（持ち越し）を防ぐこと","運動能力の向上","BMIの正常化のみ"],a:1,
+ e:"急いで痩せさせることではない。長期にわたる、息の長い介入として設計する。",r:"p.491"},
+{bk:"dm",c:"obes",q:"肥満児で内分泌疾患を疑う所見は。",o:["肥満の程度","身長増加率の低下を伴うこと","黒色表皮腫","家族歴"],a:1,
+ e:"単純性肥満では身長も伸びる。甲状腺機能低下症とCushing症候群がここで拾われる。",r:"p.491"},
+{bk:"dm",c:"obes",q:"小児のウエスト周囲長の簡便な目安として本書が挙げているのは。",o:["身長の50%以上","身長の30%以上","成人と同じ男性85 cm・女性90 cm","目安はない"],a:0,
+ e:"成人の男性85 cm・女性90 cmは内臓脂肪面積100 cm2に相当する値で、小児にそのまま当てはめられない。",r:"p.493-495"},
+{bk:"dm",v:"高度肥満の患児。入眠中にSpO2が60%台まで低下し、血液ガスでpCO2の貯留と呼吸性アシドーシスを認めた。",
+ c:"obes",q:"この病態について正しいのは。",o:["肥満に伴う閉塞性睡眠時無呼吸から肺胞低換気に至った状態で、死亡例が報告されている","一過性で経過観察でよい","減量後に評価すればよい","呼吸器疾患であり肥満とは無関係"],a:0,
+ e:"本書には減量が進まないまま急変し死亡した症例が記載されている。高度肥満では呼吸の評価を早期に、繰り返し行う。",r:"症例1 p.491-493"},
+{bk:"dm",c:"obes",q:"単一遺伝子性肥満の原因として最も頻度が高いのは。",o:["LEP（レプチン）","MC4R","POMC","LEPR"],a:1,
+ e:"レプチン→視床下部→αMSH→MC4Rという経路のどこが壊れても肥満になる。BDNF/TrkBはMC4Rの下流に位置すると考えられている。",r:"図1 p.497 / p.497"},
+{bk:"dm",c:"obes",q:"肥満に伴う肝障害として注意すべきなのは。",o:["非アルコール性脂肪性肝疾患（NAFLD/NASH）で、肝硬変に至りうる","ウイルス性肝炎","自己免疫性肝炎","胆道閉鎖症"],a:0,
+ e:"判断のゴールドスタンダードは生検の組織像。血液検査だけでは進行度が読めない。",r:"p.495"},
+
+/* 低血糖 */
+{bk:"dm",v:"幼児。前日の夕食をあまり食べずに寝てしまい、翌朝ぐったりしてけいれんを起こした。血糖20 mg/dL、IRI 2.1 μU/mL、遊離脂肪酸は高値、尿ケトン陽性。",
+ c:"hypo",q:"最も考えられるのは。",o:["高インスリン血症性低血糖症","ケトン性低血糖症","脂肪酸酸化異常症","糖原病"],a:1,
+ e:"インスリンは抑制され、脂肪の分解とケトン産生は正常に働いている。グリコーゲンの蓄えが少ないことと矛盾しない。痩せ型の幼児に多い。",r:"症例1 p.497-499"},
+{bk:"dm",c:"hypo",q:"低血糖の鑑別で最初に見るべき所見は。",o:["血糖の絶対値","ケトン体が陽性か陰性か","年齢","体重"],a:1,
+ e:"ケトン陰性なら高インスリン血症性低血糖か脂肪酸酸化異常症。低血糖のその場でIRI・遊離脂肪酸・ケトンを採っておかないと、後から分けられない。",r:"p.499 / 図 p.499"},
+{bk:"dm",c:"hypo",q:"ケトン性低血糖症の家族への指導として本書が述べているのは。",o:["毎日点滴を行う","同様のエピソードがあったら朝早く起こす、あるいは夜に一度何か食べさせる","絶食させる","運動を制限する"],a:1,
+ e:"病気を治すのではなく、飢餓の時間を短くする。生活の中で実行できる形にして渡す。",r:"p.499"},
+{bk:"dm",c:"hypo",q:"低血糖に対するブドウ糖静注（0.2 g/kg）について本書が述べているのは。",o:["理論上の血糖上昇幅より実際は小さくなり、感染などで糖の消費が亢進していればさらに小さくなる","必ず理論値どおり上昇する","血糖は上がらない","静注は禁忌である"],a:0,
+ e:"入れた量から計算した値をそのまま期待しない。点滴を始めても、しばらくぼーっとしていることがある。",r:"p.501"},
+{bk:"dm",c:"hypo",q:"GH刺激試験を行うときに注意すべきこととして挙げられているのは。",o:["低血糖の危険","高血糖の危険","脱水","高カリウム血症"],a:0,
+ e:"インスリン負荷では低血糖から回復できずに重篤化しうる。試験そのものが低血糖を作る場面であることを忘れない。",r:"p.501 / 文献1"},
+
+/* 高インスリン血症性低血糖 */
+{bk:"dm",v:"出生体重3,884 g（>97パーセンタイル）の新生児。低血糖時にIRIが抑制されておらず、遊離脂肪酸とケトン体は低値。血糖維持に高いブドウ糖投与速度を要した。",
+ c:"chi",q:"診断と第一選択の薬剤は。",o:["高インスリン血症性低血糖症。ジアゾキシド","ケトン性低血糖症。糖の頻回投与","糖原病。コーンスターチ","副腎不全。ヒドロコルチゾン"],a:0,
+ e:"インスリンが脂肪分解とケトン産生を止めているので、ケトンが出ない低血糖になる。巨大児で発症する点も特徴。ジアゾキシド無効例にはオクトレオチドが用いられる。",r:"症例1 p.501-503"},
+{bk:"dm",c:"chi",q:"先天性高インスリン血症の原因遺伝子として最も多いのは。",o:["ABCC8・KCNJ11（ATP感受性Kチャネル）","GLUD1","GCK","HADH"],a:0,
+ e:"チャネルが閉じたままになりインスリンが出続ける。糖尿病を起こす機能亢進変異と、低血糖を起こす機能低下変異が同じ遺伝子から出る。",r:"表2 p.505 / p.505"},
+{bk:"dm",c:"chi",q:"限局型（focal）の先天性高インスリン血症の成立機序は。",o:["両アレルの変異","父由来の片アレル変異に、その領域で母由来アレルの脱落が加わる","母由来の変異のみ","後天性である"],a:1,
+ e:"限局型と分かれば病変部分のみの摘出で済み、術後の糖尿病発症リスクが大幅に下がる。18F-DOPA PETでの局在診断が意味をもつのはこのため。",r:"p.503 / p.505"},
+{bk:"dm",c:"chi",q:"GLUD1異常による高インスリン血症で特徴的なのは。",o:["高アンモニア血症を伴い、ロイシン感受性がある（HI/HA症候群）","低アンモニア血症","巨大児で発症する","ジアゾキシドが無効"],a:0,
+ e:"アンモニアの上昇は軽度で、正常範囲の症例も知られる。低血糖やけいれんが複数回みられる症例ではアンモニアを測る、という実務につながる。",r:"症例 p.505-507 / 文献7"},
+{bk:"dm",c:"chi",q:"高インスリン血症性低血糖症の治療の目標として最も重視されるのは。",o:["インスリン値の正常化","脳障害を防ぐため血糖を確保すること","体重増加","早期の手術"],a:1,
+ e:"診断に時間がかかっても、血糖を保つことは待てない。小児科・外科・内分泌代謝科のチームで診療することが必要とされている。",r:"p.501-503 / p.505"},
+
+/* 療養指導 */
+{bk:"dm",c:"edu",q:"小児糖尿病の総エネルギー量の目安として本書が挙げているのは。",o:["1,000 ＋ 年齢×100 kcal/日","500 ＋ 年齢×50 kcal/日","体重×30 kcal/日","制限しない"],a:0,
+ e:"厚生労働省の栄養所要量とほぼ一致する。糖尿病だからといって特別に減らすのではなく、必要かつ十分な量を入れる。",r:"p.509"},
+{bk:"dm",c:"edu",q:"糖質のうち砂糖の割合について本書が原則としているのは。",o:["禁止する","でんぷんの20%以内","制限しない","50%まで"],a:1,
+ e:"間食や菓子類を避ける必要はないが、それを摂るときのインスリン投与の習慣を教える。禁止ではなく運用として設計する。",r:"p.509-511"},
+{bk:"dm",c:"edu",q:"運動療法で血糖が下がる前提条件として述べられているのは。",o:["インスリンが十分に働いた状態（ある程度のコントロールがついた状態）であること","空腹であること","高強度であること","朝であること"],a:0,
+ e:"コントロール不良ではインスリン不足のため、運動でむしろ血糖が上がりケトン産生が進む。運動が常に血糖を下げるわけではない。",r:"p.512"},
+{bk:"dm",c:"edu",q:"本書が勧める運動の選び方は。",o:["競技性の高い運動","精神的負担をかけず、いつでもどこでも1人でできて、週3〜4回続けられる運動","毎日60分以上の高強度運動","運動は不要"],a:1,
+ e:"エレベーターやバスを使わない、といった生活の一部への組み入れが現実的。続かない処方は処方でない。",r:"p.512"},
+{bk:"dm",c:"edu",q:"学校や友人への説明について本書が述べているのは。",o:["隠すべきである","本来隠す内容ではなく、多くの人に説明しておくほうがよい","医師のみが説明する","説明は不要である"],a:1,
+ e:"低血糖時に助けてもらう必要がある。付き合いの長い友人には協力してもらう、という具体的な形で書かれている。",r:"p.513"},
+{bk:"dm",c:"edu",q:"1型糖尿病の診断時に本人・家族へ伝える内容として本書が挙げているのは。",o:["きちんと生活している先輩がたくさんいること、インスリンは年の単位で必要であろうこと、シックデイの対応","治癒すること","運動と食事の制限のみ","予後は不良であること"],a:0,
+ e:"制限の説明から入らない。できることと、続けかたから入る。特別扱いにしすぎない生活をさせることを努力している、と述べられている。",r:"p.465"},
+{bk:"dm",c:"edu",q:"1型糖尿病患者への喫煙・飲酒・運転についての助言として本書が示しているのは。",o:["喫煙は身体的にプラスになることはなく勧めない、飲酒は低血糖が誘発されやすい、運転前は血糖を測る","いずれも制限しない","すべて禁止する","成人後は助言不要"],a:0,
+ e:"禁止を言い渡すのではなく、なぜそうなるかを添える。思春期以降の患者に届く形の指導になっている。",r:"p.470"},
+/* ══════ 巻の十・総まとめ（横断） ══════ */
+{bk:"sum",c:"order",q:"下垂体機能低下症で複数のホルモンを補充するとき、必ず先に入れるのは。",o:["甲状腺ホルモン","ヒドロコルチゾン（副腎皮質ホルモン）","GH","性ステロイド"],a:1,
+ e:"甲状腺ホルモンはコルチゾール代謝を亢進させる。順序を誤ると副腎クリーゼを招く。甲状腺の章、副腎の章、腫瘍の章のいずれにも同じ原則が出てくる。",r:"巻の三 p.135 / 巻の六 / 巻の八 p.441"},
+{bk:"sum",c:"order",q:"ACTH分泌不全を伴う中枢性尿崩症で、コルチゾール補充を始めたときに起こることは。",o:["尿崩症が軽快する","隠れていた尿崩症が顕在化する（masked DI）","低血糖が悪化する","変化しない"],a:1,
+ e:"コルチゾール不足のあいだは自由水が排泄できず多尿が目立たない。巻の二では新生児の複合型下垂体機能低下症、巻の八では術後管理として、同じ現象が別の顔で出てくる。",r:"巻の二 p.96 / 巻の八 p.441"},
+{bk:"sum",c:"order",q:"副甲状腺摘出後にCaが9.3 mg/dLでしびれが出た。適切な対応は。",o:["基準値内なので経過観察","症状を優先してCaを補正する（hungry bone syndrome）","高Ca血症の再燃を疑う","利尿薬を投与する"],a:1,
+ e:"数値そのものではなく変化の速さが症状を作る。数値が正常でも症状があれば動く、という判断は他の場面にも通じる。",r:"巻の四 p.189-191"},
+{bk:"sum",c:"order",q:"21水酸化酵素欠損症でACTHが高値だった。まず行うべきなのは。",o:["直ちにヒドロコルチゾンを増量する","尿中P3と身長・体重の動きを確認する","デキサメタゾンへ変更する","フロリネフを増量する"],a:1,
+ e:"ACTHが高いというだけでは増量しない。抑えすぎは低身長と肥満を招き、30 mg/m2/日を超えると最終身長が悪化する。指標の選び方が治療結果を決める。",r:"巻の六 p.287 / p.301-303"},
+
+/* 軸とフィードバック */
+{bk:"sum",c:"axis",q:"原発性の内分泌腺機能低下症で、上位ホルモンが上昇していないときに考えるべきは。",o:["測定エラーのみ","中枢性（下垂体・視床下部）の障害、あるいは非甲状腺疾患などの修飾","原発性で矛盾しない","治療の影響はない"],a:1,
+ e:"TSHが上がらない甲状腺機能低下、LH/FSHが上がらない性腺機能低下、ACTHが上がらない副腎不全。いずれも上流を疑う合図になる。",r:"巻の三 p.114 / 巻の五 / 巻の六"},
+{bk:"sum",c:"axis",q:"受容体の機能獲得変異と機能喪失変異が、同じ遺伝子で逆の疾患を作る例として正しい組み合わせは。",o:["CaSR：機能獲得→低Ca血症／機能喪失→FHH（高Ca血症）","CaSR：機能獲得→高Ca血症","TSHR：機能獲得→甲状腺機能低下症","MC2R：機能獲得→副腎不全"],a:0,
+ e:"TSH受容体も同じで、機能獲得は非自己免疫性甲状腺機能亢進症になる。ATP感受性Kチャネル（KCNJ11/ABCC8）は機能亢進で新生児糖尿病、機能低下で高インスリン血症性低血糖と、方向が逆になる。",r:"巻の四 p.175-177 / 巻の三 p.147 / 巻の九 p.487・p.505"},
+{bk:"sum",c:"axis",q:"IGF-1が胎児期の成長に必須である一方、GHの寄与が小さいことを示す臨床的対比は。",o:["GH分泌不全児はほぼ正常身長で生まれるが、IGF1欠損では子宮内発育遅延を来す","両者とも子宮内発育遅延を来す","GH分泌不全でも小さく生まれる","IGF1欠損では出生時正常である"],a:0,
+ e:"1例の遺伝子欠損例が、教科書の一般則を実地で確かめている。同じ軸でも時期によって主役が変わる。",r:"巻の一 p.47-49"},
+{bk:"sum",c:"axis",q:"インプリンティングにより親由来で表現型が変わる疾患の組み合わせとして正しいのは。",o:["GNAS：母由来変異でPHP Ia、父由来変異でPPHP／POH","GNAS：父由来でPHP Ia","15q11-13：父由来でAngelman症候群","11p15.5：母由来でBeckwith-Wiedemann"],a:0,
+ e:"15q11-13は父由来の欠失でPrader-Willi、母由来でAngelman。11p15.5は父性優位側でBeckwith-Wiedemann。同じ座位でも親が変われば別の病気になる。",r:"巻の四 p.183-187 / 巻の五 p.251 / 巻の八 p.447"},
+{bk:"sum",c:"axis",q:"性分化における担当ホルモンの分業として正しいのは。",o:["Wolff管の維持＝テストステロン、外性器の男性化＝DHT、Müller管の退縮＝AMH","すべてテストステロンが担う","すべてDHTが担う","AMHが外性器を作る"],a:0,
+ e:"だから5α還元酵素欠損症では内性器は男性で外性器が女性寄りになり、完全型アンドロゲン不応症では子宮がなく、Swyer症候群では子宮が残る。",r:"巻の七 p.385 / p.369-381"},
+
+/* 検査値の読み方 */
+{bk:"sum",c:"read",q:"過去のカルテのGH頂値やHbA1cを読むときの原則は。",o:["数値をそのまま現在の基準で判断する","測定法と基準はセットで読む（GHは旧RIAで10 ng/mL、HbA1cはNGSP＝JDS＋0.4）","古い値は参考にしない","値は変わらない"],a:1,
+ e:"基準を知らずに数値だけを裁くと、当時「正常」とされた症例を取りこぼす。逆に病的と誤判定することもある。",r:"巻の一 p.87 / 巻の九 p.459"},
+{bk:"sum",c:"read",q:"血中濃度が「正常範囲」でも病的と判断できるのはどんなときか。",o:["常に正常と判断してよい","上がるべき場面で上がっていないとき（高浸透圧下のAVP、低Ca下のPTH、高血糖下のインスリンなど）","値は文脈に依存しない","下限を下回るときのみ"],a:1,
+ e:"内分泌の値は相手の刺激と対にして読む。この一点が、尿崩症・偽性副甲状腺機能低下症・高インスリン血症性低血糖に共通している。",r:"巻の二 p.90 / 巻の四 p.181 / 巻の九 p.501"},
+{bk:"sum",c:"read",q:"ホルモンの担体・貯蔵が臨床像を左右する例として正しいのは。",o:["ALS（IGFALS）欠損ではIGF-1・IGFBP-3が著明低値でも低身長は軽度","IGFBP-3が低ければ必ず重度の低身長になる","担体は臨床像に影響しない","三量体が減れば必ず成長が止まる"],a:0,
+ e:"総量と、組織に届く量は別物。測っている数値が何を表しているかを問い直す習慣につながる。",r:"巻の一 p.73-75"},
+{bk:"sum",c:"read",q:"重度の甲状腺機能低下状態で血中コルチゾールが高値をとりうる理由と、その臨床的意味は。",o:["コルチゾール代謝が落ちて血中値が保たれるため、ACTH分泌不全が隠れる","副腎が過形成になるため","測定干渉のため","意味はない"],a:0,
+ e:"ACTHが低値であることが手助けになる。1つの検査値の異常が、別の検査値の解釈を歪める、という関係を意識する。",r:"巻の三 p.135"},
+{bk:"sum",c:"read",q:"末梢血の染色体核型が全身を代表しないことがある疾患は。",o:["45,X/46,XYの混合型性腺形成不全とTurner症候群のモザイク","21トリソミー","Klinefelter症候群","すべて代表する"],a:0,
+ e:"組織によりモザイク比が異なる。口腔粘膜細胞のFISHや性腺組織での確認が要る。健常人でもモザイクは存在する。",r:"巻の七 p.329-331 / p.343"},
+
+/* 章をまたぐ鑑別 */
+{bk:"sum",v:"低身長で紹介された学童。この1年ほとんど伸びていないが、体重はむしろ増えた。",
+ c:"cross",q:"鑑別の優先順位として最も適切なのは。",o:["GH分泌不全症を最優先","甲状腺機能低下症とCushing症候群をまず考える","家族性低身長","体質性思春期遅発症"],a:1,
+ e:"成長率だけが落ちて体重が増える、という組は甲状腺機能低下症とCushing症候群に特徴的。GH分泌不全では通常ここまで極端に止まらない。巻の三と巻の八が同じ入口を共有している。",r:"巻の三 p.151-153 / 巻の八 p.451"},
+{bk:"sum",c:"cross",q:"成長率の低下を来す内分泌異常として、GH-IGF軸以外に挙げるべきものは。",o:["甲状腺機能低下症、コルチゾール過剰、性腺機能低下、中枢性尿崩症、ステロイド投与中","高血圧のみ","鉄欠乏のみ","なし"],a:0,
+ e:"低身長は内分泌全体の窓口になっている。だからGH刺激試験に飛びつく前に、他の軸をひととおり見る。",r:"巻の一 p.81 / 全巻共通"},
+{bk:"sum",v:"低身長の児に多尿・多飲が並んでいる。",
+ c:"cross",q:"考えるべきことは。",o:["水分摂取の習慣","鞍上部の器質性病変（胚細胞腫瘍など）。器質性のない中枢性尿崩症にGH分泌不全が合併することはまれ","腎機能障害","糖尿病のみ"],a:1,
+ e:"2つの軸が同時に落ちているなら、その両方を巻き込む場所を探す。初回画像が正常でも否定できず追跡が要る。",r:"巻の一 p.87-89 / 巻の二 p.90"},
+{bk:"sum",c:"cross",q:"甲状腺中毒症で抗甲状腺薬を出してはいけない病態と、その見分け方は。",o:["破壊性甲状腺炎。TRAb陰性・Tg高値・ヨード摂取率低値","Basedow病。TRAb陽性","TSH受容体機能獲得変異","中枢性甲状腺機能亢進症"],a:0,
+ e:"どちらもTSHは抑制される。取り込みの向きが逆になるところで分ける。治療が正反対になる代表例。",r:"巻の三 p.163"},
+{bk:"sum",c:"cross",q:"低ナトリウム血症で輸液の方向が正反対になる2病態は。",o:["SIADH（体液量は正〜過剰）とCSWS（脱水）","尿崩症とSIADH","副腎不全と腎不全","糖尿病と尿崩症"],a:0,
+ e:"Na値だけでは分けられず、決め手は体液量。副腎不全でも、グルココルチコイド欠乏（水中毒）とミネラルコルチコイド欠乏（脱水）で方向が変わる。",r:"巻の二 p.95 / 巻の六 p.275"},
+{bk:"sum",c:"cross",q:"低リン血症性くる病とビタミンD欠乏性くる病を分ける最も本質的な所見は。",o:["ALPの高さ","低リン血症に対して1,25(OH)2Dが上がっているかどうか","Ca値","X線所見"],a:1,
+ e:"欠乏性なら低リンに反応して1,25(OH)2Dは高値になる。FGF23過剰では1α水酸化が抑えられるので上がらない。血中FGF23（欠乏では20 pg/mL未満）も鑑別に使える。",r:"巻の四 p.205-209"},
+{bk:"sum",c:"cross",q:"「性徴は進むのに性腺が小さい」という所見が意味するのは。",o:["LHRH依存性（中枢性）思春期早発症","LHRH非依存性（末梢性）の性早熟。ただしhCG産生腫瘍は例外で精巣が腫大する","思春期遅発症","正常のバリエーション"],a:1,
+ e:"ゴナドトロピンを介さないので性腺が育たない。LHRH試験でLH頂値が前思春期レベルに抑制されていることが裏づけになる。",r:"巻の五 p.233 / p.237"},
+{bk:"sum",c:"cross",q:"低血糖の鑑別で最初に見る所見と、そこから分かれる方向は。",o:["ケトンの有無。陰性なら高インスリン血症性低血糖か脂肪酸酸化異常症","血糖の絶対値","年齢","体重"],a:0,
+ e:"低血糖のその場でIRI・遊離脂肪酸・ケトンを採らないと、後からは分けられない。critical sampleという考え方。",r:"巻の九 p.499"},
+{bk:"sum",c:"cross",q:"新生児期の低血糖・遷延性黄疸・小陰茎という組が示唆するのは。",o:["先天性の複合下垂体機能低下症（GH・ACTH分泌不全）","高インスリン血症性低血糖","甲状腺機能低下症","糖原病"],a:0,
+ e:"正中構造異常や視神経低形成を探し、頭部MRIへ。黄疸はコルチゾール分泌不全によると推定されている。巻の一と巻の二が同じ症例像を共有している。",r:"巻の一 p.71-73 / 巻の二 p.92-93"},
+{bk:"sum",c:"cross",q:"新生児マススクリーニングで17OHPが上昇する疾患として、21水酸化酵素欠損症以外に考えるべきは。",o:["P450オキシドレダクターゼ欠損症（PORD）","甲状腺機能低下症","フェニルケトン尿症","ガラクトース血症"],a:0,
+ e:"外性器の男性化に加え、頭蓋縫合早期癒合や橈尺骨癒合といった骨癒合異常があれば疑う。母体の男性化も手がかり。数値だけで決めない。",r:"巻の七 p.351-353 / 巻の六"},
+
+/* 取り違えの型 */
+{bk:"sum",c:"trap",q:"「基準値を満たすか」で判断すると最も取りこぼしやすいのは。",o:["身長が正常範囲内でも成長率が低下している症例","身長 −3 SD の症例","肥満症例","高身長症例"],a:0,
+ e:"低身長の定義は人為的に引いた線で、身長は連続量。成長率の低下があれば、絶対値が正常でも精査する。",r:"巻の一 p.77"},
+{bk:"sum",c:"trap",q:"「所見が揃っていないから否定」が誤りとなる例として正しいのは。",o:["HDR症候群で腎奇形を欠く例、McCune-Albright症候群で3徴が揃わない例、Turner症候群で月経がある例","所見が揃わなければ否定してよい","3徴は必ず揃う","例外はない"],a:0,
+ e:"モザイクや浸透率の差により、教科書的な三徴が揃わないことは珍しくない。1つの所見から疑いを立て続ける。",r:"巻の四 p.173 / 巻の五 p.237 / 巻の七 p.341"},
+{bk:"sum",c:"trap",q:"「初回の画像が正常だったから否定」が通用しない代表例は。",o:["中枢性尿崩症の背景にある胚細胞腫瘍","軟骨無形成症","Turner症候群","1型糖尿病"],a:0,
+ e:"後から顕在化する。特発性と診断された症例から胚細胞腫瘍やリンパ球性漏斗下垂体炎が判明することがある。",r:"巻の二 p.88-90"},
+{bk:"sum",c:"trap",q:"「今は単独だから今後も単独」と考えてはいけない代表例は。",o:["PROP1異常やMRI invisible stalk症候群でのACTH分泌不全の遅発出現","家族性低身長","体質性思春期遅発症","GCK異常症"],a:0,
+ e:"診断時に副腎が保たれていても追跡をやめない。時間軸のなかで表現型が変わる疾患群がある。",r:"巻の一 p.68-73"},
+{bk:"sum",c:"trap",q:"新生児で「電解質が正常だから副腎不全ではない」が誤りとなるのは。",o:["ACTH不応症（MC2R/MRAP）。糖質コルチコイド系だけが落ち鉱質コルチコイド系は保たれる","塩喪失型CAH","副腎低形成","すべて誤り"],a:0,
+ e:"色素沈着と低血糖が手がかりになる。1つの軸が保たれていることが、別の軸の破綻を隠す。",r:"巻の六 p.303"},
+{bk:"sum",c:"trap",q:"「思春期前にホルモン値が正常だったから否定」が通用しないのは。",o:["Klinefelter症候群（15歳以上でテストステロンが低下しゴナドトロピンが上昇）","Turner症候群","Prader-Willi症候群","副腎不全"],a:0,
+ e:"Turner症候群のゴナドトロピンも、乳幼児期に高値、その後低下、思春期年齢で再上昇と動く。年齢を踏まえて読む。",r:"巻の七 p.333 / p.342"},
+{bk:"sum",c:"trap",q:"「陰毛があるから性腺は働いている」が誤りとなる例は。",o:["Klinefelter症候群（精巣は5 mLを超えにくいが陰毛は生じる）と副腎由来のアンドロゲンによる陰毛","陰毛は常に性腺由来である","陰毛があれば性腺は正常","例外はない"],a:0,
+ e:"副腎由来のアンドロゲンでも陰毛は生じる。だから精巣容積を必ず測る。乳腺発達と精巣容積は別の情報。",r:"巻の七 p.267 / 巻の五"},
+{bk:"sum",c:"trap",q:"「治療反応が悪いから増量」の前に確認すべきことは。",o:["アドヒアランス、甲状腺機能、栄養状態、そして診断そのものの見直し","何も確認せず増量する","家族歴","体重のみ"],a:0,
+ e:"GH不応症であれば量を増やしても伸びない。効かない理由を探してから量を動かす。",r:"巻の一 p.75-81"},
+{bk:"sum",c:"trap",q:"「多尿だからDDAVPを増やす」が危険となるのは。",o:["習慣性多飲の症例、およびDDAVPが切れる時間を確保していない症例","中枢性尿崩症","腎性尿崩症","新生児"],a:0,
+ e:"水中毒による低Na血症とけいれんを来す。1日1回は必ず切らす、という原則が守られているかを先に確認する。",r:"巻の二 p.91 / p.104"},
+
+/* 説明と長期フォロー */
+{bk:"sum",c:"comm",q:"長期にわたる補充療法で、説明の力点として本書が繰り返し述べているのは。",o:["合併症を網羅的に説明する","治療の重要性の理解に重点を置き、ほぼ起こらない症状で不必要な不安を与えない","説明は最小限にする","副作用のみ説明する"],a:1,
+ e:"服薬が続くことが治療の実質になる。何を言うかと同じくらい、何を言わないかを設計する。",r:"巻の三 p.117"},
+{bk:"sum",c:"comm",q:"シックデイ指導で、副腎不全と尿崩症を併せもつ患者に伝えるべき方向は。",o:["両方とも増量する","ヒドロコルチゾンは増量し、DDAVPはむしろ切れる時間を確保する","両方とも中止する","水分を制限する"],a:1,
+ e:"ストレス時に足りなくなるのはコルチゾール。DDAVPは効きすぎが問題になる。方向が逆であることを患者に伝えておく。",r:"巻の二 p.96-97 / 巻の六 p.273"},
+{bk:"sum",c:"comm",q:"性分化疾患の本人への説明として本書が実践している姿勢は。",o:["成人まで伝えない","年齢に応じて「違うだけで、異常ではない」というスタンスが伝わるように話す","一度にすべて伝える","家族にのみ伝える"],a:1,
+ e:"染色体についても、男性はXY以外にXXYやXX、女性もX以外にXXXやX/XYといった例外がある、という幅のある事実として伝えている。",r:"巻の七 p.375-377 / p.393"},
+{bk:"sum",c:"comm",q:"思春期以降の慢性疾患患者の外来で本書が実践しているのは。",o:["親と必ず同席させる","母とは別に外来に来させ、本人が話したがる内容を聞くことを中心にする","受診間隔を延ばす","コントロールのみを議論する"],a:1,
+ e:"時期によってはコントロールを深追いしない。通院が途切れることのほうが害が大きい、という判断。糖尿病の章で明示されているが、他の慢性疾患にも通じる。",r:"巻の九 p.463-465"},
+{bk:"sum",c:"comm",q:"予後の説明で「必ず正常化する」と言えない例として本書が挙げているのは。",o:["甲状腺機能低下症とCushing症候群治療後の身長のキャッチアップ","GH治療の効果","糖尿病のコントロール","くる病の治癒"],a:0,
+ e:"早期に治療した症例ではほぼ回復するが、発見が遅れた症例では取り戻しきれない。過度の期待も過度の不安も与えない説明にする。",r:"巻の三 p.117 / 巻の八 p.454"},
+{bk:"sum",c:"comm",q:"遺伝性疾患の発端者を診断したときに広げるべき範囲は。",o:["本人のみ","家系（MEN2の家族の遺伝子診断、NR5A1異常での母の卵巣機能、SHOXやXLHの軽症女性など）","兄弟のみ","広げない"],a:1,
+ e:"児の診断が家系全体の情報を引き出す。逆に、家系の情報が児の診断を助けることもある。",r:"巻の八 p.449 / 巻の七 p.371 / 巻の一 p.67"},
+{bk:"sum",c:"comm",q:"多職種チームでの診療が必要とされる代表的な場面として挙げられているのは。",o:["性分化疾患の性別決定・手術・説明の時期","低身長のGH治療","甲状腺機能低下症の補充","くる病の治療"],a:0,
+ e:"小児外科・泌尿器科・産婦人科・心理を含む定期的なカンファレンスとして運用されている例が示されている。一つの科では決められない問題がある。",r:"巻の七 p.397 / p.349"},
+{bk:"sum",c:"comm",q:"小児期の治療が終わった後も続く課題として本書が挙げているのは。",o:["治療は終了する","成人期への移行（成人GH分泌不全症の再評価、移行期医療のチェックリスト）","経過観察のみ","家族に引き継ぐ"],a:1,
+ e:"病態は年齢で終わらない。移行は書類ではなく、本人の理解と自立の受け渡しとして設計する。",r:"巻の八 p.439 / 巻の九 p.462-463"}
+];
+
+/* ═══════════ 段位 ═══════════ */
+const RANKS=[
+ {n:"見習い",x:0},{n:"入門",x:150},{n:"初伝",x:400},{n:"中伝",x:800},{n:"奥伝",x:1400},
+ {n:"目録",x:2200},{n:"免許",x:3200},{n:"印可",x:4500},{n:"皆伝",x:6000},{n:"極意",x:8000}
+];
+/* 巻。ready:true が収録済み。Q に v: を書かない問は growth 扱い */
+const VOLS=[
+ {k:"growth",no:"一",n:"成長障害",ready:true},
+ {k:"water", no:"二",n:"水代謝異常",ready:true},
+ {k:"thy",   no:"三",n:"甲状腺",ready:true},
+ {k:"ca",    no:"四",n:"カルシウム・骨",ready:true},
+ {k:"pub",   no:"五",n:"思春期発来異常",ready:true},
+ {k:"adr",   no:"六",n:"副腎",ready:true},
+ {k:"dsd",   no:"七",n:"性分化疾患",ready:true},
+ {k:"tum",   no:"八",n:"腫瘍",ready:true},
+ {k:"dm",    no:"九",n:"糖尿病・肥満・低血糖",ready:true},
+ {k:"sum",   no:"十",n:"総まとめ（横断）",ready:true}
+];
+/* 巻ごとに連番で id を振る。巻の内部で末尾に追記するかぎり id は不変 */
+(function(){const ctr={};Q.forEach(q=>{const b=q.bk||"growth";q.bk=b;ctr[b]=(ctr[b]||0)+1;
+  q.id=b+"-"+String(ctr[b]).padStart(3,"0")})})();
+const BYID={};Q.forEach(q=>BYID[q.id]=q);
+
+const KEY="shugyo_endo_v2";
+const OLDKEY="shugyo_endo_growth_v1";
+const DAY=864e5, INT=[1,1,3,7,21];   /* box0（落とした問）も翌日。0だと即再出題され同じ問が居座る */
+
+let S=load();
+function blank(){return{xp:0,rank:0,streak:0,best:0,ans:0,ok:0,days:[],cards:{},vol:"all",log:{}}}
+/* 日付を並べ替え可能な形に揃える。旧版の "2026-8-9" 形式も受ける */
+function isoOf(d){const m=String(d).match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  return m?m[1]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[3]).padStart(2,"0"):null}
+function todayISO(){const d=new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function logToday(){const k=todayISO();return S.log[k]||(S.log[k]={a:0,o:0,m:0})}
+/* 到達度。箱の合計を満点(4×全問)で割った値。1問ごとに動くので伸びが見える。
+   「熟した問(箱3以上)」は数日かからないと動かず、序盤がずっと0になるため指標にしない */
+function progressNow(){let n=0;for(const id in S.cards)n+=S.cards[id].box;return n}
+function progressMax(){return Q.length*4}
+function load(){
+  try{
+    const r=localStorage.getItem(KEY);
+    if(r){const st=Object.assign(blank(),JSON.parse(r));st.log=st.log||{};return st}
+    // 旧版（配列番号キー）からの移行。巻の一の並び順は変えていないので番号で引ける
+    const o=localStorage.getItem(OLDKEY);
+    if(o){
+      const old=JSON.parse(o),st=Object.assign(blank(),old),nc={};
+      for(const k in (old.cards||{})){
+        const q=Q[Number(k)];
+        if(q)nc[q.id]=old.cards[k];
+      }
+      st.cards=nc;st.vol="all";
+      localStorage.setItem(KEY,JSON.stringify(st));
+      return st;
+    }
+  }catch(e){}
+  return blank();
+}
+let DB=null, dbReady=false, dbTimer=null;
+function setSaveMsg(t,warn){
+  const el=document.getElementById("saveState");
+  if(el){el.textContent=t;el.style.color=warn?"var(--shu-lt)":"var(--gofun-dim)"}
+}
+/* 端末のブラウザ保存に加えて、使えるならサーバー側にも置く。
+   公開ページの閲覧環境によってはブラウザ保存が残らないため */
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+  if(DB){
+    clearTimeout(dbTimer);
+    dbTimer=setTimeout(()=>{
+      DB.doc("data/users/me/progress").set({s:JSON.stringify(S),at:Date.now()})
+        .then(()=>setSaveMsg("サーバーに保存済み"))
+        .catch(()=>setSaveMsg("サーバーに保存できなかった。書き出しで控えを取る。",true));
+    },700);
+  }
+}
+async function initDB(){
+  let db=null;
+  try{db=await claude.use("db")}catch(e){}
+  if(!db){
+    setSaveMsg(storageWorks()?"この端末のブラウザにのみ保存":"保存できない環境。記録は閉じると消える。書き出しで控えを取る。", !storageWorks());
+    return;
+  }
+  DB=db;dbReady=true;
+  try{
+    const snap=await DB.doc("data/users/me/progress").get();
+    if(snap.exists){
+      const d=snap.data(), remote=JSON.parse(d.s||"{}");
+      /* 解いた問数の多いほうを採る */
+      if((remote.ans||0) > (S.ans||0)){
+        S=Object.assign(blank(),remote);S.log=S.log||{};
+        try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+        renderHome();
+        setSaveMsg("サーバーの記録を読み込んだ");
+        return;
+      }
+    }
+    if(S.ans>0)save();
+    setSaveMsg("サーバーに保存済み");
+  }catch(e){
+    setSaveMsg("サーバーを読めなかった。この端末にのみ保存。",true);
+  }
+}
+/* ブラウザ保存が本当に効くかを実地で試す */
+function storageWorks(){
+  try{localStorage.setItem("__t","1");const v=localStorage.getItem("__t");
+      localStorage.removeItem("__t");return v==="1"}catch(e){return false}
+}
+function today(){const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function card(id){return S.cards[id]||(S.cards[id]={box:0,due:0,seen:0,ok:0})}
+function pool(){return S.vol==="all"?Q:Q.filter(q=>q.bk===S.vol)}
+
+/* ═══════════ 画面 ═══════════ */
+function tab(v,el){
+  document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));
+  document.getElementById("v-"+v).classList.add("on");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("on"));
+  el.classList.add("on");
+  if(v==="self")renderSelf();
+  window.scrollTo(0,0);
+}
+function renderXP(){
+  const r=S.rank, cur=RANKS[r], nxt=RANKS[r+1];
+  document.getElementById("rankName").textContent=cur.n;
+  if(nxt){
+    const p=(S.xp-cur.x)/(nxt.x-cur.x)*100;
+    document.getElementById("xpfill").style.width=Math.max(2,Math.min(100,p))+"%";
+    document.getElementById("xpText").textContent=S.xp+" / "+nxt.x;
+  }else{
+    document.getElementById("xpfill").style.width="100%";
+    document.getElementById("xpText").textContent=S.xp+" 　極";
+  }
+}
+function renderVols(){
+  const box=document.getElementById("volchips");box.innerHTML="";
+  const all=document.createElement("button");
+  all.className="chip"+(S.vol==="all"?" on":"");
+  all.innerHTML='通し稽古<small>'+Q.length+'問</small>';
+  all.onclick=()=>{S.vol="all";save();renderVols();renderHome()};
+  box.appendChild(all);
+  VOLS.forEach(v=>{
+    const n=Q.filter(q=>q.bk===v.k).length;
+    const b=document.createElement("button");
+    b.className="chip"+(v.ready&&n?(S.vol===v.k?" on":""):" soon");
+    b.innerHTML="巻の"+v.no+"　"+v.n+(v.ready&&n?'<small>'+n+'問</small>':'<small>未収録</small>');
+    if(v.ready&&n)b.onclick=()=>{S.vol=v.k;save();renderVols();renderHome()};
+    box.appendChild(b);
+  });
+}
+/* 1問目から動く「触れた割合」を薄い帯に、固まった「熟した割合」を濃い帯に重ねる。
+   熟（箱3以上）だけを指標にすると、箱3まで最低4日かかり序盤がずっと0%になる */
+function statOf(ids){
+  let sum=0,seen=0,mast=0;
+  ids.forEach(id=>{const c=S.cards[id];if(!c)return;
+    seen++;sum+=c.box;if(c.box>=3)mast++});
+  /* 薄い帯＝触れた割合、濃い帯＝熟した割合。触れた ≧ 熟した なので帯がはみ出さない */
+  return{prog:Math.round(seen/ids.length*100),
+         mastPct:Math.round(mast/ids.length*100),
+         seen:seen,mast:mast,sum:sum};
+}
+function barHTML(st){
+  return '<div class="bar">'+
+    '<i class="prog" style="width:'+st.prog+'%"></i>'+
+    '<i class="mast" style="width:'+st.mastPct+'%"></i></div>';
+}
+function renderVolBars(){
+  const box=document.getElementById("volbars");box.innerHTML="";
+  let any=false;
+  VOLS.forEach(v=>{
+    const ids=Q.filter(q=>q.bk===v.k).map(q=>q.id);
+    if(!ids.length)return;
+    any=true;
+    const st=statOf(ids);
+    const d=document.createElement("div");d.className="catrow";
+    d.innerHTML='<div class="top"><span>巻の'+v.no+'　'+v.n+'</span>'+
+      '<span>'+st.mast+'熟 ・ '+st.seen+'触 / '+ids.length+'</span></div>'+barHTML(st);
+    box.appendChild(d);
+  });
+  if(!any)box.innerHTML='<div class="exp">まだ巻が入っていません。</div>';
+}
+function renderHome(){
+  renderVols();
+  const cv=VOLS.find(v=>v.k===S.vol);
+  document.getElementById("nowVol").textContent = cv ? "巻の"+cv.no+"　"+cv.n : "通し稽古";
+  const now=Date.now();
+  let due=0,nw=0;
+  pool().forEach(q=>{const c=S.cards[q.id];if(!c)nw++;else if(c.due<=now)due++;});
+  document.getElementById("dueN").textContent=due;
+  document.getElementById("newN").textContent=nw;
+  document.getElementById("streakN").textContent=S.streak;
+  renderXP();
+}
+/* 連続修行日数。旧版の days と新しい log の両方を見る */
+function activeDays(){
+  const set=new Set();
+  (S.days||[]).forEach(d=>{const k=isoOf(d);if(k)set.add(k)});
+  for(const k in S.log)if(S.log[k].a>0)set.add(k);
+  return set;
+}
+function streakDays(){
+  const set=activeDays();
+  if(!set.size)return{now:0,best:0};
+  const d=new Date();let now=0;
+  /* きょう未修行なら、きのうから数えはじめる */
+  const k0=todayISO();
+  if(!set.has(k0))d.setDate(d.getDate()-1);
+  for(;;){
+    const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    if(!set.has(k))break;
+    now++;d.setDate(d.getDate()-1);
+  }
+  const all=[...set].sort();let best=0,run=0,prev=null;
+  all.forEach(k=>{
+    if(prev){const g=(new Date(k)-new Date(prev))/86400000;run = g===1?run+1:1}else run=1;
+    if(run>best)best=run;prev=k;
+  });
+  return{now:now,best:Math.max(best,now)};
+}
+function lastDays(n){
+  const out=[],d=new Date();
+  d.setDate(d.getDate()-(n-1));
+  for(let i=0;i<n;i++){
+    const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    out.push({k:k,d:new Date(d),v:S.log[k]||null});
+    d.setDate(d.getDate()+1);
+  }
+  return out;
+}
+function renderMixups(){
+  const box=document.getElementById("mixups");box.innerHTML="";
+  const rows=[];
+  for(const id in S.cards){
+    const c=S.cards[id],q=BYID[id];
+    if(!c.w||!q)continue;
+    for(const k in c.w){
+      if(c.w[k]>=2)rows.push({q:q,pick:Number(k),n:c.w[k]});
+    }
+  }
+  rows.sort((a,b)=>b.n-a.n);
+  if(!rows.length){
+    box.innerHTML='<div class="exp" style="margin-top:6px">まだありません。同じ誤答を二度えらぶと、その中身がここに残ります。</div>';
+    return;
+  }
+  rows.slice(0,12).forEach(r=>{
+    const d=document.createElement("div");d.className="mixup";
+    d.innerHTML='<div class="mx-q">'+r.q.q+'</div>'+
+      '<div class="mx-line"><span class="mx-bad">えらんだ</span>'+r.q.o[r.pick]+'</div>'+
+      '<div class="mx-line"><span class="mx-ok">正</span>'+r.q.o[r.q.a]+'</div>'+
+      '<div class="mx-n">'+CATS[r.q.c]+'　'+r.n+'回</div>';
+    box.appendChild(d);
+  });
+}
+function drawBars(){
+  const days=lastDays(14);
+  const act=activeDays();   /* 日ごとの記録を始める前に修行した日 */
+  const max=Math.max(1,...days.map(d=>d.v?d.v.a:0));
+  const W=320,H=88,pad=14,bw=(W-2)/14;
+  let g="";
+  days.forEach((d,i)=>{
+    const a=d.v?d.v.a:0,o=d.v?d.v.o:0;
+    const h=a?Math.max(3,Math.round((a/max)*(H-pad-14))):0;
+    const x=i*bw+2, y=H-pad-h, w=bw-4;
+    const oh=a?Math.round(h*(o/a)):0;
+    if(h){
+      g+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="1" fill="rgba(234,228,214,.16)"/>';
+      if(oh)g+='<rect x="'+x+'" y="'+(H-pad-oh)+'" width="'+w+'" height="'+oh+'" rx="1" fill="#C9A227"/>';
+      g+='<text x="'+(x+w/2)+'" y="'+(y-4)+'" fill="#9AA3B4" font-size="8" text-anchor="middle" font-family="sans-serif">'+a+'</text>';
+    }else if(act.has(d.k)){
+      /* 修行した記録はあるが問数が残っていない日（この機能より前） */
+      g+='<rect x="'+x+'" y="'+(H-pad-10)+'" width="'+w+'" height="10" rx="1" fill="none" stroke="rgba(201,162,39,.45)" stroke-width="1" stroke-dasharray="2 2"/>';
+    }else{
+      g+='<rect x="'+x+'" y="'+(H-pad-2)+'" width="'+w+'" height="2" rx="1" fill="rgba(234,228,214,.09)"/>';
+    }
+    if(i%3===0||i===13)g+='<text x="'+(x+w/2)+'" y="'+(H-3)+'" fill="#9AA3B4" font-size="8" text-anchor="middle" font-family="sans-serif">'+(d.d.getMonth()+1)+"/"+d.d.getDate()+'</text>';
+  });
+  const oldDays=days.filter(d=>!d.v&&act.has(d.k)).length;
+  document.getElementById("barChart").innerHTML=
+    '<div class="chartwrap"><svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+g+'</svg></div>'+
+    (oldDays?'<div class="note" style="margin-top:6px">破線は修行した記録のある日。問数を残しはじめる前なので本数は不明。</div>':'');
+}
+function drawLine(){
+  const days=lastDays(30).filter(d=>d.v&&d.v.m!=null);
+  const box=document.getElementById("lineChart");
+  if(days.length<2){
+    box.innerHTML='<div class="note" style="margin:0">数日ぶんの記録が溜まると線が引かれる。</div>';
+    return;
+  }
+  const W=320,H=88,pad=16;
+  const vals=days.map(d=>d.v.m);
+  const max=Math.max(progressMax()*0.08,...vals,1),min=0;
+  const n=days.length;
+  const px=i=>2+(i/(n-1))*(W-4);
+  const py=v=>H-pad-((v-min)/(max-min||1))*(H-pad-10);
+  let path="",area="";
+  days.forEach((d,i)=>{path+=(i?" L":"M")+px(i).toFixed(1)+","+py(d.v.m).toFixed(1)});
+  area="M"+px(0).toFixed(1)+","+(H-pad)+" "+path.slice(1)+" L"+px(n-1).toFixed(1)+","+(H-pad)+" Z";
+  const last=vals[vals.length-1];
+  box.innerHTML='<div class="chartwrap"><svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+
+    '<path d="'+area+'" fill="rgba(201,162,39,.13)"/>'+
+    '<path d="'+path+'" fill="none" stroke="#C9A227" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<circle cx="'+px(n-1).toFixed(1)+'" cy="'+py(last).toFixed(1)+'" r="2.6" fill="#E7CE7E"/>'+
+    '<text x="'+(W-3)+'" y="'+Math.max(10,py(last)-6).toFixed(1)+'" fill="#E7CE7E" font-size="9" text-anchor="end" font-family="sans-serif">'+(Math.round(last/progressMax()*1000)/10)+'%</text>'+
+    '<line x1="2" y1="'+(H-pad)+'" x2="'+(W-2)+'" y2="'+(H-pad)+'" stroke="rgba(201,162,39,.22)" stroke-width="1"/>'+
+    '</svg></div>';
+}
+function renderDash(){
+  const st=streakDays();
+  document.getElementById("dStreak").textContent=st.now;
+  document.getElementById("dBest").textContent=st.best;
+  const t=S.log[todayISO()];
+  document.getElementById("dToday").textContent=t?t.a:0;
+  const w=lastDays(7).reduce((s,d)=>{if(d.v){s.a+=d.v.a;s.o+=d.v.o}return s},{a:0,o:0});
+  document.getElementById("dAcc7").textContent=w.a?Math.round(w.o/w.a*100)+"%":"―";
+  drawBars();drawLine();
+}
+function renderSelf(){
+  /* 見に来た時点の熟練度を当日ぶんとして記録しておく */
+  if(S.ans>0){const lg=S.log[todayISO()];if(lg)lg.m=progressNow();}
+  renderDash();renderVolBars();renderMixups();
+  /* 通し稽古では分野が61項目になり読めないので、巻を選んだときだけ出す */
+  document.getElementById("catcard").style.display = (S.vol==="all") ? "none" : "";
+  document.getElementById("sDays").textContent=S.days.length;
+  document.getElementById("sAns").textContent=S.ans;
+  document.getElementById("sAcc").textContent=S.ans?Math.round(S.ok/S.ans*100)+"%":"―";
+  let lk=0,lkq=0;
+  for(const k in S.cards){if(S.cards[k].luck){lk+=S.cards[k].luck;lkq++}}
+  document.getElementById("luckNote").textContent = lk
+    ? "まぐれ当たりの申告 "+lk+"回（"+lkq+"問）。正答率にも反映されている。"
+    : "正答率は、まぐれ当たりの申告を差し引いた値。";
+  const box=document.getElementById("catbars");box.innerHTML="";
+  const seals=document.getElementById("sealbox");seals.innerHTML="";
+  const P=pool();
+  for(const k in CATS){
+    const ids=P.filter(q=>q.c===k).map(q=>q.id);
+    if(!ids.length)continue;
+    const st=statOf(ids);
+    const pct=Math.round(st.mast/ids.length*100);
+    const d=document.createElement("div");d.className="catrow";
+    d.innerHTML='<div class="top"><span>'+CATS[k]+'</span>'+
+      '<span>'+st.mast+'熟 ・ '+st.seen+'触 / '+ids.length+'</span></div>'+barHTML(st);
+    box.appendChild(d);
+    const s=document.createElement("div");
+    s.className="seal"+(pct>=80?" done":"");
+    s.textContent=SEAL[k];s.title=CATS[k]+"　"+pct+"%";
+    seals.appendChild(s);
+  }
+  renderXP();
+}
+
+/* ═══════════ 出題 ═══════════ */
+let sess=[],pos=0,got=0,gainXp=0,answered=false,order=[];
+
+function start(n){
+  const now=Date.now();
+  const due=[],nw=[],P=pool();
+  P.forEach(q=>{const c=S.cards[q.id];if(!c)nw.push(q.id);else if(c.due<=now)due.push(q.id)});
+  shuffle(due);shuffle(nw);
+  /* 復習だけで埋め尽くさない。半分以上は復習、残りは未見を混ぜる */
+  const maxDue = n>=999 ? due.length : Math.max(1,Math.ceil(n*0.6));
+  sess=due.slice(0,maxDue);
+  if(sess.length<n)sess=sess.concat(nw.slice(0,n-sess.length));
+  if(sess.length<n)sess=sess.concat(due.slice(maxDue,maxDue+(n-sess.length)));
+  shuffle(sess);
+  if(!sess.length){
+    // 全部先送り済み → 直近の弱点を回す
+    const all=P.map(q=>q.id).filter(id=>S.cards[id]);
+    all.sort((a,b)=>S.cards[a].due-S.cards[b].due);
+    sess=all.slice(0,Math.min(n,10));
+  }
+  if(!sess.length){alert("問がありません");return}
+  pos=0;got=0;gainXp=0;
+  if(!S.days.includes(today())){S.days.push(today());gainXp+=20;S.xp+=20;levelCheck();}
+  document.getElementById("home").style.display="none";
+  document.getElementById("result").style.display="none";
+  document.getElementById("quiz").style.display="block";
+  show();
+}
+function show(){
+  answered=false;
+  const q=BYID[sess[pos]];
+  document.getElementById("qcat").textContent=CATS[q.c];
+  document.getElementById("qprog").textContent=(pos+1)+" / "+sess.length;
+  const v=document.getElementById("qvig");
+  if(q.v){v.textContent=q.v;v.style.display="block"}else{v.style.display="none"}
+  document.getElementById("qtext").textContent=q.q;
+  const marks=["一","二","三","四"];
+  order=q.o.map((_,i)=>i);shuffle(order);
+  const box=document.getElementById("qchoices");box.innerHTML="";
+  order.forEach((orig,slot)=>{
+    const b=document.createElement("button");
+    b.className="choice";
+    b.innerHTML='<span class="mark">'+marks[slot]+'</span><span>'+q.o[orig]+'</span>';
+    b.onclick=()=>answer(orig);
+    box.appendChild(b);
+  });
+  document.getElementById("verdict").style.display="none";
+  document.getElementById("luckBtn").style.display="none";
+  document.getElementById("nextBtn").style.display="none";
+  window.scrollTo(0,0);
+}
+function answer(pick){
+  if(answered)return;answered=true;
+  const id=sess[pos],q=BYID[id],c=card(id);
+  const right=pick===q.a, first=c.seen===0;
+  const btns=document.querySelectorAll("#qchoices .choice");
+  btns.forEach((b,slot)=>{const orig=order[slot];b.disabled=true;
+    if(orig===q.a)b.classList.add("right");else if(orig===pick)b.classList.add("wrong")});
+
+  let xp = right ? (first?12:7) : 3;
+  if(right){
+    got++;S.ok++;S.streak++;if(S.streak>S.best)S.best=S.streak;
+    if(S.streak%5===0)xp+=15;
+    c.box=Math.min(4,c.box+1);c.ok++;
+  }else{
+    S.streak=0;c.box=0;
+    c.w=c.w||{};c.w[pick]=(c.w[pick]||0)+1;   /* どの誤答を選んだかを記録 */
+  }
+  c.seen++;c.due=Date.now()+INT[c.box]*DAY;
+  S.ans++;S.xp+=xp;gainXp+=xp;
+  const lg=logToday();lg.a++;if(right)lg.o++;lg.m=progressNow();
+
+  document.getElementById("vhead").className="vhead "+(right?"ok":"ng");
+  document.getElementById("vhead").innerHTML=(right?"正":"否")+'<span class="xpgain">+'+xp+'</span>';
+  document.getElementById("vexp").textContent=q.e;
+  document.getElementById("vref").textContent="出典　"+q.r+(right?"　次は"+["明日","明日","3日後","7日後","3週間後"][c.box]:"　明日また来る");
+  document.getElementById("verdict").style.display="block";
+  const lb=document.getElementById("luckBtn");
+  lb.style.display = right ? "block" : "none";
+  lb.disabled=false; lb.textContent="まぐれ当たり ― 明日また出す";
+  document.getElementById("nextBtn").style.display="block";
+  document.getElementById("nextBtn").textContent = pos===sess.length-1 ? "修行を終える" : "次の問へ";
+  levelCheck();save();renderXP();
+}
+/* まぐれ当たりの自己申告。理解していない問が3週間先へ飛ぶのを防ぐ。
+   得点は減らさない（正直に申告することを罰しない）。成績と間隔だけを実態に合わせる。 */
+function markLuck(){
+  const id=sess[pos],c=card(id);
+  c.box=0;c.due=Date.now()+DAY;
+  c.luck=(c.luck||0)+1;
+  if(got>0)got--;
+  if(S.ok>0)S.ok--;
+  const lg=logToday();if(lg.o>0)lg.o--;lg.m=progressNow();
+  const lb=document.getElementById("luckBtn");
+  lb.disabled=true;lb.textContent="申告しました ― 明日また出します";
+  document.getElementById("vref").textContent=
+    "出典　"+BYID[id].r+"　まぐれ申告のため明日また来る";
+  save();
+}
+function next(){
+  pos++;
+  if(pos>=sess.length)finish();else show();
+}
+/* 途中でやめる。答えた分はその時点で保存済みなので、残りを捨てて戻るだけ */
+function abortSession(){
+  const done=pos+(answered?1:0);
+  if(!done){home();return}
+  sess=sess.slice(0,done);
+  finish(true);
+}
+function finish(aborted){
+  document.getElementById("quiz").style.display="none";
+  document.getElementById("result").style.display="block";
+  document.getElementById("rScore").textContent=got+" / "+sess.length;
+  document.getElementById("rXp").textContent=(aborted?"中断　":"")+"得点 +"+gainXp+"　連撃 "+S.streak;
+  document.querySelector("#result .eyebrow").textContent=aborted?"中断":"修了";
+  const weak={};
+  sess.forEach(id=>{const c=S.cards[id];if(c&&c.box===0)weak[BYID[id].c]=(weak[BYID[id].c]||0)+1});
+  const ks=Object.keys(weak);
+  document.getElementById("rWeak").innerHTML = ks.length
+    ? '<div class="eyebrow">残った課題</div><div class="exp" style="margin-top:6px">'+ks.map(k=>CATS[k]+" "+weak[k]+"問").join("　／　")+'</div>'
+    : '<div class="eyebrow">残った課題</div><div class="exp" style="margin-top:6px">なし。積み残しゼロ。</div>';
+  save();renderHome();window.scrollTo(0,0);
+}
+function home(){
+  document.getElementById("result").style.display="none";
+  document.getElementById("home").style.display="block";
+  renderHome();
+}
+function levelCheck(){
+  let r=S.rank;
+  while(RANKS[r+1]&&S.xp>=RANKS[r+1].x)r++;
+  if(r!==S.rank){
+    S.rank=r;
+    document.getElementById("stampRank").textContent=RANKS[r].n;
+    document.getElementById("stamp").classList.add("on");
+    setTimeout(()=>document.getElementById("stamp").classList.remove("on"),2200);
+  }
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}}
+function exportRec(){
+  const ta=document.getElementById("recBox");
+  ta.value=JSON.stringify(S);
+  ta.select();ta.setSelectionRange(0,ta.value.length);
+  let copied=false;
+  try{copied=document.execCommand("copy")}catch(e){}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(()=>{
+      document.getElementById("recMsg").textContent="書き出してコピーした。移った先で貼りつけて読み込む。";
+    }).catch(()=>{
+      document.getElementById("recMsg").textContent=copied
+        ?"書き出してコピーした。":"書き出した。上の文字列を長押しして全部コピーする。";
+    });
+  }else{
+    document.getElementById("recMsg").textContent=copied
+      ?"書き出してコピーした。":"書き出した。上の文字列を長押しして全部コピーする。";
+  }
+}
+function importRec(){
+  const msg=document.getElementById("recMsg");
+  const raw=document.getElementById("recBox").value.trim();
+  if(!raw){msg.textContent="先に記録の文字列を貼りつける。";return}
+  let d;
+  try{d=JSON.parse(raw)}catch(e){msg.textContent="読み取れない。文字列が途中で切れていないか確かめる。";return}
+  if(!d||typeof d!=="object"||!d.cards){msg.textContent="この修行巻物の記録ではないようだ。";return}
+  const n=Object.keys(d.cards).length;
+  if(!confirm("この端末の記録を、読み込んだ記録("+n+"問ぶん)で置き換えます。よろしいですか。"))return;
+  S=Object.assign(blank(),d);S.log=S.log||{};
+  save();renderHome();renderSelf();
+  msg.textContent="読み込んだ。"+n+"問ぶんの記録と段位を引き継いだ。";
+}
+function wipe(){
+  if(!confirm("すべての記録と段位を消します。よろしいですか。"))return;
+  S=blank();save();renderHome();renderSelf();
+}
+renderHome();
+if(window.claude&&claude.use)initDB();
+else setSaveMsg(storageWorks()?"この端末のブラウザにのみ保存":"保存できない環境。記録は閉じると消える。書き出しで控えを取る。", !storageWorks());
+</script>
+</body>
+</html>
