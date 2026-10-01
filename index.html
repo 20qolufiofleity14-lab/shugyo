@@ -242,6 +242,55 @@ summary::before{content:"● ";color:var(--acc);font-size:11px;vertical-align:.1
 details[open] summary::before{content:"▼ ";color:var(--acc2)}
 
 /* ── 己（記録）── */
+
+.goalchips{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.goalchips .chip{padding:8px 0;font-size:12.5px;text-align:center;letter-spacing:0}
+.achmini{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 2px;min-height:34px;align-items:center}
+.achdot{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.achdot.rN{background:#93A3BC}.achdot.rR{background:#5BB0FF}
+.achdot.rSR{background:#C77DFF}
+.achdot.rSSR{background:linear-gradient(135deg,#FFD54A,#FF6FB5)}
+.achnone{font-size:12px;color:var(--dim)}
+#achSum b{font-family:var(--mincho);font-size:19px;color:var(--acc)}
+.achgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0 4px}
+.achic{aspect-ratio:1;font-size:20px;border-radius:12px;border:1px solid var(--edge);cursor:pointer;
+  background:rgba(255,255,255,.05);color:var(--dim);
+  font-family:var(--mincho);font-size:19px;line-height:1;padding:0;
+  display:flex;align-items:center;justify-content:center;transition:transform .12s}
+.achic:active{transform:scale(.92)}
+.achic.sel{outline:2px solid var(--acc);outline-offset:1px}
+.achic.on{color:#1a1030;border-color:transparent;font-weight:600}
+.achic.on.rN{background:#93A3BC}
+.achic.on.rR{background:#5BB0FF}
+.achic.on.rSR{background:#C77DFF}
+.achic.on.rSSR{background:linear-gradient(135deg,#FFD54A,#FF6FB5);color:#2A1055;
+  box-shadow:0 0 14px rgba(255,111,181,.5)}
+.achdet{margin-top:14px;padding:13px;border-radius:12px;border:1px solid var(--edge);
+  background:var(--tile,rgba(255,255,255,.05))}
+.achdet.on{border-color:var(--acc)}
+.achtag2{display:inline-block;font-family:var(--gothic);font-weight:900;font-size:10px;
+  letter-spacing:.08em;padding:2px 9px;border-radius:99px;margin-bottom:6px;color:#1a1030}
+.achtag2.rN{background:#93A3BC}
+.achtag2.rR{background:#5BB0FF}
+.achtag2.rSR{background:#C77DFF}
+.achtag2.rSSR{background:linear-gradient(90deg,#FFD54A,#FF6FB5);color:#2A1055}
+.ach{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--edge);opacity:.55}
+.ach:last-child{border-bottom:0}
+.ach.on{opacity:1}
+.achtag{flex:none;width:42px;text-align:center;font-family:var(--gothic);font-weight:900;font-size:10.5px;
+  letter-spacing:.06em;padding:4px 0;border-radius:99px;background:rgba(255,255,255,.1);color:var(--dim)}
+.ach.on.rN .achtag{background:#93A3BC;color:#1a1030}
+.ach.on.rR .achtag{background:#5BB0FF;color:#101a30}
+.ach.on.rSR .achtag{background:#C77DFF;color:#1a1030}
+.ach.on.rSSR .achtag{background:linear-gradient(90deg,#FFD54A,#FF6FB5);color:#2A1055}
+.achbody{flex:1;min-width:0}
+.achn{font-family:var(--mincho);font-size:15px;color:var(--ink);line-height:1.4}
+.achok{font-family:var(--gothic);font-size:10px;font-weight:800;color:#2A1055;
+  background:linear-gradient(90deg,#FFE27A,#FFC24A);border-radius:99px;padding:1px 8px;margin-left:5px;vertical-align:2px}
+.achd{font-size:11.5px;color:var(--dim);margin-top:2px}
+.achbar{height:4px;background:rgba(255,255,255,.1);border-radius:99px;margin-top:6px;overflow:hidden}
+.achbar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px}
+.achnum{font-size:10.5px;color:var(--dim);text-align:right;margin-top:3px;font-variant-numeric:tabular-nums}
 .gachabox{background:linear-gradient(145deg,rgba(122,92,255,.35),rgba(255,111,181,.22) 60%,rgba(255,213,74,.18));
   border-color:rgba(255,213,74,.45)}
 .gbtn{display:block;width:100%;margin-top:12px;padding:16px;border:0;border-radius:14px;cursor:pointer;
@@ -302,6 +351,44 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
 .dlegend i{width:11px;height:11px;border-radius:3px;flex:none}
 .dlegend em{margin-left:auto;font-style:normal;color:var(--ink);font-weight:600}
 @media(max-width:360px){.dwrap{flex-direction:column}.dside{width:100%;flex-direction:row}}
+/* 今日のカード ― 和紙に墨。演習タブの中で一箇所だけ色を変える */
+.todaycard{background:linear-gradient(160deg,#F3EDDF,#E6DCC6);
+  border-color:rgba(120,96,56,.35);box-shadow:0 2px 16px rgba(0,0,0,.3)}
+.todaycard{padding:13px 14px}
+.todaycard .trow{display:flex;align-items:center;gap:11px}
+.todaycard .ttree{flex:none;width:52px;text-align:center}
+.todaycard .tico{font-size:30px;line-height:1.15}
+.todaycard .tname{font-family:var(--mincho);font-size:10.5px;color:#6E5F42;letter-spacing:.08em}
+.todaycard .tnext{font-size:9.5px;color:#9A8C6C;margin-top:1px}
+.todaycard .tleft{flex:1;min-width:0}
+.todaycard .tring{flex:none;width:60px;text-align:center}
+.todaycard .tring svg{width:54px;height:54px;display:block;margin:0 auto}
+.todaycard .tringlab{font-family:var(--mincho);font-size:9.5px;letter-spacing:.14em;color:#8A7A58;margin-top:0}
+.todaycard .tdate{font-family:var(--mincho);font-size:11.5px;letter-spacing:.16em;color:#8A7A58}
+.todaycard .tstreak{font-family:var(--gothic);font-size:13px;color:#3C3426;margin-top:2px;line-height:1.5}
+.todaycard .tstreak b{font-family:var(--mincho);font-size:23px;color:#9A3127;margin:0 2px;font-weight:600}
+.todaycard .tstreak span{font-size:11.5px;color:#8A7A58}
+.todaycard .tquote{font-family:var(--mincho);font-size:13.5px;line-height:1.8;color:#2E2A22;
+  margin-top:11px;padding-top:10px;border-top:1px solid rgba(120,96,56,.25)}
+.todaycard .tby{font-family:var(--gothic);font-size:11px;color:#8A7A58;text-align:right;margin-top:4px}
+/* DATA ― 冷たい青灰でひとつだけ毛色を変える */
+.halfrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch}
+.halfrow .fuda{margin:12px 0;display:flex;flex-direction:column}
+.halfrow .btn{font-size:14px;letter-spacing:.1em;padding:11px 4px;margin-top:8px}
+.halfrow .note{font-size:11px;line-height:1.7;margin-top:5px}
+.todaystat{background:linear-gradient(160deg,rgba(58,40,24,.9),rgba(38,26,16,.95));
+  border-color:rgba(201,162,39,.3)}
+.todaystat .eyebrow{color:var(--kindei-lt);letter-spacing:.3em}
+.tsmain{display:flex;align-items:baseline;gap:3px;margin-top:10px}
+.tsmain b{font-family:var(--mincho);font-size:38px;color:var(--kindei-lt);font-weight:600;line-height:1}
+.tsmain small{font-size:12px;color:var(--gofun-dim)}
+.tspct{margin-left:auto;font-family:var(--gothic);font-weight:700;font-size:14px;color:var(--byakuroku)}
+.tssub{font-size:11px;color:var(--gofun-dim);line-height:1.8;margin-top:8px}
+.datacard{background:linear-gradient(160deg,rgba(26,46,66,.95),rgba(16,30,46,.96));
+  border-color:rgba(110,170,210,.3)}
+.datacard .eyebrow{color:#7FC0E8;letter-spacing:.3em}
+.datacard .btn{background:rgba(127,192,232,.12);color:#9FD4F2;border-color:rgba(127,192,232,.35)}
+.datacard .btn.ghost{background:none;color:#8FA8BC;border-color:rgba(127,192,232,.22)}
 .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;margin:8px 0 16px}
 .dash div{background:var(--tile,rgba(255,255,255,.03));border:1px solid var(--edge);border-radius:10px;padding:9px 2px}
 .dash b{display:block;font-family:var(--disp);font-size:21px;color:var(--acc);font-weight:700;line-height:1.2}
@@ -347,6 +434,18 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
 <!-- ══ 修行 ══ -->
 <section class="view on" id="v-drill">
   <div id="home">
+    <div class="fuda todaycard">
+      <div class="trow">
+        <div class="ttree" id="tTree"></div>
+        <div class="tleft">
+          <div class="tdate" id="tDate"></div>
+          <div class="tstreak" id="tStreak"></div>
+        </div>
+        <div class="tring" id="tRing"></div>
+      </div>
+      <div class="tquote" id="tQuote"></div>
+      <div class="tby" id="tBy"></div>
+    </div>
     <div class="fuda">
       <div class="eyebrow">出典を選ぶ</div>
       <div class="volchips" id="srcchips"></div>
@@ -368,11 +467,28 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
       </div>
       <button class="btn ghost" onclick="start(999)">積んだ復習をすべて</button>
       <button class="btn ghost" onclick="startWeak(10)">苦手だけ十問 ― 復習日を待たずに叩く</button>
+      <div class="startgrid" style="margin-top:10px">
+        <button class="btn ghost" onclick="startRandom(5)">ランダム五問</button>
+        <button class="btn ghost" onclick="startRandom(10)">ランダム十問</button>
+      </div>
     </div>
-    <div class="fuda">
-      <div class="eyebrow">心得</div>
-      <div class="exp" style="margin-top:6px">正解した問は<b>翌日 → 三日 → 七日 → 三週</b>と間隔をあけて戻る。落とした問は明日また来る。<b>何度も落とす問ほど間隔が縮み、一発で通る問ほど先送りになる</b>ので、同じ五問でも中身の密度が変わる。最上段を二度通った問は封印され、出題から外れる。1日5問で足りる。</div>
+    <div class="halfrow">
+      <div class="fuda datacard">
+        <div class="eyebrow">DATA</div>
+        <div class="note" id="syncAge" style="margin-top:6px"></div>
+        <div style="margin-top:9px">
+          <button class="btn" onclick="quickExport()">書き出す</button>
+          <button class="btn ghost" onclick="quickImport()">読み込む</button>
+        </div>
+        <div class="note" id="syncMsg" style="margin-top:8px"></div>
+      </div>
+      <div class="fuda todaystat">
+        <div class="eyebrow">TODAY</div>
+        <div id="todayStat"></div>
+      </div>
     </div>
+
+    
   </div>
 
   <div id="quiz" style="display:none">
@@ -990,6 +1106,12 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
     <div class="note" id="purseSub" style="margin-top:2px"></div>
   </div>
 
+  <div class="fuda">
+    <div class="eyebrow">ACHIEVEMENTS</div>
+    <div class="note" id="achSum" style="margin-top:6px"></div>
+    <div id="achList"></div>
+  </div>
+
   <div class="fuda gachabox">
     <div class="eyebrow">DAILY DRAW</div>
     <div class="note" style="margin-top:6px">1日1回、無料。出たぶんだけコインが増える。</div>
@@ -1036,6 +1158,12 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
       <div><b id="dToday">0</b><small>きょう</small></div>
       <div><b id="dAcc7">―</b><small>直近7日</small></div>
     </div>
+  </div>
+
+  <div class="fuda" data-psec="sum">
+    <div class="eyebrow">1日の目標</div>
+    <div class="note" style="margin-top:6px">演習タブの輪が、この目標に対する達成率になる（問／日）。</div>
+    <div class="volchips goalchips" id="goalchips" style="margin-top:10px"></div>
   </div>
 
   <div class="fuda" data-psec="sum">
@@ -1101,8 +1229,9 @@ details[open] summary::before{content:"▼ ";color:var(--acc2)}
     <div class="eyebrow">記録の持ち出し</div>
     <div class="note" id="saveState" style="margin-top:6px">保存先を確認中…</div>
     <div class="note" style="margin-top:6px">端末やアプリを移るとき、記録はついてこない。ここで書き出して、移った先で読み込む。</div>
-    <button class="btn" onclick="exportRec()">記録を書き出す</button>
+    <button class="btn" onclick="exportRec()">① 記録を書き出す</button>
     <textarea id="recBox" placeholder="ここに書き出した文字列が出る。移った先ではここに貼りつけて読み込む。"></textarea>
+    <button class="btn" id="copyBtn" onclick="copyRec()" style="display:none">② コピーする</button>
     <button class="btn ghost" onclick="importRec()">貼りつけた記録を読み込む</button>
     <div class="note" id="recMsg" style="margin-top:8px"></div>
   </div>
@@ -4025,7 +4154,179 @@ const Q=[
 {src:"anch",bk:"drug_mix",c:"d_mix",q:"JPLSG長期FUガイドライン2013のアントラ換算で、IDAとMitの係数は？",o:["IDA 5、Mit 4","IDA 4、Mit 5","IDA 5、Mit 10","IDA 0.83、Mit 0.6"],a:0,
  e:"2013年版はIDA 5・Mit 4（COG ver.3準拠）。COG ver.6はIDA 5・Mit 10。治療サマリーver4.8の式はIDA 4・Mit 5と逆になっている。",r:"抗がん剤あんちょこ"},
 {src:"anch",bk:"drug_mix",c:"d_mix",q:"DEX使用歴ありの意味は？",o:["それだけでJCCGレベル3","量が500 mg/㎡を超えたらレベル3","レベルに影響しない","レベル4"],a:0,
- e:"ガイドライン2013のレベル表どおり、使用歴だけでレベル3。Q&Aでも「使用量が少なくても当面レベル3」。10歳以上は骨壊死にも注意。",r:"抗がん剤あんちょこ"}
+ e:"ガイドライン2013のレベル表どおり、使用歴だけでレベル3。Q&Aでも「使用量が少なくても当面レベル3」。10歳以上は骨壊死にも注意。",r:"抗がん剤あんちょこ"},
+/* 追加 ― 甲状腺 */
+{src:"chiryo",bk:"thy",c:"tch",q:"PAX8変異による先天性甲状腺機能低下症について正しいのは。",o:["常染色体顕性（優性）遺伝で浸透率は不完全、甲状腺以外に腎尿路系の異常を伴いうる","常染色体潜性で難聴を伴う","X連鎖性である","甲状腺外の異常は伴わない"],a:0,
+ e:"これまで約80例の報告。同じ家系でも重症度が異なる。甲状腺超音波での評価が診断に関わる。",r:"治療 p.806"},
+{src:"chiryo",bk:"thy",c:"tch",q:"NKX2-1変異で甲状腺外に高頻度でみられるのは。",o:["反復する呼吸器感染（約50%）と舞踏病などの神経症状","腎奇形","口蓋裂","難聴"],a:0,
+ e:"70例以上が報告されている。甲状腺機能の障害の程度は多様で、軽度にとどまることもある。肺と脳と甲状腺の3つが揃う。",r:"治療 p.806"},
+{src:"chiryo",bk:"thy",c:"tch",q:"DUOX2異常症で、マススクリーニング時と診断確定時の値について述べられているのは。",o:["スクリーニング時はTSH 50 μU/mL以上と高値でも、再評価時にはTSHもサイログロブリンも正常化していることがある","常に高値のままである","スクリーニングでは拾えない","サイログロブリンは常に低値"],a:0,
+ e:"一過性に経過することが多い。初回TSHがカットオフ以下でも後から上昇する遅発性TSH上昇も多く、再検の体制が要る。",r:"治療 p.806-808"},
+{src:"chiryo",bk:"thy",c:"tch",q:"NIS（SLC5A5）欠損症で、I-123摂取率と唾液の所見は。",o:["I-123摂取率が低値で、唾液/血漿ヨウ素比も低下する","I-123摂取率が高値","唾液の所見は正常","パークロレイト放出率が高値"],a:0,
+ e:"NISは唾液腺にも発現しているため。有機化障害（TPO欠損やPendred症候群）はパークロレイト放出率が上がるのと対照的で、検査の顔つきが逆になる。",r:"治療 p.807"},
+{src:"chiryo",bk:"thy",c:"tiod",q:"ヨウ素過剰による一過性CHの回復までの期間として示されているのは。",o:["ヨウ素過剰が改善するまで（数日〜数週）","数年","永続性である","改善しない"],a:0,
+ e:"母体由来の抗甲状腺薬なら数日、母体TSBAbなら生後3〜6か月、DUOX2異常なら年単位と、原因により経過の長さが違う。経過の長さが原因を推定する手がかりになる。",r:"治療 p.808"},
+{src:"chiryo",bk:"thy",c:"tdx",q:"中枢性甲状腺機能低下症の原因として過半数を占めるのは。",o:["下垂体腫瘍（頭蓋咽頭腫、Rathke嚢胞、empty sellaなど）","自己免疫","遺伝子異常","薬剤性"],a:0,
+ e:"遺伝子異常による先天性中枢性CHもあり、他の前葉ホルモンの分泌不全を伴うことが多い。コントロール不良のBasedow病母体から出生した児にもみられる。",r:"治療 p.810"},
+{src:"chiryo",bk:"thy",c:"tthy",q:"重度の後天性甲状腺機能低下症でLT4を補充するときの進め方は。",o:["少量から開始し、1〜2週ごとに段階的に増量して最終的に100〜150 μg/日まで持っていく","最初から成人量で開始する","半量で固定する","補充しない"],a:0,
+ e:"急に立ち上げると心負荷がかかる。FT4は1か月以内に正常化するが、TSHの正常化には数か月を要する。",r:"治療 p.816"},
+{src:"chiryo",bk:"thy",c:"tthy",q:"亜急性甲状腺炎と急性化膿性甲状腺炎の鑑別点として正しいのは。",o:["亜急性では白血球増多がなく、ヨウ素摂取率が消失する","亜急性では白血球増多が著明","急性化膿性ではヨウ素摂取率が消失する","両者は区別できない"],a:0,
+ e:"亜急性甲状腺炎には抗甲状腺薬を投与してはならない。炎症が強ければステロイドを用いる。急性化膿性は下咽頭梨状窩瘻からの波及で、左葉が約90%を占める。",r:"治療 p.817"},
+{src:"chiryo",bk:"thy",c:"tthy",q:"亜急性甲状腺炎を起こしうるウイルスとして、近年注目されているのは。",o:["SARS-CoV-2（甲状腺濾胞細胞のACE2受容体に感染する）","インフルエンザウイルス","RSウイルス","アデノウイルス"],a:0,
+ e:"小児では亜急性甲状腺炎そのものがまれ。甲状腺は結節状に硬くなり、圧痛が他側へ移動することがある。",r:"治療 p.817"},
+
+/* 追加 ― 副腎 */
+{src:"chiryo",bk:"adr",c:"ahc",q:"ACTH不応症の原因として近年明らかになった共通のしくみは。",o:["NNTやTXNRD2など、抗酸化システムに関わる分子の異常","ステロイド合成酵素の異常","自己免疫","受容体の過剰発現"],a:0,
+ e:"正常なグルココルチコイド産生には酸化ストレスへの対処が重要、という理解につながった。グルタチオンシステムとチオレドキシンシステムの両方が関わる。",r:"治療 p.765-768"},
+{src:"chiryo",bk:"adr",c:"ahc",q:"NNT異常症の経過について注意すべきなのは。",o:["新生児期を過ぎてから発症することがあり、ゴナドトロピン分泌不全など多臓器の障害を伴いうる","新生児期に必ず発症する","副腎だけが障害される","一過性である"],a:0,
+ e:"NNTは全身に発現する。病態の本質が持続的な酸化ストレスであることから、長期のフォローが必要とされている。",r:"治療 p.767"},
+{src:"chiryo",bk:"adr",c:"ald",q:"副腎白質ジストロフィーの頻度と、家族歴について報告されているのは。",o:["約3万人に1人と推定され、家族歴のない症例が6〜14%を占める","10万人に1人で家族歴は必発","女性には発症しない","頻度は不明"],a:0,
+ e:"ABCD1の病的変異は800以上が報告され、de novoでも発症しうる。女性でも保因者でないとはいえない点に注意する。",r:"治療 p.769-770"},
+{src:"chiryo",bk:"adr",c:"ald",q:"副腎白質ジストロフィーに対する造血幹細胞移植について正しいのは。",o:["神経症状には有効だが、副腎不全には効果がない","両方に有効である","副腎不全にのみ有効","効果は証明されていない"],a:0,
+ e:"だから副腎不全は別に補充を続ける。神経症状の進行前、早期に移植することが前提になる。",r:"治療 p.770"},
+{src:"chiryo",bk:"adr",c:"cah",q:"偽性低アルドステロン症I型（PHA I）の発症頻度として示されているのは。",o:["約1/47,000（MR異常が1/66,000、ENaC異常が1/166,000）","1/1,000","1/500,000","頻度は不明"],a:0,
+ e:"MR（NR3C2）異常は腎のみで数か月〜年単位に軽快することが多い。ENaC異常は全身型で、生涯にわたり相当量の食塩補充を要する。予後がまったく違う。",r:"治療 p.773-774"},
+{src:"chiryo",bk:"adr",c:"cahtx",q:"偽性低アルドステロン症II型（Gordon症候群）で最も低年齢・重症となるのはどの遺伝子異常か。",o:["CUL3","WNK1","KLHL3","WNK4"],a:0,
+ e:"CUL3によるものが低年齢で診断されより重症。次いでKLHL3、WNK4、WNK1の順。治療はサイアザイド利尿薬で、代謝性アシドーシスの改善は成長障害の改善にもつながる。",r:"治療 p.775"},
+{src:"chiryo",bk:"adr",c:"ai",q:"新生児副腎出血の頻度と経過について正しいのは。",o:["新生児の0.2〜0.3%に認められ、吸収されて石灰化する。副腎機能不全でステロイドを要しても離脱できることがある","1%以上に認められる","必ず永続的な副腎不全となる","石灰化は生じない"],a:0,
+ e:"貧血・黄疸・腹部腫瘤で気づかれる。神経芽腫との鑑別が要る。補充を始めても、経過中に離脱の検討をする。",r:"治療 p.778"},
+{src:"chiryo",bk:"adr",c:"ai",q:"Addison病に対するヒドロコルチゾンの維持量として示されているのは。",o:["10〜15 mg/m2/日を目安に分割投与","30 mg/m2/日","5 mg/m2/日","体重あたりで決める"],a:0,
+ e:"原発性ではミネラルコルチコイドの補充も要る。中枢性では通常不要。Waterhouse-Friderichsen症候群は感染に伴うDICと副腎出血で急性副腎不全を生じる。",r:"治療 p.777-778"},
+{src:"chiryo",bk:"adr",c:"cahtx",q:"アルドステロン合成酵素欠損症（ASD1/ASD2）の治療と、治療終了の判断は。",o:["フルドロコルチゾン0.1〜0.3 mgとNaCl補充（2〜3 g/日）。代謝物が正常化し血漿レニン活性が正常に下がれば補充を減らせる","生涯にわたり同量を続ける","ヒドロコルチゾンのみ","治療は不要"],a:0,
+ e:"ASD1では18-OHB/アルドステロン比が100以上といった代謝物の比が診断に使われる。脱水時には点滴を要する。",r:"治療 p.772"},
+/* 追加 ― カルシウム・骨 */
+{src:"chiryo",bk:"ca",c:"bonebase",q:"PTHの半減期と、測定上の注意として正しいのは。",o:["PTH(1-84)の半減期は2〜4分と短く、intact PTHアッセイでは不活性断片も測定されるため慢性腎臓病では注意を要する","半減期は数時間で安定している","不活性断片は測定されない","腎機能の影響を受けない"],a:0,
+ e:"PTHは前駆体proPTH（90アミノ酸）から切断されてPTH(1-84)となる。第3世代のwhole PTHはこの問題を避けられる。",r:"治療 p.839"},
+{src:"chiryo",bk:"ca",c:"bonebase",q:"カルシトニン（CT）の分泌がPTHと逆になる点は。",o:["CaSRが活性化されるとPTHは抑制されるが、CTの分泌は促進される","両者とも抑制される","両者とも促進される","CTはCaSRの影響を受けない"],a:0,
+ e:"骨吸収によるCa動員はPTHで促進、CTで抑制される。ただしCT製剤では受容体のダウンレギュレーションによるタキフィラキシーが起こる。",r:"治療 p.841"},
+{src:"chiryo",bk:"ca",c:"pth",q:"PTH分泌不全とPTH不応性（PHP）を分ける所見の組み合わせとして正しいのは。",o:["尿中Ca分画排泄率（FECa）は分泌不全で上昇・PHPで上昇せず、骨代謝回転は分泌不全で低下・PHPで亢進する","両者とも同じ所見を示す","FECaだけで分けられない","骨代謝回転は両者とも低下する"],a:0,
+ e:"PHPでは腎尿細管のCa再吸収へのPTH反応性が保たれているため。骨ではPTHシグナルが働くので代謝回転が上がる。方向が2つとも逆になる。",r:"治療 p.849"},
+{src:"chiryo",bk:"ca",c:"pth",q:"22q11.2欠失症候群の出生頻度と原因遺伝子は。",o:["1/6,000出生、TBX1","1/60,000出生、GATA3","1/600出生、CASR","1/100,000出生、AIRE"],a:0,
+ e:"心奇形を合併するため新生児期に見つかることが多い。低Ca血症は一度軽快することもあり、後に再燃する。",r:"治療 p.850-851"},
+{src:"chiryo",bk:"ca",c:"pth",q:"APS1（自己免疫性多内分泌腺症候群1型）の原因遺伝子と、副甲状腺に対する自己抗原は。",o:["AIRE。自己抗原としてNALP5とCaSRが知られる","CASR。自己抗原はPTH","GATA3。自己抗原はNIS","TBX1。自己抗原はTPO"],a:0,
+ e:"AIREの変異により組織特異的な自己免疫が成立する。NALP5に対する抗体が副甲状腺機能低下症と関連する。",r:"治療 p.854"},
+{src:"chiryo",bk:"ca",c:"hpt",q:"原発性副甲状腺機能亢進症で血中Caが正常にとどまる病態は。",o:["正常カルシウム血性原発性副甲状腺機能亢進症。ビタミンD欠乏など二次性の原因を除外する必要がある","そのような病態はない","測定誤差である","FHHと同一である"],a:0,
+ e:"血清P値は多くで低値、ALPは骨病変があれば上昇。リチウムやサイアザイド利尿薬の投与でも同様の所見が出る。",r:"治療 p.847"},
+{src:"chiryo",bk:"ca",c:"pth",q:"低カルシウム血症の鑑別で、PTH作用不全以外に分類されるのは。",o:["ビタミンD作用不全、ビタミンD欠乏症、その他（低Mg血症、急性膵炎、腫瘍崩壊など）","PTH作用不全のみ","腎疾患のみ","分類はない"],a:0,
+ e:"カルシウム製剤投与でも改善しないときは、まず低Mg血症を考える。アルカローシスでは総Caを変えずにイオン化Caのみを下げる点にも注意する。",r:"治療 p.842-844"},
+{src:"chiryo",bk:"ca",c:"rickd",q:"ビタミンD欠乏性くる病の国内の年間推定発症数として示されているのは。",o:["約15人","約150人","約1,500人","報告がない"],a:0,
+ e:"くる病では骨端の杯状化（cupping）、拡大（splaying, flaring）、不整・毛羽立ち（fraying）がX線の特徴。血清ALP上昇、Ca・P低値、尿中Ca排泄低下を認める。",r:"治療 p.858-859"},
+{src:"chiryo",bk:"ca",c:"rickd",q:"ビタミンD欠乏性くる病の回復途上でALPが上がらないことがある理由は。",o:["低リン血症が併存すると血清ALPが上昇しないことがある","ALPは常に上昇する","回復期にはALPが正常化する","ALPは関係しない"],a:0,
+ e:"ALPを単独で読まない。「診断の手引き」に基づき、骨系統疾患やBlount病などを除外してから診断する。",r:"治療 p.859"},
+
+/* 追加 ― 糖尿病 */
+{src:"chiryo",bk:"dm",c:"mono",q:"新生児糖尿病の多くを占める遺伝子異常は。",o:["KATPチャネルを構成するKir6.2（KCNJ11）あるいはSUR1（ABCC8）の片アレル変異","GCKの両アレル変異","INSの欠失","EIF2AK3の変異"],a:0,
+ e:"ほかにGCK、EIF2AK3、INSなども報告されている。永続性（PNDM）と一過性（TNDM）に分類され、一過性型は6q24のインプリント異常が最多。",r:"治療 p.895"},
+{src:"chiryo",bk:"dm",c:"mono",q:"MODY2（GCK異常症）の病態として正しいのは。",o:["血糖値に対するインスリン分泌閾値の上昇により、軽度の空腹時高血糖が続くが進行しない","進行性にインスリン分泌が低下する","インスリン抵抗性が主体である","ケトアシドーシスを来しやすい"],a:0,
+ e:"低出生体重を伴うことがある。欧米に多く日本人には少ないとされてきたが、実際には少なくないことが判明してきている。治療を要しないことが多い。",r:"治療 p.897"},
+{src:"chiryo",bk:"dm",c:"t2dm",q:"Cushing症候群における耐糖能異常の頻度として示されているのは。",o:["糖尿病が17〜35%、サブクリニカルCushing症候群でも報告されている","5%未満","ほぼ全例","耐糖能は改善する"],a:0,
+ e:"糖新生の亢進に加え、GLUT4の膜移行を抑えて筋での取り込みを下げる。先端巨大症では19〜56%、褐色細胞腫では25〜75%、グルカゴノーマでは70〜90%と報告されている。",r:"治療 p.900"},
+{src:"chiryo",bk:"dm",c:"t2dm",q:"褐色細胞腫による耐糖能異常の機序は。",o:["カテコラミンがα受容体優位に働いてインスリン分泌を抑制し、グリコーゲン分解と糖新生を亢進させる","インスリン抵抗性のみ","グルカゴンの低下","膵β細胞の破壊"],a:0,
+ e:"β3アドレナリン受容体を介した脂肪分解も加わり、グリセロールやアラニンが糖新生の材料になる。摘出後に耐糖能が改善する。",r:"治療 p.900"},
+{src:"chiryo",bk:"dm",c:"t2dm",q:"ステロイド糖尿病で、力価の目安として述べられているのは。",o:["デキサメタゾンはプレドニゾロンより力価が高く、吸入薬や外用薬では発症リスクが低い","すべて同じ力価である","外用薬でもリスクは同じ","吸入薬のほうがリスクが高い"],a:0,
+ e:"空腹時より食後の血糖が上昇しやすい。インスリン受容体への親和性低下、GLUT4のトランスロケーション抑制、グルカゴン上昇、食欲増進が関わる。",r:"治療 p.901"},
+{src:"chiryo",bk:"dm",c:"t2dm",q:"インスリン自己免疫症候群（IAS）の背景として挙げられる薬剤は。",o:["チアマゾール、チオプロニンなどSH基をもつ薬剤","メトホルミン","SGLT2阻害薬","βブロッカー"],a:0,
+ e:"インスリンのエピトープが露出し、抗インスリン抗体が産生される。stiff-person症候群では抗GAD抗体が陽性で、30〜40%に耐糖能異常を伴う。",r:"治療 p.902"},
+{src:"chiryo",bk:"dm",c:"edu",q:"妊娠糖尿病のスクリーニングとして推奨される流れは。",o:["妊娠初期に随時血糖または50 g GCT、24〜28週に50 g GCT（カットオフ100 mg/dL以上を陽性）を行い、陽性なら75 g OGTTで確認する","初期のみでよい","全例に75 g OGTTを行う","スクリーニングは不要"],a:0,
+ e:"日本人は糖尿病のハイリスク人種で、妊娠前からの糖尿病が含まれることもある。妊娠中の明らかな糖尿病との鑑別が重要になる。",r:"治療 p.905"},
+{src:"chiryo",bk:"dm",c:"edu",q:"妊娠中の血糖コントロールで、HbA1cよりグリコアルブミン（GA）が有用とされる理由と基準値は。",o:["妊娠中は鉄代謝の影響でHbA1cが変動するため。基準はHbA1c 4.4〜5.7%、GA 11.5〜15.7%","GAは変動しないため。基準はGA 20%以上","HbA1cのほうが有用である","基準値は定められていない"],a:0,
+ e:"目標は食前100 mg/dL未満、食後2時間120 mg/dL未満。母体高血糖は流早産・妊娠高血圧症候群・羊水過多症・帝王切開のリスクを上げる。",r:"治療 p.906"},
+{src:"chiryo",bk:"dm",c:"t2dm",q:"HOMA-RとHOMA-βの計算式として正しいのは。",o:["HOMA-R＝空腹時IRI × 空腹時血糖 ÷ 405（1.6以下で正常、2.5以上でインスリン抵抗性）","HOMA-R＝IRI ÷ 血糖","HOMA-R＝血糖 ÷ IRI","計算式はない"],a:0,
+ e:"空腹時血糖140 mg/dL以下で用いる。HOMA-β＝[IRI×360]÷(血糖−63)。小児では成人と基準値が異なる点に注意する。",r:"治療 p.911"},
+{src:"chiryo",bk:"dm",c:"t1dm",q:"1,5-アンドロヒドログルシトール（1,5-AG）が血糖管理の指標になる理由は。",o:["尿糖が排泄されると再吸収が競合阻害され血中濃度が下がるため、良好な管理の評価に向く","食事量を反映するため","赤血球寿命を反映するため","インスリン分泌量を反映するため"],a:0,
+ e:"正常は14.0 μg/mL以上。SGLT2阻害薬を使っていると尿糖が出続けるため指標にならない。GAは約2週間の血糖を反映するが甲状腺疾患や低栄養で変動する。",r:"治療 p.910"},
+/* 追加 ― 思春期 */
+{src:"chiryo",bk:"pub",c:"dp",q:"体質性思春期遅発症（CDGP）の成人身長について述べられているのは。",o:["成長期が通常より長く続き、おおむね通常の身長範囲内で成人身長を得る","必ず低身長で終わる","高身長になる","予測できない"],a:0,
+ e:"ただし重度のCDGPではGH分泌不全性低身長と同様に刺激試験が必要になる症例もある。目標身長は男＝(父＋母+13)/2、女＝(父＋母−13)/2。",r:"治療 p.1060"},
+{src:"chiryo",bk:"pub",c:"dp",q:"思春期遅発症に対してテストステロンを投与するときの注意として述べられているのは。",o:["ゴナドトロピンが抑制されるため、治療中は精巣が成人容量まで大きくならないことが多い","精巣容積は正常に発達する","ゴナドトロピンは上昇する","精巣容積で効果を判定できる"],a:0,
+ e:"痤瘡・声変わり・筋肉の増大が早くから現れる。効果判定でゴナドトロピンやテストステロンを確認するには、治療を一時中断して経過をみる必要がある。",r:"治療 p.1062"},
+{src:"chiryo",bk:"pub",c:"dp",q:"蛋白同化ホルモン（メテノロン）投与中に腎機能をみるとき、クレアチニンより適切な指標は。",o:["シスタチンC","BUN","尿酸","尿比重"],a:0,
+ e:"筋肉量が増えるためクレアチニンが上がる。スポーツではドーピングに該当する点も説明しておく。",r:"治療 p.1062"},
+{src:"chiryo",bk:"pub",c:"pp",q:"思春期早発症でLHRHアナログを用いても成人身長が改善しない場合があるのはなぜか。",o:["エストロゲンが骨端線を閉鎖させるが、同時に年齢依存的な成長も性ホルモンが担っているため、抑制だけでは改善しないことがある","薬が効かないため","投与量が不足しているため","骨年齢が関係しないため"],a:0,
+ e:"男児でもテストステロンから産生されたエストロゲンが骨端線を閉じる。GH併用で成人身長を改善する試みがある。",r:"治療 p.1061"},
+{src:"chiryo",bk:"pub",c:"dp",q:"思春期遅発症で治療開始を検討する成長率の目安として述べられているのは。",o:["成長率が2 cm/年を下回ったとき","4 cm/年を下回ったとき","成長率は関係しない","1 cm/年を下回ったとき"],a:0,
+ e:"あわせてゴナドトロピン・テストステロンと骨年齢を確認する。年齢依存性の成長が望める時期に手を打つ。",r:"治療 p.1062"},
+{src:"chiryo",bk:"pub",c:"pubbase",q:"高身長の定義として示されているのは。",o:["両親から算出されるtarget heightの+2.0 SD以上","+1.0 SD以上","身長160 cm以上","定義はない"],a:0,
+ e:"正常バリアント（体質性・家族性）が多い。病的なものとして下垂体性巨人症、甲状腺機能亢進症、Marfan症候群、ホモシスチン尿症などを除外する。",r:"治療 p.1063"},
+{src:"chiryo",bk:"pub",c:"hh",q:"低ゴナドトロピン性性腺機能低下症の男性で挙児を目指すときの方法として挙げられているのは。",o:["精巣内精子回収術（TESE）と顕微授精","テストステロン補充のみ","LHRHアナログ","方法はない"],a:0,
+ e:"DAX1（NR0B1）異常ではゴナドトロピン投与でも精子形成が起こりにくいため、こうした方法が検討される。",r:"治療 p.729"},
+
+/* 追加 ― 性分化 */
+{src:"chiryo",bk:"dsd",c:"xydsd",q:"IMAGe症候群の構成要素は。",o:["子宮内発育遅延、骨幹端異形成、先天性副腎低形成、性器異常","低身長、難聴、腎奇形、糖尿病","骨折、青色強膜、難聴","肥満、多指症、網膜色素変性"],a:0,
+ e:"11p15.5領域のCDKN1C（母由来アリル）の機能獲得変異による。高カルシウム尿症や筋緊張低下も認めうる。副腎低形成にはグルココルチコイドとミネラルコルチコイドの補充を行う。",r:"治療 p.731-732"},
+{src:"chiryo",bk:"dsd",c:"xydsd",q:"MIRAGE症候群の構成要素として正しいのは。",o:["骨髄異形成、感染症、成長障害、副腎低形成、性腺症状、腸症","低身長、肥満、糖尿病、難聴","心奇形、口蓋裂、低Ca血症","多毛、高血圧、低K血症"],a:0,
+ e:"SAMD9の機能獲得変異による。46,XYでも社会的性として女性が選択されることが多い。経過中にモノソミー7が出現しうるため、同定された症例では速やかな対応が望ましい。",r:"治療 p.733-734"},
+{src:"chiryo",bk:"dsd",c:"xydsd",q:"SGPL1（sphingosine-1-phosphate lyase）欠損症で副腎以外にみられるのは。",o:["ステロイド抵抗性ネフローゼ症候群、副腎の石灰化、男性では停留精巣・小精巣","心筋症","難聴と腎奇形","骨形成不全"],a:0,
+ e:"一部でミネラルコルチコイド分泌不全を伴う。スフィンゴ脂質代謝の最終段階の酵素で、Charcot-Marie-Tooth型ニューロパチーの原因としても知られる。",r:"治療 p.735"},
+{src:"chiryo",bk:"dsd",c:"dsdbase",q:"性ステロイドの生合成で、副腎と性腺の産物が異なる理由は。",o:["組織ごとに発現する酵素の組み合わせが違うため","コレステロールの供給源が違うため","受容体が違うため","血流が違うため"],a:0,
+ e:"いずれもコレステロールを出発点とする。副腎網状層は17βHSDタイプVを発現し、アンドロステンジオンからテストステロンを産生する。近年11-oxyアンドロゲンという新しいアンドロゲンが同定された。",r:"治療 p.723-726"},
+
+/* 追加 ― 腫瘍 */
+{src:"chiryo",bk:"tum",c:"pit",q:"複合型下垂体機能低下症でGHを補充するときの注意として述べられているのは。",o:["ACTH分泌不全を合併しヒドロコルチゾンを標準量で投与していても、GH補充後に低血糖がコントロールされるようになる一方、遷延する場合はステロイド量の見直しが要る","GHは低血糖に影響しない","ヒドロコルチゾンは不要","GHを先に始める"],a:0,
+ e:"新生児期のGH分泌不全による症状はインスリン依存性の低血糖の遷延が特徴。GH分泌不全児の出生時の体長が必ずしも短くないことから、胎児期の成長はGHに非依存的と分かる。",r:"治療 p.1064-1065"},
+{src:"chiryo",bk:"tum",c:"pit",q:"TSH分泌不全に対するLT4補充量と、管理の指標は。",o:["LT4 5〜10 μg/kg/日。TSHは指標にならないため、FT4を基準範囲の高めに保つ","LT4 1 μg/kg/日。TSHで管理する","LT4 20 μg/kg/日","補充しない"],a:0,
+ e:"ACTH分泌不全を合併する場合は、副腎クリーゼを避けるため先にステロイドを補充してからLT4を開始する。",r:"治療 p.1065"},
+{src:"chiryo",bk:"tum",c:"pit",q:"新生児期のTSH分泌不全でみられる症状として挙げられているのは。",o:["皮膚乾燥、便秘、腹部膨満、臍ヘルニア、哺乳不良、体重増加不良、小泉門開大、粘液水腫","多尿・多飲","けいれん","高血圧"],a:0,
+ e:"ACTH分泌不全では低血糖、ストレスへの反応不良によるショック、AVP代謝の変化による希釈性低Na血症を生じる。",r:"治療 p.1064"},
+
+/* 追加 ― 成長障害（治療） */
+{src:"chiryo",bk:"growth",c:"tx",q:"慢性腎臓病（CKD）に伴う成長障害の治療で、GHより優先されるのは。",o:["CKDそのものの管理（水分・Na補充、栄養、腎性貧血、CKD-MBDのコントロール）","ただちにGHを開始する","性ホルモン補充","輸血"],a:0,
+ e:"先天性腎尿路異常ではNaと水の喪失が大きく、十分な水分摂取や腎不全用特殊ミルクを考慮する。CKD-MBDでは血清CaとPを全ステージで年齢相当の基準範囲に保つことを目標にする。",r:"治療 p.1057"},
+{src:"chiryo",bk:"growth",c:"igf",q:"IGF-I欠損症（GH不応症）に対するメカセルミンの用法は。",o:["1回0.04〜0.12 mg/kg を1日2回（朝食前・夕食前）皮下注","週1回皮下注","1日1回経口","点滴静注"],a:0,
+ e:"IGF-I受容体異常症（SGA性低身長症の一部）にはGH 0.23〜0.47 mg/kg/週を用いるが、改善度は一般のSGA性低身長症に対する治療より劣る。",r:"治療 p.1059"},
+{src:"chiryo",bk:"growth",c:"syn",q:"Prader-Willi症候群に対するGH治療の成績として報告されているのは。",o:["治療前 −3.02±0.65 SD から −1.23±0.91 SD へ改善した","身長は改善しない","成人身長は変わらない","悪化する"],a:0,
+ e:"用量は0.23〜0.47 mg/kg/週、週7回。ブドウ糖負荷でインスリン濃度の上昇を認めるが、骨年齢の促進は認めないと報告されている。GHを中止するとcatch-downが起こりうる。",r:"治療 p.1055-1056"},
+{src:"chiryo",bk:"growth",c:"hyoka",q:"低身長の精査で、保険適用となっているFISH法で診断されうるのは。",o:["SHOX異常症や22q11.2欠失症候群","軟骨無形成症","Noonan症候群","Silver-Russell症候群"],a:0,
+ e:"SHOXのハプロ不全はLéri-Weill 骨軟骨異形成症を来し、低身長は女性でより重篤。確認のための直接シークエンス解析が望ましい。",r:"治療 p.1060"},
+
+/* 追加 ― 総まとめ */
+{src:"chiryo",bk:"sum",c:"order",q:"ACTH分泌不全を合併した甲状腺機能低下症・GH分泌不全で、補充の順序として正しいのは。",o:["ヒドロコルチゾン → 甲状腺ホルモン → GH","GH → 甲状腺ホルモン → ヒドロコルチゾン","甲状腺ホルモン → GH → ヒドロコルチゾン","同時でよい"],a:0,
+ e:"甲状腺ホルモンはコルチゾール代謝を亢進させ、GHは甲状腺機能が低いと効果が出ない。3冊すべてに共通して繰り返される原則。",r:"治療 p.1065 / 全巻共通"},
+{src:"chiryo",bk:"sum",c:"read",q:"胎児期の成長がGHに非依存的であることを示す臨床的な根拠は。",o:["GH分泌不全児の出生時の体長が必ずしも短くないこと","IGF-I欠損児が正常身長で生まれること","GH治療で出生体重が増えること","根拠はない"],a:0,
+ e:"一方でIGF1欠損では子宮内発育遅延を来す。同じ軸でも、時期によって主役が入れ替わる。",r:"治療 p.1065 / 小児内分泌学 p.47"},
+{src:"chiryo",bk:"sum",c:"axis",q:"腎でコルチゾールがミネラルコルチコイド受容体を刺激しないようにしている仕組みは。",o:["11β-HSD2がコルチゾールをコルチゾンに不活化している","受容体の親和性がアルドステロンに特異的である","コルチゾールが腎に届かない","アルドステロンが競合する"],a:0,
+ e:"MR自体はリガンド特異性が低くコルチゾールにも反応する。大量のヒドロコルチゾン投与ではこの処理能を超え、高血圧と低K血症が出る（見かけのミネラルコルチコイド過剰）。",r:"治療 p.725"},
+{src:"chiryo",bk:"sum",c:"cross",q:"成長障害の原因として、内分泌以外に見落としやすいものは。",o:["慢性腎臓病（CKDステージと成長曲線をあわせて評価する）","鉄欠乏性貧血","近視","アレルギー"],a:0,
+ e:"CKDでは水・Na喪失、栄養、腎性貧血、CKD-MBDが絡む。GHを考える前に、原疾患の管理が整っているかを確認する。",r:"治療 p.1057"},
+/* 追加 ― 甲状腺クリーゼ・電解質・下垂体炎・免疫チェックポイント */
+{src:"gaku",bk:"thy",c:"tgrav",q:"甲状腺クリーゼの診断に用いるBurch-Wartofskyポイントスケールの判定は。",o:["45点以上で強く疑う、25〜44点で切迫状態を疑う、25点未満は可能性なし","25点以上で確定","60点以上で疑う","点数では判定しない"],a:0,
+ e:"体温調節障害・心血管系障害・消化器肝機能障害・中枢神経症状・誘因となる病歴の5項目で採点する。頻度はまれだが致死率が高く、見逃してはならない内分泌救急。",r:"小児内分泌学 表23 p.111"},
+{src:"gaku",bk:"thy",c:"tgrav",q:"Burch-Wartofskyスケールで最も高い配点（30点）がつくのは。",o:["体温40.0℃以上、および中枢神経症状の重度（けいれん・昏睡）","脈拍140以上","心房細動あり","誘因となる病歴あり"],a:0,
+ e:"脈拍140以上は25点、消化器症状の重度（黄疸）は20点、誘因となる病歴は10点。体温と意識が重く配点されている。",r:"小児内分泌学 表23 p.111"},
+{src:"gaku",bk:"thy",c:"tgrav",q:"甲状腺クリーゼが見逃される典型的な場面として述べられているのは。",o:["発熱を主訴に受診し、感染性脳症と診断されること","健診で偶然見つかること","無症状であること","小児では発症しないこと"],a:0,
+ e:"未治療ないしコントロール不良の甲状腺疾患に、感染・手術・ストレスなどが誘因として加わる。代償機構の破綻で複数臓器が機能不全に陥る。",r:"小児内分泌学 p.111-112"},
+{src:"gaku",bk:"water",c:"whypo",q:"低ナトリウム血症で尿中Na濃度が20 mEq/Lを超えるときに考えるのは。",o:["SIADH、利尿薬、ミネラルコルチコイド欠乏、CSWSなど（腎性のNa喪失）","腎外性のNa喪失","水の過剰摂取のみ","測定誤差"],a:0,
+ e:"腎外性の喪失（下痢・嘔吐など）では尿中Naは20 mEq/L未満に下がる。体液量の評価とあわせて読む。低張液の輸液は低Na血症のリスクを上げる。",r:"小児内分泌学 p.113-114"},
+{src:"gaku",bk:"water",c:"whypo",q:"高カリウム血症で、偽性高K血症を来す要因として挙げられているのは。",o:["採血時の溶血、白血球増多、血小板数が多いこと","脱水","発熱","絶食"],a:0,
+ e:"細胞外へのKのシフトは、アニオンギャップ正常のアシドーシス、高張食塩水、インスリン欠乏、β遮断薬やジゴキシン（Na/K-ATPase阻害）、サクシニルコリンなどで起こる。",r:"小児内分泌学 p.115"},
+{src:"gaku",bk:"ca",c:"bonebase",q:"血清リン（P）を評価するときに注意すべきなのは。",o:["年齢別の正常値が大きく異なり、乳児では成人より高い（成人 2.4〜4.7 mg/dL）","年齢によらず一定である","採血時刻は関係しない","溶血の影響を受けない"],a:0,
+ e:"溶血した検体や長時間放置した検体では偽高値を示す。尿細管でのP再吸収を評価するため %TRP や TmP/GFR を測定する。",r:"小児内分泌学 p.119-121"},
+{src:"gaku",bk:"ca",c:"hpt",q:"高カルシウム血症の鑑別で、PTHとPTHrPの測定が重要になるのはなぜか。",o:["原発性副甲状腺機能亢進症と悪性腫瘍に伴う高Ca血症（HHM）の鑑別に必要だから","腎機能を反映するから","ビタミンDを反映するから","骨density を反映するから"],a:0,
+ e:"ビタミンD過剰摂取、ビタミンA中毒、サイアザイド利尿薬、長期臥床・不動でも高Ca血症が起こる。これらではPTHは低値、尿中Ca排泄は増加する。",r:"小児内分泌学 p.117-118"},
+{src:"gaku",bk:"tum",c:"pit",q:"リンパ球性下垂体炎で分泌不全になりやすいホルモンの順序は。",o:["ゴナドトロピン（LH/FSH）とTSHが障害されやすく、GHやPRLの分泌不全は少ない","GHが最も障害されやすい","PRLが最初に低下する","すべて同時に障害される"],a:0,
+ e:"下垂体前葉炎は妊娠後期から産後の女性に多い。頭痛などのmass effect、前葉ホルモン分泌不全、尿崩症による多飲多尿が症状。造影MRIが診断に必須で、漏斗の肥厚は経過で消退することが多い。",r:"小児内分泌学 p.250-251"},
+{src:"gaku",bk:"tum",c:"pit",q:"頭部外傷後の下垂体機能低下症について述べられているのは。",o:["成人では受傷者の少なくとも約1/4以上に生じ、脳振盪など軽度外傷でも発症しうる","重症外傷に限られる","小児では生じない","受傷直後にのみ生じる"],a:0,
+ e:"小児での頻度は不明だが、虐待によるものも少なくない。尿崩症だけの例、SIADHを経て尿崩症となる例など経過は多様。長期のフォローが要る。",r:"小児内分泌学 p.252-253"},
+{src:"gaku",bk:"tum",c:"pit",q:"鞍上部腫瘍で「growth without GH」がみられることがあるのはどの腫瘍か。",o:["頭蓋咽頭腫","胚細胞腫瘍","視神経膠腫","下垂体腺腫"],a:0,
+ e:"GH分泌不全があるにもかかわらず身長が伸びる現象。肥満に伴う高インスリン血症の関与が推定されている。尿崩症や視野異常、低身長が主訴になりやすい。",r:"小児内分泌学 p.249"},
+{src:"gaku",bk:"tum",c:"synd",q:"免疫チェックポイント阻害薬（ICI）による内分泌障害で、最も頻度が高いのは。",o:["甲状腺機能低下症（全体で6.6%）","1型糖尿病","副甲状腺機能低下症","Basedow病"],a:0,
+ e:"投与前にTgAbやTPOAbが陽性だと発症しやすい傾向がある。破壊性甲状腺中毒症を経て機能低下症に至る経過をとる。",r:"小児内分泌学 p.619"},
+{src:"gaku",bk:"tum",c:"synd",q:"ICIによる劇症1型糖尿病について正しいのは。",o:["発症頻度は1%未満とまれだが、ケトアシドーシスで発症しうる","高頻度に生じる","緩徐に進行する","抗GAD抗体が必発である"],a:0,
+ e:"下垂体機能低下症は抗CTLA-4抗体で約1%、投与開始初期の発症が多い。倦怠感・食欲低下・消化器症状を呈し、重症例では副腎クリーゼに至る。",r:"小児内分泌学 p.619"},
+{src:"gaku",bk:"tum",c:"synd",q:"ICIによる下垂体機能低下症の治療でホルモン補充を行うとき、甲状腺ホルモンの用量調節に用いる指標は。",o:["FT4（TSHは指標にならない）","TSH","FT3","サイログロブリン"],a:0,
+ e:"中枢性なのでTSHは当てにならない。Grade 1でも症状があればホルモン補充が安定するまでICIの休薬を検討する。",r:"小児内分泌学 p.620"},
+{src:"gaku",bk:"dm",c:"chi",q:"先天性高インスリン血症で、父由来の片アリル変異に11p15の父性片親性ダイソミーが加わると何が起こるか。",o:["限局型（focal）の病変となり、その細胞ではKATPチャネル機能が失われ、IGF2の倍量化により過形成を生じる","びまん型となる","発症しない","一過性となる"],a:0,
+ e:"11p15.5にはインプリントを受けるH19・CDKN1C（母由来発現）とIGF2（父由来発現）がある。18F-DOPA PETでの局在診断が方針を決める。父は無症状。",r:"小児内分泌学 p.568-569"},
+{src:"gaku",bk:"dm",c:"chi",q:"先天性高インスリン血症の薬物治療で、ジアゾキシドが無効なときの選択肢として挙げられているのは。",o:["オクトレオチド 5〜25 μg/kg/日 分3〜4、グルカゴン、ニフェジピン","メトホルミン","SU薬","インスリン"],a:0,
+ e:"ジアゾキシドの副作用は水分貯留と多毛で、新生児では浮腫や心不全がみられることがあり利尿薬を併用する。オクトレオチドは腸管血流低下の副作用があり定期的な評価が要る。",r:"小児内分泌学 p.570"},
+{src:"gaku",bk:"dm",c:"hypo",q:"ケトン性低血糖症の診断でケトン食負荷が必ずしも必要でない理由は。",o:["通常の絶食のみでケトン体の上昇と低血糖を誘発できるため","ケトン食が危険なため","ケトン体が上がらないため","負荷試験自体が不要なため"],a:0,
+ e:"診断の鍵はインスリンとケトン体。低血糖時にインスリンが抑制され、尿ケトンが陽性であることを確認する。クリティカルサンプルを確実に採る。",r:"小児内分泌学 p.572"},
+{src:"gaku",bk:"dm",c:"hypo",q:"インスリノーマの疫学として報告されているのは。",o:["100万人あたり0.16人。約11%が悪性で、糖尿病の合併が15.7%、てんかん発症が3.8%","100万人あたり16人","小児には発症しない","悪性が大半を占める"],a:0,
+ e:"若年のインスリノーマではMEN1の合併を考え遺伝子検査を検討する。治療はジアゾキシドが保険適用で、オクトレオチドやエベロリムスも用いられる。",r:"小児内分泌学 p.571"},
+{src:"gaku",bk:"adr",c:"ai",q:"副腎不全の除外基準として、負荷試験でのコルチゾール頂値の目安は。",o:["18 μg/dL以上なら副腎不全は否定的","10 μg/dL以上","25 μg/dL以上","値では判断できない"],a:0,
+ e:"早朝コルチゾールも同じ基準。電解質異常（低Na血症）や代謝性アシドーシスは必発ではない。ミネラルコルチコイド欠乏を伴わない病態（中枢性、ACTH不応症）では高K血症を認めない。",r:"小児内分泌学 p.125-126"},
+{src:"gaku",bk:"adr",c:"ai",q:"原発性副腎不全で、病型鑑別のために追加測定すべき項目は。",o:["17-OHP、血漿レニン活性、アルドステロン、DHEA-S、尿中ステロイドプロファイル","血糖のみ","電解質のみ","画像のみ"],a:0,
+ e:"ミネラルコルチコイドと副腎アンドロゲンの系が保たれているかを確認する。ACTH不応症ではアルドステロンが正常という形で、系統ごとの障害が分かれる。",r:"小児内分泌学 p.126"}
 ];
 
 /* ═══════════ 段位 ═══════════ */
@@ -4089,10 +4390,10 @@ const DEFAULT_REWARDS=[
   {n:"好きな店で外食する権利",c:1500},
   {n:"欲しいものを買っていい権利",c:10000}
 ];
-function blankH(){return{coin:0,earned:0,rewards:DEFAULT_REWARDS.slice(),bought:[],days:[]}}
+function blankH(){return{coin:0,earned:0,rewards:DEFAULT_REWARDS.slice(),bought:[],days:[],goal:10}}
 function loadH(){try{const r=localStorage.getItem(HKEY);
   if(r){const h=Object.assign(blankH(),JSON.parse(r));
-    h.rewards=h.rewards||DEFAULT_REWARDS.slice();h.bought=h.bought||[];h.days=h.days||[];return h}
+    h.rewards=h.rewards||DEFAULT_REWARDS.slice();h.bought=h.bought||[];h.days=h.days||[];h.goal=h.goal||10;return h}
   }catch(e){}
   return blankH()}
 function saveH(){try{localStorage.setItem(HKEY,JSON.stringify(H))}catch(e){}}
@@ -4425,7 +4726,7 @@ function renderVolBars(){
   if(!any)box.innerHTML='<div class="exp">まだ巻が入っていません。</div>';
 }
 function renderHome(){
-  renderSrcs();renderVols();
+  renderToday();renderSyncAge();renderTodayStat();renderSrcs();renderVols();
   const cv=VOLS.find(v=>v.k===S.vol), cs=SRCS.find(v=>v.k===S.src);
   document.getElementById("nowVol").textContent =
     (cs?cs.n+"　／　":"") + (cv ? cv.n : "全分野");
@@ -4611,7 +4912,19 @@ function renderDonut(){
     '<span><i style="background:'+p.c+'"></i>'+p.n+'<em>'+p.v+'</em></span>').join('')+'</div>';
   box.innerHTML=g;
 }
+function renderGoal(){
+  const box=document.getElementById("goalchips"); if(!box)return;
+  box.innerHTML="";
+  [5,10,20,30,50,100,150,200].forEach(n=>{
+    const b=document.createElement("button");
+    b.className="chip"+((H.goal||10)===n?" on":"");
+    b.textContent=n;
+    b.onclick=()=>{H.goal=n;saveH();renderGoal();renderToday()};
+    box.appendChild(b);
+  });
+}
 function renderDash(){
+  renderGoal();
   renderDonut();
   const st=streakDays();
   document.getElementById("dStreak").textContent=st.now;
@@ -4680,7 +4993,90 @@ function renderEta(){
   const d=new Date();d.setDate(d.getDate()+days);
   el.textContent="いまの速さなら、"+Q.length+"問を固め終えるのに約"+days+"日（"+(d.getMonth()+1)+"月"+d.getDate()+"日ごろ）。";
 }
+/* 実績バッジ。達成したら解除され、未達は何がどこまで進んだかを見せる */
+function achList(){
+  const st=streakDays();
+  const P=Q.length;
+  let seen=0,mast=0,wrong=0;
+  for(const id in S.cards){const c=S.cards[id];
+    if(c.seen)seen++; if(c.box>=3)mast++; }
+  const srcDone={};
+  Q.forEach(q=>{const k=q.src||'tano'; srcDone[k]=srcDone[k]||[0,0]; srcDone[k][1]++;
+    if(S.cards[q.id])srcDone[k][0]++;});
+  const srcAll=Object.values(srcDone).filter(v=>v[0]>=v[1]).length;
+  const volDone=VOLS.filter(v=>{const ids=Q.filter(q=>(q.bk||'growth')===v.k).map(q=>q.id);
+    return ids.length && ids.every(id=>S.cards[id])}).length;
+  const A=(id,n,d,cur,goal,tier,ic)=>({id:id,n:n,d:d,cur:Math.min(cur,goal),goal:goal,t:tier,ic:ic});
+  return [
+    A('s3','三日坊主を越える','3日つづける',st.best,3,'N','🌱'),
+    A('s7','一週間','7日つづける',st.best,7,'N','🌿'),
+    A('s10','十日','10日つづける',st.best,10,'R','🍀'),
+    A('s30','一か月','30日つづける',st.best,30,'SR','🌳'),
+    A('s100','百日','100日つづける',st.best,100,'SSR','🏔️'),
+    A('a100','百問','100問に答える',S.ans,100,'N','📖'),
+    A('a500','五百問','500問に答える',S.ans,500,'R','📚'),
+    A('a1000','千問','1000問に答える',S.ans,1000,'SR','🎓'),
+    A('a3000','三千問','3000問に答える',S.ans,3000,'SSR','👑'),
+    A('t10','一割に触れる',Math.ceil(P*0.1)+'問に触れる',seen,Math.ceil(P*0.1),'N','🔰'),
+    A('t25','四分の一',Math.ceil(P*0.25)+'問に触れる',seen,Math.ceil(P*0.25),'R','🧭'),
+    A('t50','半分',Math.ceil(P*0.5)+'問に触れる',seen,Math.ceil(P*0.5),'SR','⛰️'),
+    A('t100','全問踏破','全'+P+'問に触れる',seen,P,'SSR','🗺️'),
+    A('m50','熟五十','50問を熟させる',mast,50,'N','🔥'),
+    A('m200','熟二百','200問を熟させる',mast,200,'R','⚡'),
+    A('m500','熟五百','500問を熟させる',mast,500,'SR','💠'),
+    A('k10','連撃十','10問連続で正解',S.best,10,'N','🎯'),
+    A('k25','連撃二十五','25問連続で正解',S.best,25,'R','🏹'),
+    A('k50','連撃五十','50問連続で正解',S.best,50,'SR','⚔️'),
+    A('v1','一巻制覇','どれか1巻を全問',volDone,1,'R','📜'),
+    A('v5','五巻制覇','5巻を全問',volDone,5,'SR','🏯'),
+    A('b1','初めての褒美','ご褒美を1つ引き換える',H.bought.length,1,'N','🎁'),
+    A('b10','褒美十','ご褒美を10回引き換える',H.bought.length,10,'SR','🎊'),
+    A('c1000','千銭','累計1000コインを稼ぐ',H.earned,1000,'R','🪙'),
+    A('c10000','万銭','累計10000コインを稼ぐ',H.earned,10000,'SSR','💰'),
+    A('src1','一冊を踏破','どれか1冊を全問',srcAll,1,'SR','📘'),
+    A('src6','六冊踏破','6冊すべてを全問',srcAll,6,'SSR','🌟')
+  ];
+}
+let achPick=null, achOpen=false;
+function achTap(i){achPick=(achPick===i)?null:i;renderAch();}
+function achToggle(){achOpen=!achOpen;achPick=null;renderAch();}
+function renderAch(){
+  const box=document.getElementById("achList"); if(!box)return;
+  const L=achList();
+  const done=L.filter(x=>x.cur>=x.goal).length;
+  const sum=document.getElementById("achSum");
+  if(sum)sum.innerHTML='<b>'+done+'</b> / '+L.length;
+
+  if(!achOpen){
+    /* 畳んだ状態 ― 直近で獲ったものを数個だけ見せる */
+    const got=L.filter(x=>x.cur>=x.goal).slice(-6);
+    box.innerHTML='<div class="achmini">'+
+      (got.length?got.map(x=>'<span class="achdot r'+x.t+'">'+x.ic+'</span>').join('')
+                 :'<span class="achnone">まだ解除なし</span>')+
+      '</div><button class="btn ghost" onclick="achToggle()">ひらく</button>';
+    return;
+  }
+  let g='<div class="achgrid">'+L.map((x,i)=>{
+    const ok=x.cur>=x.goal;
+    return '<button class="achic'+(ok?' on r'+x.t:'')+(achPick===i?' sel':'')+
+      '" onclick="achTap('+i+')">'+x.ic+'</button>';
+  }).join('')+'</div>';
+  if(achPick!=null&&L[achPick]){
+    const x=L[achPick], ok=x.cur>=x.goal, pct=Math.round(x.cur/x.goal*100);
+    g+='<div class="achdet'+(ok?' on':'')+'">'+
+      '<div class="achtag2 r'+x.t+'">'+x.t+'</div>'+
+      '<div class="achn">'+x.ic+' '+x.n+(ok?' <span class="achok">達成</span>':'')+'</div>'+
+      '<div class="achd">'+x.d+'</div>'+
+      (ok?'':'<div class="achbar"><i style="width:'+pct+'%"></i></div><div class="achnum">'+x.cur+' / '+x.goal+'</div>')+
+      '</div>';
+  }else{
+    g+='<div class="note" style="margin-top:12px">印を押すと中身が出る。</div>';
+  }
+  g+='<button class="btn ghost" onclick="achToggle()">畳む</button>';
+  box.innerHTML=g;
+}
 function renderRew(){
+  renderAch();
   document.getElementById("purse").textContent=H.coin;
   const gb=document.getElementById("gachaBtn");
   if(gb&&H.lastDraw===todayISO()){gb.disabled=true;gb.textContent="また明日"}
@@ -4866,6 +5262,33 @@ function dailyBonus(){
   addCoin(c);gainCoin+=c;
   save();
 }
+/* ランダム出題。復習日を無視して拾う。
+   分野（巻）ではなく出典ごとに順ぐりに拾う。CCSのように巻が細かく分かれている
+   出典を巻単位で均すと、かえってその出典ばかりになるため */
+function startRandom(n){
+  const P=pool();
+  if(!P.length){alert("この範囲に問題がありません。");return}
+  const by={};
+  P.forEach(q=>{(by[q.src]=by[q.src]||[]).push(q.id)});
+  const keys=Object.keys(by);
+  shuffle(keys);
+  keys.forEach(k=>shuffle(by[k]));
+  const picked=[];
+  let i=0;
+  while(picked.length<n && keys.some(k=>by[k].length)){
+    const k=keys[i%keys.length];
+    if(by[k].length)picked.push(by[k].pop());
+    i++;
+  }
+  shuffle(picked);
+  sess=picked.slice(0,n);
+  pos=0;got=0;gainXp=0;gainCoin=0;
+  dailyBonus();
+  document.getElementById("home").style.display="none";
+  document.getElementById("result").style.display="none";
+  document.getElementById("quiz").style.display="block";
+  show();
+}
 function start(n){
   const now=Date.now();
   const due=[],nw=[],P=pool();
@@ -5026,20 +5449,199 @@ function levelCheck(){
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}}
 function exportRec(){
   const ta=document.getElementById("recBox");
-  ta.value=JSON.stringify(S);
-  ta.select();ta.setSelectionRange(0,ta.value.length);
-  let copied=false;
-  try{copied=document.execCommand("copy")}catch(e){}
+  ta.value=JSON.stringify({v:2,s:S,h:H});
+  document.getElementById("copyBtn").style.display="block";
+  copyRec();
+}
+/* コピーだけを独立させる。毎回全選択するのは手間なので */
+/* 演習タブからの最短経路。Profileを開かずに端末間を移れるようにする */
+function quickExport(){
+  /* 学習記録(S)とコイン・ご褒美(H)の両方を1つにまとめる */
+  const txt=JSON.stringify({v:2,s:S,h:H});
+  const msg=document.getElementById("syncMsg");
+  const done=()=>{
+    H.lastSync=todayISO(); saveH(); renderSyncAge();
+    msg.textContent="コピーした（"+txt.length+"文字）。移った先で「貼りつけて読み込む」。";
+  };
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(ta.value).then(()=>{
-      document.getElementById("recMsg").textContent="書き出してコピーした。移った先で貼りつけて読み込む。";
-    }).catch(()=>{
-      document.getElementById("recMsg").textContent=copied
-        ?"書き出してコピーした。":"書き出した。上の文字列を長押しして全部コピーする。";
+    navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,msg,done));
+  }else fallbackCopy(txt,msg,done);
+}
+function fallbackCopy(txt,msg,done){
+  const ta=document.createElement("textarea");
+  ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  let ok=false; try{ok=document.execCommand("copy")}catch(e){}
+  document.body.removeChild(ta);
+  if(ok)done(); else msg.textContent="自動コピーできなかった。Profile →「記録」から書き出す。";
+}
+async function quickImport(){
+  const msg=document.getElementById("syncMsg");
+  let txt="";
+  try{ if(navigator.clipboard&&navigator.clipboard.readText) txt=await navigator.clipboard.readText(); }catch(e){}
+  if(!txt){
+    txt=prompt("移す先の記録を貼りつけてください（⌘V／長押しでペースト）")||"";
+  }
+  txt=txt.trim();
+  if(!txt){msg.textContent="貼りつけられなかった。";return}
+  let d; try{d=JSON.parse(txt)}catch(e){msg.textContent="読み取れない。文字列が途中で切れていないか確かめる。";return}
+  /* 新形式{v:2,s,h}と旧形式(Sのみ)の両方を受ける */
+  const ns = (d&&d.v===2&&d.s) ? d.s : d;
+  const nh = (d&&d.v===2&&d.h) ? d.h : null;
+  if(!ns||typeof ns!=="object"||!ns.cards){msg.textContent="この修行巻物の記録ではないようだ。";return}
+  const n=Object.keys(ns.cards).length;
+  const coin=nh?nh.coin:null;
+  if(!confirm("この端末を、読み込んだデータで置き換えます。\n\n解答記録 "+n+"問ぶん"+(coin!=null?"\nコイン "+coin+" C":"")+"\n\nよろしいですか。"))return;
+  S=Object.assign(blank(),ns); S.log=S.log||{};
+  if(nh){H=Object.assign(blankH(),nh); H.rewards=H.rewards||DEFAULT_REWARDS.slice(); saveH();}
+  save(); renderHome(); renderSyncAge();
+  msg.textContent="移行した。"+n+"問ぶんの記録"+(coin!=null?"とコイン "+coin+" C":"")+"を引き継いだ。";
+}
+/* 日替わりの一言。日付から決めるので、同じ日は何度開いても同じものが出る */
+const QUOTES=[
+ ["大切なのは何が与えられているかではなく、与えられたものをどう使うかである。","アドラー"],
+ ["人生が困難なのではない。あなたが人生を困難にしているのだ。","アドラー"],
+ ["今日の実践が明日の自分をつくる。","アドラー"],
+ ["できない理由を探すのではなく、できる方法を探しなさい。","アドラー"],
+ ["われわれを苦しめるのは出来事ではなく、出来事についての考えである。","エピクテトス"],
+ ["支配できることと、できないことを分けよ。","エピクテトス"],
+ ["今日できることを、明日に延ばすな。","フランクリン"],
+ ["小さなことを重ねることが、とんでもないところへ行くただ一つの道。","イチロー"],
+ ["準備とは、言い訳をなくすこと。","イチロー"],
+ ["努力は必ず報われる。報われない努力があるとすれば、それはまだ努力と呼べない。","王貞治"],
+ ["天才とは、1%のひらめきと99%の汗である。","エジソン"],
+ ["私は失敗したことがない。うまくいかない方法を1万通り見つけただけだ。","エジソン"],
+ ["知識への投資は、常に最大の利息を生む。","フランクリン"],
+ ["よく観察することは、よく学ぶことである。","ヒポクラテス"],
+ ["人生は短く、術のみちは長い。","ヒポクラテス"],
+ ["昨日より今日、今日より明日。","道元"],
+ ["千里の道も一歩から。","老子"],
+ ["やってみせ、言って聞かせて、させてみせ、褒めてやらねば人は動かじ。","山本五十六"],
+ ["経験なき理論は空虚であり、理論なき経験は危うい。","オスラー"],
+ ["医学は科学に基づく技術である。","オスラー"],
+ ["患者を診よ、教科書ではなく。","オスラー"],
+ ["一日一日を、その日が最後であるかのように生きよ。","マルクス・アウレリウス"],
+ ["障害が道をふさぐのではない。障害こそが道である。","マルクス・アウレリウス"],
+ ["学びて時に之を習う、亦た説ばしからずや。","孔子"],
+ ["知るを知るとし、知らざるを知らずとせよ。これ知るなり。","孔子"],
+ ["継続は力なり。","住岡夜晃"],
+ ["天は自ら助くる者を助く。","サミュエル・スマイルズ"],
+ ["最も強い者が生き残るのではなく、最も変化に適応した者が生き残る。","ダーウィン"],
+ ["明日死ぬかのように生きよ。永遠に生きるかのように学べ。","ガンジー"],
+ ["目標を持たない者に、追い風は吹かない。","セネカ"],
+ ["人は教えることによって、最もよく学ぶ。","セネカ"]
+];
+/* 連続日数で育つ木。30日で満開、途切れると土に戻る */
+const TREE=[
+ [0, '🟫','土'],[1,'🌱','芽'],[3,'🌿','双葉'],[6,'🪴','若木'],
+ [10,'🌲','育つ'],[15,'🌳','大樹'],[21,'🌸','つぼみ'],[30,'🏵️','満開']
+];
+function treeStage(d){
+  const n=d%30===0&&d>0?30:d%30;
+  let t=TREE[0];
+  TREE.forEach(x=>{if(n>=x[0])t=x});
+  return {ic:t[1], name:t[2], n:n};
+}
+function renderToday(){
+  const d=new Date();
+  const wd=["日","月","火","水","木","金","土"][d.getDay()];
+  const de=document.getElementById("tDate");
+  if(de)de.textContent=(d.getMonth()+1)+"月"+d.getDate()+"日（"+wd+"）";
+  const st=streakDays();
+  const tr=treeStage(st.now);
+  const te=document.getElementById("tTree");
+  if(te){
+    const next=TREE.find(x=>x[0]>tr.n);
+    te.innerHTML='<div class="tico">'+tr.ic+'</div>'+
+      '<div class="tname">'+tr.name+'</div>'+
+      '<div class="tnext">'+(next?'あと'+(next[0]-tr.n)+'日':'30日目')+'</div>';
+  }
+  const se=document.getElementById("tStreak");
+  if(se){
+    se.innerHTML = st.now>0
+      ? '<b>'+st.now+'</b> 日つづけて修行中'+(st.best>st.now?'　<span>最長 '+st.best+' 日</span>':'')
+      : (st.best>0?'<b>今日</b>から積みなおす　<span>最長 '+st.best+' 日</span>':'<b>今日</b>からはじめる');
+  }
+  /* 日付を種にするので、同じ日は同じ言葉が出る */
+  const seed=Math.floor(new Date(todayISO()).getTime()/86400000);
+  const q=QUOTES[((seed%QUOTES.length)+QUOTES.length)%QUOTES.length];
+  /* きょうの目標に対する達成率。毎日ゼロに戻るので日々の動機になる */
+  const re_=document.getElementById("tRing");
+  if(re_){
+    const t=S.log[todayISO()]||{a:0};
+    const goal=H.goal||10;
+    const raw=goal?Math.round(t.a/goal*100):0;
+    const pct=Math.min(raw,300);
+    const ring=Math.min(raw,100);          /* 輪は100%で一周 */
+    const over=Math.max(0,Math.min(raw-100,200)); /* 100を超えた分 */
+    /* 灯がともるように、達成率で色が変わる */
+    let col='#B8AA8C', glow=0;
+    if(raw>=300){col='#E0433A'; glow=16}
+    else if(raw>=200){col='#E07A2C'; glow=12}
+    else if(raw>=100){col='#D9A528'; glow=8}
+    else if(raw>=70){col='#9A7F3A'}
+    else if(raw>=35){col='#8A7A58'}
+    const R=26,C=2*Math.PI*R;
+    re_.innerHTML='<svg viewBox="0 0 64 64">'+
+      (glow?'<circle cx="32" cy="32" r="'+R+'" fill="none" stroke="'+col+'" stroke-width="7" opacity=".25"/>':'')+
+      '<circle cx="32" cy="32" r="'+R+'" fill="none" stroke="rgba(120,96,56,.22)" stroke-width="7"/>'+
+      '<circle cx="32" cy="32" r="'+R+'" fill="none" stroke="'+col+'" stroke-width="7" stroke-linecap="round"'+
+      ' stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-ring/100)).toFixed(1)+'"'+
+      ' transform="rotate(-90 32 32)"'+(glow?' style="filter:drop-shadow(0 0 '+glow+'px '+col+')"':'')+'/>'+
+      (over? '<circle cx="32" cy="32" r="18" fill="none" stroke="'+col+'" stroke-width="3" stroke-linecap="round"'+
+             ' stroke-dasharray="'+(2*Math.PI*18).toFixed(1)+'" stroke-dashoffset="'+(2*Math.PI*18*(1-over/200)).toFixed(1)+'"'+
+             ' transform="rotate(-90 32 32)" opacity=".85"/>' : '')+
+      '<text x="32" y="35" text-anchor="middle" font-size="'+(pct>=100?13:15)+'" font-weight="700" fill="'+(raw>=100?col:'#3C3426')+'" font-family="sans-serif">'+pct+'</text>'+
+      '<text x="32" y="45" text-anchor="middle" font-size="8" fill="#8A7A58" font-family="sans-serif">%</text>'+
+      '</svg><div class="tringlab">'+(raw>=300?'極':raw>=200?'絶好調':raw>=100?'達成':'きょう '+t.a+'/'+goal)+'</div>';
+  }
+  const qe=document.getElementById("tQuote"), be=document.getElementById("tBy");
+  if(qe)qe.textContent="「"+q[0]+"」";
+  if(be)be.textContent="— "+q[1];
+}
+/* きょう解いた分だけを小さく出す。昨日との比較で手が動く */
+function renderTodayStat(){
+  const el=document.getElementById("todayStat"); if(!el)return;
+  const t=S.log[todayISO()]||{a:0,o:0};
+  const ds=lastDays(2), y=ds[0].v||{a:0,o:0};
+  const pct=t.a?Math.round(t.o/t.a*100):null;
+  const due=(()=>{const n=Date.now();let d=0;
+    pool().forEach(q=>{const c=S.cards[q.id];if(c&&!c.ret&&c.due<=n)d++});return d})();
+  el.innerHTML=
+    '<div class="tsmain"><b>'+t.a+'</b><small>問</small>'+
+      (pct!=null?'<span class="tspct">'+pct+'%</span>':'')+'</div>'+
+    '<div class="tssub">'+
+      (y.a?'きのう '+y.a+'問':'きのうは休み')+
+      '<br>復習の刻 '+due+'</div>';
+}
+function renderSyncAge(){
+  const el=document.getElementById("syncAge"); if(!el)return;
+  if(!H.lastSync){el.textContent="まだ書き出していない。端末を移るときはここから。";return}
+  const d=Math.round((new Date(todayISO())-new Date(H.lastSync))/86400000);
+  el.textContent = d<=0 ? "きょう書き出し済み。" : "最後に書き出してから "+d+" 日。";
+  el.style.color = d>=7 ? "var(--shu-lt)" : "";
+}
+function copyRec(){
+  const ta=document.getElementById("recBox");
+  const msg=document.getElementById("recMsg");
+  const txt=ta.value.trim();
+  if(!txt){msg.textContent="先に「記録を書き出す」を押す。";return}
+  const done=()=>{
+    const b=document.getElementById("copyBtn");
+    b.textContent="コピーした";
+    setTimeout(()=>{b.textContent="② コピーする"},1800);
+    msg.textContent="コピーした（"+txt.length+"文字）。移った先の枠に貼りつけて読み込む。";
+  };
+  /* iOSでは選択してから execCommand が通ることがあるので両方試す */
+  ta.focus(); ta.select(); ta.setSelectionRange(0, txt.length);
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(()=>{
+      let ok=false; try{ok=document.execCommand("copy")}catch(e){}
+      if(ok)done(); else msg.textContent="自動コピーできなかった。枠を長押しして全部コピーする。";
     });
   }else{
-    document.getElementById("recMsg").textContent=copied
-      ?"書き出してコピーした。":"書き出した。上の文字列を長押しして全部コピーする。";
+    let ok=false; try{ok=document.execCommand("copy")}catch(e){}
+    if(ok)done(); else msg.textContent="自動コピーできなかった。枠を長押しして全部コピーする。";
   }
 }
 function importRec(){
@@ -5048,12 +5650,16 @@ function importRec(){
   if(!raw){msg.textContent="先に記録の文字列を貼りつける。";return}
   let d;
   try{d=JSON.parse(raw)}catch(e){msg.textContent="読み取れない。文字列が途中で切れていないか確かめる。";return}
-  if(!d||typeof d!=="object"||!d.cards){msg.textContent="この修行巻物の記録ではないようだ。";return}
-  const n=Object.keys(d.cards).length;
-  if(!confirm("この端末の記録を、読み込んだ記録("+n+"問ぶん)で置き換えます。よろしいですか。"))return;
-  S=Object.assign(blank(),d);S.log=S.log||{};
+  const ns=(d&&d.v===2&&d.s)?d.s:d;
+  const nh=(d&&d.v===2&&d.h)?d.h:null;
+  if(!ns||typeof ns!=="object"||!ns.cards){msg.textContent="この修行巻物の記録ではないようだ。";return}
+  const n=Object.keys(ns.cards).length;
+  const coin=nh?nh.coin:null;
+  if(!confirm("この端末を、読み込んだデータで置き換えます。\n\n解答記録 "+n+"問ぶん"+(coin!=null?"\nコイン "+coin+" C":"")+"\n\nよろしいですか。"))return;
+  S=Object.assign(blank(),ns);S.log=S.log||{};
+  if(nh){H=Object.assign(blankH(),nh);H.rewards=H.rewards||DEFAULT_REWARDS.slice();saveH();}
   save();renderHome();renderSelf();
-  msg.textContent="読み込んだ。"+n+"問ぶんの記録と段位を引き継いだ。";
+  msg.textContent="移行した。"+n+"問ぶんの記録"+(coin!=null?"とコイン "+coin+" C":"")+"を引き継いだ。";
 }
 function wipe(){
   if(!confirm("すべての記録と段位を消します。よろしいですか。"))return;
