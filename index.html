@@ -223,8 +223,11 @@ nav button.on::after{content:"";display:block;width:20px;height:2px;background:v
 #stamp.on{display:flex}
 .stampbox{text-align:center;animation:press .55s cubic-bezier(.2,1.5,.4,1)}
 @keyframes press{0%{transform:scale(2.4) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(-6deg);opacity:1}}
+body.moon #xpfill{background:linear-gradient(90deg,#E8C25A,#FF8A3D,#E0433A)!important}
+body.moon #rankName{color:#E8C25A}
+.stampseal small{display:block;font-size:.62em;letter-spacing:.3em;margin-top:2px}
 .stampseal{width:150px;height:150px;border:5px solid var(--shu);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;line-height:1.15;
   font-family:var(--mincho);font-size:38px;color:var(--shu);letter-spacing:.1em;
   background:rgba(196,69,58,.08)}
 .stamptxt{font-family:var(--mincho);color:var(--kindei-lt);letter-spacing:.3em;margin-top:20px;font-size:14px}
@@ -5023,10 +5026,61 @@ const Q=[
 ];
 
 /* ═══════════ 段位 ═══════════ */
+/* 段位。中伝までは一段ずつ、奥伝から師範までは壱・弐・参。最上位は宗家。
+   全問を封印まで持っていくと総XPは約11〜19万。宗家はその4割ほど（1日30問で約4〜5か月）に置き、
+   全部解き切らなくても頂上に届くようにした。宗家から先は月ごとの位を争う */
 const RANKS=[
- {n:"見習い",x:0},{n:"入門",x:150},{n:"初伝",x:400},{n:"中伝",x:800},{n:"奥伝",x:1400},
- {n:"目録",x:2200},{n:"免許",x:3200},{n:"印可",x:4500},{n:"皆伝",x:6000},{n:"極意",x:8000}
+ {n:"見習い",x:0},
+ {n:"入門",x:150},
+ {n:"初伝",x:400},
+ {n:"中伝",x:800},
+ {n:"奥伝 壱",x:1400},
+ {n:"奥伝 弐",x:1800},
+ {n:"奥伝 参",x:2300},
+ {n:"目録 壱",x:2900},
+ {n:"目録 弐",x:3500},
+ {n:"目録 参",x:4200},
+ {n:"免許 壱",x:5000},
+ {n:"免許 弐",x:6000},
+ {n:"免許 参",x:7100},
+ {n:"印可 壱",x:8300},
+ {n:"印可 弐",x:9700},
+ {n:"印可 参",x:11300},
+ {n:"皆伝 壱",x:13000},
+ {n:"皆伝 弐",x:15000},
+ {n:"皆伝 参",x:17200},
+ {n:"極意 壱",x:19700},
+ {n:"極意 弐",x:22500},
+ {n:"極意 参",x:25600},
+ {n:"師範 壱",x:29000},
+ {n:"師範 弐",x:33000},
+ {n:"師範 参",x:37500},
+ {n:"宗家",x:44000}
 ];
+/* 宗家に着いてからの「月の位」。その月に稼いだ点で決まり、月が替わると宗家に戻る */
+const MOON=[{n:"宗家",p:0},{n:"名人",p:5000},{n:"天下無双",p:12000}];
+function monthKey(){return todayISO().slice(0,7)}
+function atTop(){return S.rank===RANKS.length-1}
+function moonPts(){return S.mo?Math.max(0,S.xp-S.mo.base):0}
+function moonIdx(){let i=0,pt=moonPts();while(MOON[i+1]&&pt>=MOON[i+1].p)i++;return i}
+/* 月が替わっていたら、前の月の位を記録してから新しい月を始める */
+function moonTick(stamp){
+  if(!atTop())return;
+  S.gm=S.gm||{};
+  const k=monthKey();
+  if(!S.mo||S.mo.k!==k){ S.mo={k:k,base:S.xp,best:0}; save(); }
+  const i=moonIdx();
+  if(i>(S.mo.best||0)){
+    S.mo.best=i; S.gm[k]=MOON[i].n; save();
+    if(stamp){
+      document.getElementById("stampRank").innerHTML=MOON[i].n+"<small>"+k.replace("-","年")+"月</small>";
+      document.getElementById("stamp").classList.add("on");
+      setTimeout(()=>document.getElementById("stamp").classList.remove("on"),2400);
+    }
+  }
+}
+/* 保存されている段位番号は使わず、XPから引き直す（段の数が変わっても崩れないように） */
+function syncRank(){let r=0;while(RANKS[r+1]&&S.xp>=RANKS[r+1].x)r++;S.rank=r;}
 /* 巻。ready:true が収録済み。Q に v: を書かない問は growth 扱い */
 /* 出典＝どの本から出た問か。分野（巻）とは別の軸 */
 const SRCS=[
@@ -5096,7 +5150,8 @@ const OLDKEY="shugyo_endo_growth_v1";
 const DAY=864e5, INT=[1,1,3,7,21];   /* box0（落とした問）も翌日。0だと即再出題され同じ問が居座る */
 
 let S=load();
-function blank(){return{xp:0,rank:0,streak:0,best:0,ans:0,ok:0,days:[],cards:{},vol:"all",src:"all",mode:"all",log:{}}}
+syncRank();
+function blank(){return{xp:0,rank:0,streak:0,best:0,ans:0,ok:0,days:[],cards:{},vol:"all",src:"all",mode:"all",mo:null,gm:{},log:{}}}
 /* 日付を並べ替え可能な形に揃える。旧版の "2026-8-9" 形式も受ける */
 function isoOf(d){const m=String(d).match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
   return m?m[1]+"-"+String(m[2]).padStart(2,"0")+"-"+String(m[3]).padStart(2,"0"):null}
@@ -5287,15 +5342,27 @@ function tab(v,el){
   window.scrollTo(0,0);
 }
 function renderXP(){
+  moonTick(false);
   const r=S.rank, cur=RANKS[r], nxt=RANKS[r+1];
-  document.getElementById("rankName").textContent=cur.n;
+  const fill=document.getElementById("xpfill"), txt=document.getElementById("xpText"), nm=document.getElementById("rankName");
   if(nxt){
+    nm.textContent=cur.n;
     const p=(S.xp-cur.x)/(nxt.x-cur.x)*100;
-    document.getElementById("xpfill").style.width=Math.max(2,Math.min(100,p))+"%";
-    document.getElementById("xpText").textContent=S.xp+" / "+nxt.x;
+    fill.style.width=Math.max(2,Math.min(100,p))+"%";
+    txt.textContent=S.xp+" / "+nxt.x+"　次は "+nxt.n;
+    document.body.classList.remove("moon");
   }else{
-    document.getElementById("xpfill").style.width="100%";
-    document.getElementById("xpText").textContent=S.xp+" 　極";
+    /* 宗家から先は月の点で争う */
+    const i=moonIdx(), pt=moonPts(), nm2=MOON[i+1];
+    nm.textContent=MOON[i].n;
+    document.body.classList.add("moon");
+    if(nm2){
+      fill.style.width=Math.max(2,Math.min(100,(pt-MOON[i].p)/(nm2.p-MOON[i].p)*100))+"%";
+      txt.textContent="今月 "+pt.toLocaleString()+" 点　"+nm2.n+"まで "+(nm2.p-pt).toLocaleString();
+    }else{
+      fill.style.width="100%";
+      txt.textContent="今月 "+pt.toLocaleString()+" 点　天下無双";
+    }
   }
 }
 let openGroups={};
@@ -5712,6 +5779,10 @@ function achList(){
   let seen=0,mast=0,wrong=0;
   for(const id in S.cards){const c=S.cards[id];
     if(c.seen)seen++; if(c.box>=3)mast++; }
+  let sealed=0; for(const id in S.cards){ if(S.cards[id].ret) sealed++; }
+  const volAll=VOLS.filter(v=>v.ready && Q.some(q=>(q.bk||'growth')===v.k)).length;
+  const rk=n=>{const i=RANKS.findIndex(r=>r.n===n);return S.rank>=i?1:0};
+  const meijinN=Object.values(S.gm||{}).filter(t=>t!=='宗家').length;
   const srcDone={};
   Q.forEach(q=>{const k=q.src||'tano'; srcDone[k]=srcDone[k]||[0,0]; srcDone[k][1]++;
     if(S.cards[q.id])srcDone[k][0]++;});
@@ -5725,10 +5796,14 @@ function achList(){
     A('s10','十日','10日つづける',st.best,10,'R','🍀'),
     A('s30','一か月','30日つづける',st.best,30,'SR','🌳'),
     A('s100','百日','100日つづける',st.best,100,'SSR','🏔️'),
+    A('s200','二百日','200日つづける',st.best,200,'SSR','🌲'),
+    A('s365','一年','365日つづける',st.best,365,'SSR','🎍'),
     A('a100','百問','100問に答える',S.ans,100,'N','📖'),
     A('a500','五百問','500問に答える',S.ans,500,'R','📚'),
     A('a1000','千問','1000問に答える',S.ans,1000,'SR','🎓'),
     A('a3000','三千問','3000問に答える',S.ans,3000,'SSR','👑'),
+    A('a5000','五千問','5000問に答える',S.ans,5000,'SSR','🪶'),
+    A('a10000','万問','10000問に答える',S.ans,10000,'SSR','🌋'),
     A('t10','一割に触れる',Math.ceil(P*0.1)+'問に触れる',seen,Math.ceil(P*0.1),'N','🔰'),
     A('t25','四分の一',Math.ceil(P*0.25)+'問に触れる',seen,Math.ceil(P*0.25),'R','🧭'),
     A('t50','半分',Math.ceil(P*0.5)+'問に触れる',seen,Math.ceil(P*0.5),'SR','⛰️'),
@@ -5736,17 +5811,30 @@ function achList(){
     A('m50','熟五十','50問を熟させる',mast,50,'N','🔥'),
     A('m200','熟二百','200問を熟させる',mast,200,'R','⚡'),
     A('m500','熟五百','500問を熟させる',mast,500,'SR','💠'),
+    A('m1000','熟千','1000問を熟させる',mast,1000,'SSR','🔱'),
+    A('mAll','全問熟成','全'+P+'問を熟させる',mast,P,'SSR','🌈'),
+    A('r100','封印百','100問を封印する（最上段を二度通す）',sealed,100,'R','🔒'),
+    A('r500','封印五百','500問を封印する',sealed,500,'SR','🗝️'),
+    A('rAll','全問封印','全'+P+'問を封印する',sealed,P,'SSR','🏆'),
     A('k10','連撃十','10問連続で正解',S.best,10,'N','🎯'),
     A('k25','連撃二十五','25問連続で正解',S.best,25,'R','🏹'),
     A('k50','連撃五十','50問連続で正解',S.best,50,'SR','⚔️'),
     A('v1','一巻制覇','どれか1巻を全問',volDone,1,'R','📜'),
     A('v5','五巻制覇','5巻を全問',volDone,5,'SR','🏯'),
+    A('v10','十巻制覇','10巻を全問',volDone,10,'SR','🗂️'),
+    A('vAll','全巻制覇','全'+volAll+'巻を全問',volDone,volAll,'SSR','🏰'),
     A('b1','初めての褒美','ご褒美を1つ引き換える',H.bought.length,1,'N','🎁'),
     A('b10','褒美十','ご褒美を10回引き換える',H.bought.length,10,'SR','🎊'),
     A('c1000','千銭','累計1000コインを稼ぐ',H.earned,1000,'R','🪙'),
     A('c10000','万銭','累計10000コインを稼ぐ',H.earned,10000,'SSR','💰'),
     A('src1','一冊を踏破','どれか1冊を全問',srcAll,1,'SR','📘'),
-    A('src6','六冊踏破','6冊すべてを全問',srcAll,6,'SSR','🌟')
+    A('src6','六冊踏破','6冊すべてを全問',srcAll,6,'SSR','🌟'),
+    A('okuden','奥伝','奥伝 壱に到達する',rk('奥伝 壱'),1,'R','🥋'),
+    A('kaiden','皆伝','皆伝 壱に到達する',rk('皆伝 壱'),1,'SR','🎖️'),
+    A('top','宗家に至る','最上位の段に到達する',atTop()?1:0,1,'SSR','🎌'),
+    A('meijin','名人','ひと月で5,000点を稼ぐ',Object.values(S.gm||{}).filter(t=>t!=='宗家').length,1,'SSR','🌕'),
+    A('meijin3','三度の名人','名人以上の月を3回つくる',meijinN,3,'SSR','🌙'),
+    A('musou','天下無双','ひと月で12,000点を稼ぐ',Object.values(S.gm||{}).filter(t=>t==='天下無双').length,1,'SSR','☀️')
   ];
 }
 let achPick=null, achOpen=false;
@@ -6190,10 +6278,13 @@ function levelCheck(){
   while(RANKS[r+1]&&S.xp>=RANKS[r+1].x)r++;
   if(r!==S.rank){
     S.rank=r;
-    document.getElementById("stampRank").textContent=RANKS[r].n;
+    document.getElementById("stampRank").innerHTML=RANKS[r].n.replace(" ","<small>")+(RANKS[r].n.includes(" ")?"</small>":"");
     document.getElementById("stamp").classList.add("on");
     setTimeout(()=>document.getElementById("stamp").classList.remove("on"),2200);
+    if(atTop()){S.mo={k:monthKey(),base:S.xp,best:0};S.gm=S.gm||{};}
+    return;
   }
+  moonTick(true);
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}}
 function exportRec(){
@@ -6241,7 +6332,7 @@ async function quickImport(){
   const n=Object.keys(ns.cards).length;
   const coin=nh?nh.coin:null;
   if(!confirm("この端末を、読み込んだデータで置き換えます。\n\n解答記録 "+n+"問ぶん"+(coin!=null?"\nコイン "+coin+" C":"")+"\n\nよろしいですか。"))return;
-  S=Object.assign(blank(),ns); S.log=S.log||{};
+  S=Object.assign(blank(),ns); S.log=S.log||{}; syncRank();
   if(nh){H=Object.assign(blankH(),nh); H.rewards=H.rewards||DEFAULT_REWARDS.slice(); saveH();}
   save(); renderHome(); renderSyncAge();
   msg.textContent="移行した。"+n+"問ぶんの記録"+(coin!=null?"とコイン "+coin+" C":"")+"を引き継いだ。";
@@ -6467,7 +6558,7 @@ function importRec(){
   const n=Object.keys(ns.cards).length;
   const coin=nh?nh.coin:null;
   if(!confirm("この端末を、読み込んだデータで置き換えます。\n\n解答記録 "+n+"問ぶん"+(coin!=null?"\nコイン "+coin+" C":"")+"\n\nよろしいですか。"))return;
-  S=Object.assign(blank(),ns);S.log=S.log||{};
+  S=Object.assign(blank(),ns);S.log=S.log||{};syncRank();
   if(nh){H=Object.assign(blankH(),nh);H.rewards=H.rewards||DEFAULT_REWARDS.slice();saveH();}
   save();renderHome();renderSelf();
   msg.textContent="移行した。"+n+"問ぶんの記録"+(coin!=null?"とコイン "+coin+" C":"")+"を引き継いだ。";
