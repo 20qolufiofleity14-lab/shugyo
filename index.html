@@ -197,6 +197,7 @@ nav button.on::after{content:"";display:block;width:20px;height:2px;background:v
 .chip>i.cseen{background:color-mix(in srgb,var(--acc) 14%,transparent)}
 .chip>i.cmast{background:color-mix(in srgb,var(--acc) 34%,transparent)}
 .chip>.clab{position:relative}
+.chip .cpct{font-weight:600;margin-left:6px;color:var(--acc)}
 .chip.full{border-color:var(--byakuroku);color:var(--byakuroku);font-weight:700}
 .chip.full>i.cmast{background:color-mix(in srgb,var(--byakuroku) 30%,transparent)}
 .chip.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc2);font-weight:700}
@@ -5379,7 +5380,7 @@ function renderSrcs(){
     const sfull=sids.length&&smast===sids.length;
     if(sfull)b.classList.add("full");
     b.innerHTML='<i class="cseen" style="width:'+ssp+'%"></i><i class="cmast" style="width:'+smp+'%"></i>'+
-      '<span class="clab">'+(sfull?'✦ ':'')+label+'<small>'+(sseen?ssp+'%':n+'問')+'</small></span>';
+      '<span class="clab">'+(sfull?'✦ ':'')+label+'<small>'+n+'問'+(sseen?'<b class="cpct">'+ssp+'%</b>':'')+'</small></span>';
     b.onclick=()=>{S.src=k;S.vol="all";save();renderSrcs();renderVols();renderHome()};
     box.appendChild(b);
   };
@@ -5411,7 +5412,7 @@ function renderVols(){
     b.className="chip"+(v.ready&&n?(S.vol===v.k?" on":""):" soon")+(full?" full":"");
     b.innerHTML='<i class="cseen" style="width:'+sp+'%"></i><i class="cmast" style="width:'+mp+'%"></i>'+
       '<span class="clab">'+(full?'✦ ':'')+"巻の"+v.no+"　"+v.n+
-      (v.ready&&n?'<small>'+(seen?sp+'%':n+'問')+'</small>':'<small>未収録</small>')+'</span>';
+      (v.ready&&n?'<small>'+n+'問'+(seen?'<b class="cpct">'+sp+'%</b>':'')+'</small>':'<small>未収録</small>')+'</span>';
     if(v.ready&&n)b.onclick=()=>{S.vol=v.k;save();renderVols();renderHome()};
     return b;
   };
