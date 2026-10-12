@@ -8573,5 +8573,41 @@ setInterval(checkDayChange, 60000);
 if(window.claude&&claude.use)initDB();
 else setSaveMsg(storageWorks()?"この端末のブラウザにのみ保存":"保存できない環境。記録は閉じると消える。書き出しで控えを取る。", !storageWorks());
 </script>
+<!-- ▼ 内分泌アカデミー連携（各アプリの </body> の直前に貼り付け） ▼ -->
+<style>
+#eaHub{position:fixed;left:8px;top:calc(env(safe-area-inset-top,0px) + 6px);z-index:99999;font:600 12px/1 system-ui,-apple-system,sans-serif}
+#eaHub>button{width:32px;height:32px;padding:0;font-size:15px;line-height:30px;text-align:center;background:rgba(15,11,26,.7);color:#d4ff3a;border:1px solid rgba(212,255,58,.45);border-radius:50%;opacity:.85;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#eaHubM{display:none;margin-top:6px;background:#1a1330;border:1px solid #3a2d5c;border-radius:12px;padding:8px;width:220px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+#eaHubM.on{display:block}
+#eaHubM a,#eaHubM button{display:block;width:100%;text-align:left;margin:0 0 6px;padding:9px 10px;border-radius:8px;border:0;background:#241a42;color:#fff;text-decoration:none;font:inherit;cursor:pointer}
+#eaHubM textarea{width:100%;height:64px;font-size:10px;margin-top:4px;display:none;background:#0f0b1a;color:#fff;border:1px solid #3a2d5c}
+#eaHubM small{display:block;color:#a69bbd;font-weight:400;line-height:1.4;margin-top:4px}
+</style>
+<div id="eaHub"><button id="eaHubB" aria-label="アカデミーメニュー">⌂</button>
+  <div id="eaHubM">
+    <a id="eaHubBack" href="#">← アカデミーへ戻る</a>
+    <button id="eaHubX">引き継ぎコードをコピー</button>
+    <textarea id="eaHubO" readonly></textarea>
+    <small>引き継ぎ：コピーしたコードを、アカデミーの「設定 → 引き継ぎコード」に貼り付けます。</small>
+  </div>
+</div>
+<script>
+(function(){
+  var home=null; try{ home=localStorage.getItem("hub_home_url"); }catch(e){}
+  var back=document.getElementById("eaHubBack");
+  if(home){ back.href=home; } else { back.style.display="none"; }
+  document.getElementById("eaHubB").onclick=function(){ document.getElementById("eaHubM").classList.toggle("on"); };
+  document.getElementById("eaHubX").onclick=function(){
+    var o={}; for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k!=="hub_home_url") o[k]=localStorage.getItem(k); }
+    var code="EAX1:"+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+    var t=document.getElementById("eaHubO"); t.style.display="block"; t.value=code; t.select();
+    var b=this; var done=function(){ b.textContent="コピーしました ✓"; };
+    if(navigator.clipboard){ navigator.clipboard.writeText(code).then(done,function(){ b.textContent="下のコードを長押しでコピー"; }); }
+    else { b.textContent="下のコードを長押しでコピー"; }
+  };
+})();
+</script>
+<!-- ▲ ここまで ▲ -->
+
 </body>
 </html>
